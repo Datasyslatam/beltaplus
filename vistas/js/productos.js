@@ -7,7 +7,7 @@ $.ajax({
 	url: "ajax/datatable-productos.ajax.php",
 	success:function(respuesta){
 		
-		console.log("respuesta", respuesta);
+		//console.log("respuesta", respuesta);
 
 	}
 
@@ -16,7 +16,7 @@ $.ajax({
 var perfilOculto = $("#perfilOculto").val();
 
 $('.tablaProductos').DataTable( {
-    "ajax": "ajax/datatable-productos.ajax.php?perfilOculto="+perfilOculto,
+    //"ajax": "ajax/datatable-productos.ajax.php?perfilOculto="+perfilOculto,
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
