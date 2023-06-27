@@ -2629,7 +2629,7 @@ input[type="search"] {
   }
 }
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 150px;
 }
 .radio,
 .checkbox {
@@ -5944,7 +5944,7 @@ button.close {
 }
 .modal-body {
   position: relative;
-  padding: 15px;
+  padding: 150px;
 }
 .modal-footer {
   padding: 15px;

@@ -55,6 +55,18 @@ session_start();
   <link rel="stylesheet" href="vistas/dist/css/custom.css">
 
   <!--=====================================
+  Precompilacion de archivos less
+  ======================================-->
+
+  <link rel="stylesheet/less"
+  type="text/css"
+  href="vistas/bower_components/bootstrap/less/variables.less">
+  <!-- <script src="//cdn.jsdelivr.net/npm/less">  
+  </script> -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js">  
+  </script>
+
+  <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
 

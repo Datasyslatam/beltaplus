@@ -7,6 +7,19 @@ if($_SESSION["perfil"] == "Vendedor"){
 }
 ?>
 
+<!-- <style>
+  .form-group {
+  position: relative;
+  padding: 20px;
+  /* width: 100px; */
+  height: 80px;
+}
+
+  .modal-body{
+    
+}
+</style> -->
+
 <div class="content-wrapper">
   <section class="content-header">
     <h1> Administrar productos </h1>
@@ -80,6 +93,60 @@ MODAL AGREGAR PRODUCTO
                 </select>
               </div>
             </div>
+            <!-- ENTRADA PARA SELECCIONAR SUBCATEGORÍA -->
+            <label for="">Subcategoría</label>
+            <div class="form-group">
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
+                <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
+                  <option value="">Selecionar Subcategoría</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  foreach ($categorias as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <!-- ENTRADA PARA SELECCIONAR COLOR -->
+            <label for="">Color</label>
+            <div class="form-group">
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                <select class="form-control input-lg" id="nuevoColor" name="nuevoColor" required>
+                  <option value="">Selecionar Color</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  foreach ($categorias as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <!-- ENTRADA PARA SELECCIONAR TALLA -->
+            <label for="">Talla</label>
+            <div class="form-group">
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                <select class="form-control input-lg" id="nuevaTalla" name="nuevaTalla" required>
+                  <option value="">Selecionar Talla</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  foreach ($categorias as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
             <!-- ENTRADA PARA EL CÓDIGO -->
             <label for="">Código</label>
             <div class="form-group">
@@ -90,14 +157,14 @@ MODAL AGREGAR PRODUCTO
             <!-- ENTRADA PARA LA DESCRIPCIÓN -->
             <label for="">Descripción</label>
             <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-audio-description"></i></span>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required>
               </div>
             </div>
             <!-- ENTRADA PARA STOCK -->
             <label for="">Stock</label>
             <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-check"></i></span>
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-stack-overflow"></i></span>
                 <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Stock" required>
               </div>
             </div>
