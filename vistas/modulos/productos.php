@@ -98,7 +98,16 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
                 <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
-                  <option value="">Selecionar Subcategoría</option>  
+                  <option value="">Seleccionar Subcategoría</option>  
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $categorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
+                  foreach ($categorias as $key => $value) {
+                    
+                    echo '<option value="'.$value["id_subcategoria"].'">'.$value["nombre"].'</option>';
+                  }
+                  ?>
                 </select>
               </div>
             </div>
@@ -107,7 +116,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
                 <select class="form-control input-lg" id="nuevoColor" name="nuevoColor" required>
-                  <option value="">Selecionar Color</option>
+                  <option value="">Seleccionar Color</option>
                   <?php
                   $item = null;
                   $valor = null;
@@ -125,7 +134,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tags"></i></span>
                 <select class="form-control input-lg" id="nuevaTalla" name="nuevaTalla" required>
-                  <option value="">Selecionar Talla</option>
+                  <option value="">Seleccionar Talla</option>
                   <?php
                   $item = null;
                   $valor = null;
