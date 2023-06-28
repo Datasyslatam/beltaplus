@@ -88,6 +88,41 @@ CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
 
 // })
 
+
+/*=============================================
+CARGAR LAS SUBCATEGORIAS SEGUN LA CATEGORIA
+=============================================*/
+
+$("#nuevaCategoria").change(() => {
+	var idCategoria = $("#nuevaCategoria").val()
+	
+	var datos = new FormData();
+ 	datos.append("idCategoria", idCategoria);
+	
+
+	$.ajax({
+		url: "ajax/subcategorias.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+			var template =  `<option value="">Selecionar Subcategoría</option>`
+
+			if (respuesta.length > 0){
+				respuesta.forEach(element => {
+					template +=  `<option value="${element.id}">${element.nombre}</option>`
+				});
+			}
+			$("#nuevaSubCategoria").html(template)
+
+		}
+	})
+
+})
+
 /*=============================================
 AGREGANDO PRECIO DE VENTA
 =============================================*/

@@ -98,16 +98,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
                 <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
-                  <option value="">Selecionar Subcategoría</option>
-                  <?php
-                  $item = null;
-                  $valor = null;
-                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                  foreach ($categorias as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
-                  }
-                  ?>
+                  <option value="">Selecionar Subcategoría</option>  
                 </select>
               </div>
             </div>
@@ -120,10 +111,10 @@ MODAL AGREGAR PRODUCTO
                   <?php
                   $item = null;
                   $valor = null;
-                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  $categorias = ControladorColores::ctrMostrarColores($item, $valor);
                   foreach ($categorias as $key => $value) {
                     
-                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                    echo '<option value="'.$value["id"].'">'.$value["color"].'</option>';
                   }
                   ?>
                 </select>
@@ -138,10 +129,10 @@ MODAL AGREGAR PRODUCTO
                   <?php
                   $item = null;
                   $valor = null;
-                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  $categorias = ControladorTallas::ctrMostrarTallas($item, $valor);
                   foreach ($categorias as $key => $value) {
                     
-                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                    echo '<option value="'.$value["id"].'">'.$value["talla"].'</option>';
                   }
                   ?>
                 </select>
