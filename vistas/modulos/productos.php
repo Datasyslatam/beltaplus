@@ -336,3 +336,7 @@ MODAL EDITAR PRODUCTO
   $eliminarProducto = new ControladorProductos();
   $eliminarProducto -> ctrEliminarProducto();
 ?>
+
+<!--=====================================
+        fin
+        ======================================-->
