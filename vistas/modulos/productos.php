@@ -7,19 +7,6 @@ if($_SESSION["perfil"] == "Vendedor"){
 }
 ?>
 
-<!-- <style>
-  .form-group {
-  position: relative;
-  padding: 20px;
-  /* width: 100px; */
-  height: 80px;
-}
-
-  .modal-body{
-    
-}
-</style> -->
-
 <div class="content-wrapper">
   <section class="content-header">
     <h1> Administrar productos </h1>
@@ -61,6 +48,12 @@ MODAL AGREGAR PRODUCTO
 ======================================-->
 <div id="modalAgregarProducto" class="modal fade" role="dialog">
   <div class="modal-dialog">
+    <style>
+      .modal-dialog{
+        width: 900px;
+        margin: 30px auto;
+      }
+    </style>
     <div class="modal-content">
       <form role="form" method="post" enctype="multipart/form-data">
         <!--=====================================
