@@ -26,7 +26,6 @@ if($_SESSION["perfil"] == "Vendedor"){
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Imagen</th>
               <th>Código</th>
               <th>Descripción</th>
               <th>Categoría</th>
