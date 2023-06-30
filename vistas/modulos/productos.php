@@ -7,18 +7,6 @@ if($_SESSION["perfil"] == "Vendedor"){
 }
 ?>
 
-<!-- <style>
-  .form-group {
-  position: relative;
-  padding: 20px;
-  /* width: 100px; */
-  height: 80px;
-}
-
-  .modal-body{
-    
-}
-</style> -->
 
 <div class="content-wrapper">
   <section class="content-header">
@@ -39,7 +27,6 @@ if($_SESSION["perfil"] == "Vendedor"){
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Imagen</th>
               <th>Código</th>
               <th>Descripción</th>
               <th>Categoría</th>
