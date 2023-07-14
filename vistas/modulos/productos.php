@@ -85,16 +85,7 @@ MODAL AGREGAR PRODUCTO
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
                 <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
-                  <option value="">Seleccionar Subcategoría</option>  
-                  <?php
-                  $item = null;
-                  $valor = null;
-                  $categorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
-                  foreach ($categorias as $key => $value) {
-                    
-                    echo '<option value="'.$value["id_subcategoria"].'">'.$value["nombre"].'</option>';
-                  }
-                  ?>
+                  <option value="">Seleccionar Subcategoría</option>
                 </select>
               </div>
             </div>
