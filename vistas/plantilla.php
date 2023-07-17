@@ -53,6 +53,19 @@ session_start();
   <!-- style custom -->
   <link rel="stylesheet" href="vistas/dist/css/style.css">
   <link rel="stylesheet" href="vistas/dist/css/custom.css">
+
+  <!--=====================================
+  Precompilacion de archivos less
+  ======================================-->
+
+  <link rel="stylesheet/less"
+  type="text/css"
+  href="vistas/bower_components/bootstrap/less/variables.less">
+  <!-- <script src="//cdn.jsdelivr.net/npm/less">  
+  </script> -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js">  
+  </script>
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -103,7 +116,7 @@ session_start();
   <script src="vistas/bower_components/chart.js/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js"></script>
 
-
+  <link rel="stylesheet" href="vistas/dist/css/filterDynamic.css">
 
 </head>
 
@@ -153,6 +166,8 @@ CUERPO DOCUMENTO
 
         include "modulos/".$_GET["ruta"].".php";
 
+      } else if($_GET["ruta"] == "filtrop"){
+        include "modulos/filtro-productos.php";
       }else{
 
         include "modulos/404.php";
@@ -181,10 +196,12 @@ CUERPO DOCUMENTO
 
   ?>
 <script src="vistas/js/plantilla.js"></script>
+<script src="vistas/js/filterDynamic.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
 <script src="vistas/js/motivos.js"></script>
 <script src="vistas/js/productos.js"></script>
+<script src="vistas/js/filtro-productos.js"></script>
 <script src="vistas/js/movimientos.js"></script>
 <script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/ventas.js"></script>

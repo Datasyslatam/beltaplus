@@ -7,7 +7,7 @@ $.ajax({
 	url: "ajax/datatable-productos.ajax.php",
 	success:function(respuesta){
 		
-		console.log("respuesta", respuesta);
+		//console.log("respuesta", respuesta);
 
 	}
 
@@ -52,41 +52,76 @@ $('.tablaProductos').DataTable( {
 /*=============================================
 CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
 =============================================*/
-// $("#nuevaCategoria").change(function(){
+$("#nuevaCategoria").change(function(){
 
-// 	var idCategoria = $(this).val();
+	var idCategoria = $(this).val();
 
-// 	var datos = new FormData();
-//   	datos.append("idCategoria", idCategoria);
+	var datos = new FormData();
+  	datos.append("idCategoria", idCategoria);
 
-//   	$.ajax({
+  	$.ajax({
 
-//       url:"ajax/productos.ajax.php",
-//       method: "POST",
-//       data: datos,
-//       cache: false,
-//       contentType: false,
-//       processData: false,
-//       dataType:"json",
-//       success:function(respuesta){
+      url:"ajax/productos.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
 
-//       	if(!respuesta){
+      	if(!respuesta){
 
-//       		var nuevoCodigo = idCategoria+"01";
-//       		$("#nuevoCodigo").val(nuevoCodigo);
+      		var nuevoCodigo = idCategoria+"01";
+      		$("#nuevoCodigo").val(nuevoCodigo);
 
-//       	}else{
+      	}else{
 
-//       		var nuevoCodigo = Number(respuesta["codigo"]) + 1;
-//           	$("#nuevoCodigo").val(nuevoCodigo);
+      		var nuevoCodigo = Number(respuesta["codigo"]) + 1;
+          	$("#nuevoCodigo").val(nuevoCodigo);
 
-//       	}
+      	}
                 
-//       }
+      }
 
-//   	})
+  	})
 
-// })
+})
+
+
+/*=============================================
+CARGAR LAS SUBCATEGORIAS SEGUN LA CATEGORIA
+=============================================*/
+
+$("#nuevaCategoria").change(() => {
+	var idCategoria = $("#nuevaCategoria").val()
+	
+	var datos = new FormData();
+ 	datos.append("idCategoria", idCategoria);
+	
+
+	$.ajax({
+		url: "ajax/subcategorias.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+			var template =  `<option value="">Selecionar Subcategoría</option>`
+
+			if (respuesta.length > 0){
+				respuesta.forEach(element => {
+					template +=  `<option value="${element.id}">${element.nombre}</option>`
+				});
+			}
+			$("#nuevaSubCategoria").html(template)
+
+		}
+	})
+
+})
 
 /*=============================================
 AGREGANDO PRECIO DE VENTA

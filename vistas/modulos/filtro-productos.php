@@ -12,30 +12,83 @@ if($_SESSION["perfil"] == "Vendedor"){
     <h1> Administrar productos </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Administrar productos</li>
+      <li class="active">Filtro por productos</li>
     </ol>
   </section>
   <section class="content">
+
     <div class="box">
-      <div class="box-header with-border">
-        <button class="btn btn-primary me-2" data-toggle="modal" data-target="#modalAgregarProducto"> <i class="fa fa-plus"></i> Agregar producto </button>
-        <button class="btn btn-success" onclick="location.href = 'filtrop'"> <i class="fa fa-filter"></i> Filtrar Productos</button>
+
+    <div class="filter-section mb-3" style="margin: 20px;">
+      <h4 class="mb-2">Panel de filtro de productos</h4>
+      <div class="input-group-small mb-3">
+        <div class="input-group input-filter-text filterSearch hidden" data-id="categorias" id="cont-categorias">
+          <input type="text" class="form-control" placeholder="Filtro de categoria" id="categorias" disabled>
+          <button class="btn btn-danger eliminar-filtro" type="button"><i class="fa fa-times"></i></button>
+        </div>
+        <div class="input-group input-filter-text filterSearch hidden" data-id="subcategoria" id="cont-subcategoria">
+          <input type="text" class="form-control" placeholder="Filtro de subcategoria" id="subcategoria" disabled>
+          <button class="btn btn-danger eliminar-filtro" type="button"><i class="fa fa-times"></i></button>
+        </div>
+        <div class="input-group input-filter-text filterSearch hidden" data-id="colores" id="cont-colores">
+          <input type="text" class="form-control" placeholder="Filtro de colores" id="colores" disabled>
+          <button class="btn btn-danger eliminar-filtro" type="button"><i class="fa fa-times"></i></button>
+        </div>
       </div>
-      <div class="box-body">
-        <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
+
+      <div class="btn-group-separable d-flex" role="group" id="button-group">
+        <!-- <button type="button" class="btn btn-outline-secondary mx-1">Opción 1</button>
+        <button type="button" class="btn btn-outline-secondary mx-1">Opción 2</button>
+        <button type="button" class="btn btn-outline-secondary mx-1">Opción 3</button> -->
+      </div>
+
+    </div>
+    <hr>
+      <div class="box-header with-border">
+        <button class="btn btn-primary me-2" onclick="mostrarTabla('tabla-filtro-tallas')"> Mostrar Filtro por Tallas </button>
+        <button class="btn btn-success" onclick="mostrarTabla('tabla-filtro-precios')"> Mostrar Precios</button>
+      </div>
+      <div class="box-body" id="tabla-filtro-tallas">
+        <table class="table table-bordered table-striped dt-responsive tablaTallas" width="100%">
           <thead>
             <tr>
               <th style="width:10px">#</th>
               <th>Código</th>
-              <th>Descripción</th>
-              <th>Categoría</th>
-              <th>Stock</th>
-              <th>Precio de compra</th>
-              <th>Precio de venta</th>
-              <th>Agregado</th>
-              <th>Acciones</th>
+              <th>Color</th>
+              <th>TALLA 12</th>
+              <th>TALLA 14</th>
+              <th>TALLA 16</th>
+              <th>TALLA 18</th>
+              <th>TALLA 20</th>
+              <th>TALLA 22</th>
             </tr>
           </thead>
+          <tbody>
+            
+          </tbody>
+
+        </table>
+        <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
+      </div>
+
+      <div class="box-body hidden" id="tabla-filtro-precios">
+        <table class="table table-bordered table-striped dt-responsive tablaPrecios" width="100%">
+          <thead>
+            <tr>
+              <th style="width:10px">#</th>
+              <th>Código</th>
+              <th>Descripcion</th>
+              <th>Talla</th>
+              <th>Color</th>
+              <th>Categoria</th>
+              <th>Cantidad</th>
+              <th>H Salida Cantidad</th>
+              <th>Inventario Final</th>
+              <th>Presion Mayor</th>
+              <th>Presion Unidad</th>
+            </tr>
+          </thead>
+
         </table>
         <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
       </div>
@@ -79,65 +132,6 @@ MODAL AGREGAR PRODUCTO
                 </select>
               </div>
             </div>
-
-            <!-- ENTRADA PARA SELECCIONAR SUBCATEGORÍA -->
-            <label for="">Subcategoría</label>
-            <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
-                <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
-                  <option value="">Seleccionar Subcategoría</option>
-
-                  <?php
-                  $item = null;
-                  $valor = null;
-                  $subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
-                  foreach ($subcategorias as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-            </div>
-
-            <!-- ENTRADA PARA SELECCIONAR COLOR -->
-            <label for="">Color</label>
-            <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                <select class="form-control input-lg" id="nuevoColor" name="nuevoColor" required>
-                  <option value="">Seleccionar Color</option>
-                  <option value="1">Cafe tierra</option>
-                  <?php
-                  $item = null;
-                  $valor = null;
-                  $categorias = ControladorColores::ctrMostrarColores($item, $valor);
-                  foreach ($categorias as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["color"].'</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-            </div>
-            
-            <!-- ENTRADA PARA SELECCIONAR TALLA -->
-            <label for="">Talla</label>
-            <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tags"></i></span>
-                <select class="form-control input-lg" id="nuevaTalla" name="nuevaTalla" required>
-                  <option value="">Seleccionar Talla</option>
-                  <?php
-                  $item = null;
-                  $valor = null;
-                  $categorias = ControladorTallas::ctrMostrarTallas($item, $valor);
-                  foreach ($categorias as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["talla"].'</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-            </div>
             <!-- ENTRADA PARA EL CÓDIGO -->
             <label for="">Código</label>
             <div class="form-group">
@@ -148,14 +142,14 @@ MODAL AGREGAR PRODUCTO
             <!-- ENTRADA PARA LA DESCRIPCIÓN -->
             <label for="">Descripción</label>
             <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-audio-description"></i></span>
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required>
               </div>
             </div>
             <!-- ENTRADA PARA STOCK -->
             <label for="">Stock</label>
             <div class="form-group">
-              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-stack-overflow"></i></span>
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-check"></i></span>
                 <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Stock" required>
               </div>
             </div>
@@ -327,7 +321,3 @@ MODAL EDITAR PRODUCTO
   $eliminarProducto = new ControladorProductos();
   $eliminarProducto -> ctrEliminarProducto();
 ?>
-
-<!--=====================================
-        fin
-        ======================================-->

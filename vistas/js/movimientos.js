@@ -7,7 +7,7 @@ $.ajax({
 	url: "ajax/datatable-movimientos.ajax.php",
 	success:function(respuesta){
 		
-		console.log("respuesta", respuesta);
+		//console.log("respuesta", respuesta);
 
 	}
 
