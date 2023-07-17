@@ -49,7 +49,7 @@ if($_SESSION["perfil"] == "Vendedor"){
         <button class="btn btn-success" onclick="mostrarTabla('tabla-filtro-precios')"> Mostrar Precios</button>
       </div>
       <div class="box-body" id="tabla-filtro-tallas">
-        <table class="table table-bordered table-striped dt-responsive tablaProductos pruebaOne" width="100%">
+        <table class="table table-bordered table-striped dt-responsive tablaTallas" width="100%">
           <thead>
             <tr>
               <th style="width:10px">#</th>
@@ -60,17 +60,19 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>TALLA 16</th>
               <th>TALLA 18</th>
               <th>TALLA 20</th>
-              <th>Agregado</th>
-              <th>Acciones</th>
+              <th>TALLA 22</th>
             </tr>
           </thead>
+          <tbody>
+            
+          </tbody>
 
         </table>
         <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
       </div>
 
       <div class="box-body hidden" id="tabla-filtro-precios">
-        <table class="table table-bordered table-striped dt-responsive tablaProductos pruebaTwo" width="100%">
+        <table class="table table-bordered table-striped dt-responsive tablaPrecios" width="100%">
           <thead>
             <tr>
               <th style="width:10px">#</th>

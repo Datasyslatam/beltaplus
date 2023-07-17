@@ -7,7 +7,6 @@ if($_SESSION["perfil"] == "Vendedor"){
 }
 ?>
 
-
 <div class="content-wrapper">
   <section class="content-header">
     <h1> Administrar productos </h1>
@@ -80,21 +79,34 @@ MODAL AGREGAR PRODUCTO
                 </select>
               </div>
             </div>
+
             <!-- ENTRADA PARA SELECCIONAR SUBCATEGORÍA -->
             <label for="">Subcategoría</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
                 <select class="form-control input-lg" id="nuevaSubCategoria" name="nuevaSubCategoria" required>
                   <option value="">Seleccionar Subcategoría</option>
+
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
+                  foreach ($subcategorias as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                  }
+                  ?>
                 </select>
               </div>
             </div>
+
             <!-- ENTRADA PARA SELECCIONAR COLOR -->
             <label for="">Color</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
                 <select class="form-control input-lg" id="nuevoColor" name="nuevoColor" required>
                   <option value="">Seleccionar Color</option>
+                  <option value="1">Cafe tierra</option>
                   <?php
                   $item = null;
                   $valor = null;
@@ -107,6 +119,7 @@ MODAL AGREGAR PRODUCTO
                 </select>
               </div>
             </div>
+            
             <!-- ENTRADA PARA SELECCIONAR TALLA -->
             <label for="">Talla</label>
             <div class="form-group">
