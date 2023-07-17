@@ -11,6 +11,7 @@ class ControladorProductos{
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
 		return $respuesta;
 	}
+
 	/*=============================================
 	MOSTRAR PRODUCTOS UNICO
 	=============================================*/
@@ -26,7 +27,7 @@ class ControladorProductos{
 
 	public static function ctrCrearProducto(){
 
-		if(isset($_POST["nuevaDescripcion"])){
+		if(isset($_POST["nuevaCategoria"])){
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaDescripcion"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["nuevoStock"]) &&	
@@ -102,21 +103,25 @@ class ControladorProductos{
 				}
 
 				$tabla = "productos";
-
+				$ventas= 100;		// Valor temporal hasta revisar de donde viene...
 				$datos = array("id_categoria" => $_POST["nuevaCategoria"],
+							   "id_subcategoria" => $_POST["nuevaSubCategoria"],
 							   "codigo" => $_POST["nuevoCodigo"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
+							   "imagen" => $ruta,
 							   "stock" => $_POST["nuevoStock"],
 							   "precio_compra" => $_POST["nuevoPrecioCompra"],
 							   "precio_venta" => $_POST["nuevoPrecioVenta"],
-							   "imagen" => $ruta);
+							   "ventas" => $ventas,
+							   "id_color" => $_POST["nuevoColor"],
+							   "id_talla" => $_POST["nuevaTalla"]
+							   );
 
 				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
-
+				  
 				if($respuesta == "ok"){
 
 					echo'<script>
-
 						swal({
 							  type: "success",
 							  title: "El producto ha sido guardado correctamente",
@@ -132,6 +137,22 @@ class ControladorProductos{
 
 						</script>';
 
+				}else{
+					echo'<script>
+					swal({
+						  type: "error",
+						  title: "El producto no se puedo guardar correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "productos";
+
+									}
+								})
+
+					</script>';
 				}
 
 

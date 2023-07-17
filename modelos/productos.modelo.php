@@ -43,15 +43,19 @@ class ModeloProductos{
 	=============================================*/
 	public static function mdlIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, codigo, descripcion, imagen, stock, precio_compra, precio_venta) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, id_subcategoria, codigo, descripcion, imagen, stock, precio_compra, precio_venta, ventas, id_color, id_talla) VALUES(:id_categoria, :id_subcategoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta, :ventas, :id_color, :id_talla)");
 
 		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_subcategoria", $datos["id_subcategoria"], PDO::PARAM_INT);
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
 		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
+		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_INT);
+		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_INT);
+		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_INT);
+		$stmt->bindParam(":ventas", $datos["ventas"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_color", $datos["id_color"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_talla", $datos["id_talla"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -119,7 +123,6 @@ class ModeloProductos{
 		}
 
 		$stmt -> close();
-
 		$stmt = null;
 
 	}
@@ -146,7 +149,6 @@ class ModeloProductos{
 		}
 
 		$stmt -> close();
-
 		$stmt = null;
 
 	}
@@ -164,7 +166,6 @@ class ModeloProductos{
 		return $stmt -> fetch();
 
 		$stmt -> close();
-
 		$stmt = null;
 	}
 
