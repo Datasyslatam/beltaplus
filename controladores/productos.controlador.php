@@ -272,8 +272,8 @@ class ControladorProductos{
 				}
 
 				$tabla = "productos";
-
 				$datos = array("id_categoria" => $_POST["editarCategoria"],
+								"id_subcategoria" => $_POST["editarSubCategoria"],
 							   "codigo" => $_POST["editarCodigo"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "stock" => $_POST["editarStock"],

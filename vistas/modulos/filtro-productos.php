@@ -53,7 +53,7 @@ if($_SESSION["perfil"] == "Vendedor"){
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Código</th>
+              <!-- <th>Código</th> -->
               <th>Color</th>
               <th>TALLA 12</th>
               <th>TALLA 14</th>
@@ -82,10 +82,10 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>Color</th>
               <th>Categoria</th>
               <th>Cantidad</th>
-              <th>H Salida Cantidad</th>
-              <th>Inventario Final</th>
-              <th>Presion Mayor</th>
-              <th>Presion Unidad</th>
+              <!-- <th>H Salida Cantidad</th> -->
+              <!-- <th>Inventario Final</th> -->
+              <th>Precio Mayorista</th>
+              <th>Precion Unitario</th>
             </tr>
           </thead>
 

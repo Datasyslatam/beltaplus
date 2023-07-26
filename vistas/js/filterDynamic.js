@@ -198,7 +198,7 @@ function filtrarDatos(elemento) {
 
           template += `<tr>
               <td>${element[0]}</td>
-              <td>${element[1]}</td>
+         <!-- <td>${element[1]}</td>  -->
               <td>${element[2]}</td>
               <td>${element[3]}</td>
               <td>${element[4]}</td>
@@ -224,8 +224,8 @@ function filtrarDatos(elemento) {
               <td>${element[3]}</td>
               <td>${element[4]}</td>
               <td>${element[5]}</td>
-              <td>${element[6]}</td>
-              <td>${element[7]}</td>
+              <!--  <td>${element[6]}</td> H Salida Final-->
+              <!--  <td>${element[7]}</td>  Invent Final -->
               <td>${element[8]}</td>
             </tr>`;
             j++;

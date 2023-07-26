@@ -17,9 +17,11 @@ class TablaProductos{
 
 		$item = null;
     	$valor = null;
-    	$orden = "id";
+    	$orden = "codigo";
 
   		$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);	
+
+		//var_export($productos);
 
   		if(count($productos) == 0){
 
@@ -47,6 +49,15 @@ class TablaProductos{
 		  	$valor = $productos[$i]["id_categoria"];
 
 		  	$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+			/*=============================================
+ 	 		TRAEMOS LA SUBCATEGORÍA
+  			=============================================*/ 
+/* 
+		  	$campo= "id";
+		  	$valor = $productos[$i]["id_subcategoria"];
+
+		  	$subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($campo, $valor); */
 
 		  	/*=============================================
  	 		STOCK
@@ -86,6 +97,7 @@ class TablaProductos{
 			      "'.$productos[$i]["codigo"].'",
 			      "'.$productos[$i]["descripcion"].'",
 			      "'.$categorias["categoria"].'",
+				 
 			      "'.$stock.'",
 			      "'.$productos[$i]["precio_compra"].'",
 			      "'.$productos[$i]["precio_venta"].'",
@@ -105,8 +117,6 @@ class TablaProductos{
 
 
 	}
-
-
 
 }
 

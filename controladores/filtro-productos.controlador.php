@@ -23,7 +23,6 @@ class ControladorFiltroProductos{
         }
 
 		$respuesta = ModeloFiltroProductos::mdlMostrarFiltroProductosTallas($condiciones, $color);
-		
 		return $respuesta;
 	
 	}
@@ -45,7 +44,6 @@ class ControladorFiltroProductos{
         }
 
 		$respuesta = ModeloFiltroProductos::mdlMostrarFiltroProductosPrecios($condiciones);
-		
 		return $respuesta;
 	
 	}

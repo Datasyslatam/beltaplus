@@ -10,7 +10,7 @@ class AjaxSubcategoria{
 
     public $categoria_id;
 
-    public function ajaxFiltrarSubCategorias(){
+    public function ajaxFiltrarSubCategorias(){                 // Filtra Subcategorias segun Categoria seleccionada (Nvos Productos)
         $item = "categoria_id";
         $valor =  $this->categoria_id;
 

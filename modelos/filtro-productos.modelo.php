@@ -64,7 +64,7 @@ class ModeloFiltroProductos{
 
     public static function mdlMostrarFiltroProductosPrecios($clausula){
 
-        $stmt = Conexion::conectar()->prepare("SELECT p.id, p.descripcion, t.talla, co.color, ca.categoria, 
+        $stmt = Conexion::conectar()->prepare("SELECT p.codigo, p.descripcion, t.talla, co.color, ca.categoria, 
                         p.stock as cantidad, COALESCE(p.h_salida_cantidad, 0) as h_salida_cantidad, 
                         COALESCE(p.inventario_final,0) as inventario_final, p.precio_venta, 
                         p.precio_compra
@@ -77,7 +77,6 @@ class ModeloFiltroProductos{
         $stmt -> execute();
         
         $resultado = $stmt -> fetchAll();
-
         return $resultado;
         
     }

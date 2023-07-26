@@ -29,9 +29,10 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>Código</th>
               <th>Descripción</th>
               <th>Categoría</th>
+         <!--      <th>Subcategoría</th> -->
               <th>Stock</th>
-              <th>Precio de compra</th>
-              <th>Precio de venta</th>
+              <th>Precio Unitario</th>
+              <th>Precio Mayorista</th>
               <th>Agregado</th>
               <th>Acciones</th>
             </tr>
@@ -163,14 +164,14 @@ MODAL AGREGAR PRODUCTO
             <!-- ENTRADA PARA PRECIO COMPRA -->
             <div class="form-group row">
               <div class="col-xs-6">
-                <label for="">Precio de compra</label>
+                <label for="">Precio Unitario</label>
                 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
                   <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" step="any" min="0" required>
                 </div>
               </div>
               <div class="col-xs-6"> 
                 <!-- ENTRADA PARA PRECIO VENTA -->
-                <label for="">Precio de venta</label>
+                <label for="">Precio Mayorista</label>
                 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                   <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" step="any" min="0" required>
                 </div>
@@ -216,6 +217,8 @@ MODAL AGREGAR PRODUCTO
     </div>
   </div>
 </div>
+
+
 <!--=====================================
 MODAL EDITAR PRODUCTO
 ======================================-->
@@ -244,6 +247,15 @@ MODAL EDITAR PRODUCTO
                 </select>
               </div>
             </div>
+             <!-- ENTRADA PARA SELECCIONAR SUBCATEGORÍA -->
+            <label for="">Subcategoría</label>
+            <div class="form-group">
+              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg"  name="editarSubCategoria" readonly required>
+                  <option id="editarSubCategoria"></option>
+                </select>
+              </div>
+            </div>
             <!-- ENTRADA PARA EL CÓDIGO -->
             <label for="">Código</label>
             <div class="form-group">
@@ -269,14 +281,14 @@ MODAL EDITAR PRODUCTO
             <!-- ENTRADA PARA PRECIO COMPRA -->
             <div class="form-group row">
               <div class="col-xs-6">
-                <label for="">Precio de compra</label>
+                <label for="">Precio Unitario</label>
                 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
                   <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" step="any" min="0" required>
                 </div>
               </div>
               <div class="col-xs-6"> 
                 <!-- ENTRADA PARA PRECIO VENTA -->
-                <label for="">Precio de venta</label>
+                <label for="">Precio Mayorista</label>
                 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                   <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" step="any" min="0" readonly required>
                 </div>
@@ -323,6 +335,7 @@ MODAL EDITAR PRODUCTO
     </div>
   </div>
 </div>
+
 <?php
   $eliminarProducto = new ControladorProductos();
   $eliminarProducto -> ctrEliminarProducto();
@@ -330,4 +343,4 @@ MODAL EDITAR PRODUCTO
 
 <!--=====================================
         fin
-        ======================================-->
+  ======================================-->
