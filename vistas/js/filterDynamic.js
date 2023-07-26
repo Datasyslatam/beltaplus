@@ -226,6 +226,7 @@ function filtrarDatos(elemento) {
               <td>${element[5]}</td>
               <!--  <td>${element[6]}</td> H Salida Final-->
               <!--  <td>${element[7]}</td>  Invent Final -->
+              <td>${element[9]}</td>
               <td>${element[8]}</td>
             </tr>`;
             j++;
