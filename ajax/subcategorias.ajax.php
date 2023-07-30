@@ -10,7 +10,7 @@ class AjaxSubcategoria{
 
     public $categoria_id;
 
-    public function ajaxFiltrarSubCategorias(){                 // Filtra Subcategorias segun Categoria seleccionada (Nvos Productos)
+    public function ajaxFiltrarSubCategorias(){    // Filtra Subcategorias segun Categoria seleccionada (Nvos Productos)
         $item = "categoria_id";
         $valor =  $this->categoria_id;
 
@@ -28,4 +28,19 @@ if(isset($_POST['idCategoria'])){
     $filtrar = new AjaxSubcategoria();
     $filtrar->categoria_id = $_POST['idCategoria'];
     $filtrar->ajaxFiltrarSubCategorias();
+}else{
+    echo'<script>
+        swal({
+                type: "error",
+                title: "ID de Categoria no identificado",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                }).then(function(result){
+                    if (result.value) {
+
+                        window.location = "";
+
+                    }
+            })
+        </script>';
 }

@@ -4,10 +4,10 @@ class ControladorSubCategorias{
     /*=============================================
     MOSTRAR CATEGORIAS
 	=============================================*/
-
-	public static function ctrMostrarSubCategorias($item, $valor){
+	
+	public static function ctrMostrarSubCategorias($item, $valor, $sw=true){
 		$tabla = "subcategorias";
-		$respuesta = ModeloSubCategorias::mdlMostrarSubCategorias($tabla, $item, $valor);
+		$respuesta = ModeloSubCategorias::mdlMostrarSubCategorias($tabla, $item, $valor, $sw);
 		
 		return $respuesta;
 	

@@ -31,7 +31,7 @@ class ModeloFiltroProductos{
                 $clausula_color .= " p.id_color = ".$id;
             }
 
-            $fila = [$i,$id,$color];
+            $fila = [$i,$color];
 
             foreach ($tallas as $value2){
                 $id_talla = $value2["id"];
@@ -82,7 +82,7 @@ class ModeloFiltroProductos{
     }
 
     public static function getTallas(){
-        $stmt = Conexion::conectar()->prepare("SELECT id FROM tallas");
+        $stmt = Conexion::conectar()->prepare("SELECT id FROM tallas ORDER BY talla");
         $stmt -> execute();
         
         $tallas = $stmt -> fetchAll();

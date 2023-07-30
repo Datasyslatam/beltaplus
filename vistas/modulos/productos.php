@@ -27,9 +27,11 @@ if($_SESSION["perfil"] == "Vendedor"){
             <tr>
               <th style="width:10px">#</th>
               <th>Código</th>
-              <th>Descripción</th>
+              <!-- <th>Descripción</th> -->
               <th>Categoría</th>
-         <!--      <th>Subcategoría</th> -->
+              <th>Subcategoría</th>
+              <th>Color</th>
+              <th>Talla</th>
               <th>Stock</th>
               <th>Precio Unitario</th>
               <th>Precio Mayorista</th>
@@ -43,6 +45,7 @@ if($_SESSION["perfil"] == "Vendedor"){
     </div>
   </section>
 </div>
+
 <!--=====================================
 MODAL AGREGAR PRODUCTO
 ======================================-->
@@ -89,13 +92,16 @@ MODAL AGREGAR PRODUCTO
                   <option value="">Seleccionar Subcategoría</option>
 
                   <?php
-                  $item = null;
-                  $valor = null;
-                  $subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
-                  foreach ($subcategorias as $key => $value) {
+                    $item = null;
+                    $valor = null;
+                    $subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor);
+
+                    //var_export($subcategorias);
                     
-                    echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                  }
+                    foreach ($subcategorias as $key => $value) {
+                      
+                      echo '<option value="'.$value["id"].'">' .$value["nombre"]. '</option>';
+                    }
                   ?>
                 </select>
               </div>
@@ -147,12 +153,12 @@ MODAL AGREGAR PRODUCTO
               </div>
             </div>
             <!-- ENTRADA PARA LA DESCRIPCIÓN -->
-            <label for="">Descripción</label>
+<!--             <label for="">Descripción</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-audio-description"></i></span>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required>
               </div>
-            </div>
+            </div> -->
             <!-- ENTRADA PARA STOCK -->
             <label for="">Stock</label>
             <div class="form-group">
@@ -264,12 +270,12 @@ MODAL EDITAR PRODUCTO
               </div>
             </div>
             <!-- ENTRADA PARA LA DESCRIPCIÓN -->
-            <label for="">Descripción</label>
+<!--             <label for="">Descripción</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
                 <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" required>
               </div>
-            </div>
+            </div> -->
             <!-- ENTRADA PARA STOCK -->
             <label for="">Stock</label>
             <div class="form-group">

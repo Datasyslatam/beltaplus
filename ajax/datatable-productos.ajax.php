@@ -1,11 +1,18 @@
 <?php
+	require_once "../controladores/productos.controlador.php";
+	require_once "../modelos/productos.modelo.php";
 
-require_once "../controladores/productos.controlador.php";
-require_once "../modelos/productos.modelo.php";
+	require_once "../controladores/categorias.controlador.php";
+	require_once "../modelos/categorias.modelo.php";
 
-require_once "../controladores/categorias.controlador.php";
-require_once "../modelos/categorias.modelo.php";
+	require_once "../controladores/subcategorias.controlador.php";
+	require_once "../modelos/subcategorias.modelo.php";
 
+	require_once "../controladores/colores.controlador.php";
+	require_once "../modelos/colores.modelo.php";
+
+	require_once "../controladores/tallas.controlador.php";
+	require_once "../modelos/tallas.modelo.php";
 
 class TablaProductos{
 
@@ -44,20 +51,49 @@ class TablaProductos{
 		  	/*=============================================
  	 		TRAEMOS LA CATEGORÍA
   			=============================================*/ 
-
 		  	$item = "id";
 		  	$valor = $productos[$i]["id_categoria"];
 
 		  	$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-
+			
 			/*=============================================
  	 		TRAEMOS LA SUBCATEGORÍA
   			=============================================*/ 
-/* 
-		  	$campo= "id";
+	    	$item = "id";
 		  	$valor = $productos[$i]["id_subcategoria"];
+			$nomb_subcategoria = "";
 
-		  	$subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($campo, $valor); */
+		  	$subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item, $valor, false);
+			/* var_export($subcategorias["nombre"]." " . $productos[$i]['codigo']); */
+			if ($subcategorias){
+				$nomb_subcategoria = $subcategorias["nombre"];
+			}
+
+			/*=============================================
+ 	 		TRAEMOS EL COLOR
+  			=============================================*/ 
+			$item = "id";
+		  	$valor = $productos[$i]["id_color"];
+			$nomb_color = "";
+
+		  	$colores = ControladorColores::ctrMostrarColores($item, $valor);
+
+			if ($colores){
+				$nomb_color = $colores["color"];
+			}
+
+			/*=============================================
+ 	 		TRAEMOS LA TALLA
+  			=============================================*/ 
+			$item = "id";
+		  	$valor = $productos[$i]["id_talla"];
+			$nomb_talla = "";
+
+		  	$tallas = ControladorTallas::ctrMostrarTallas($item, $valor);
+
+			if ($tallas){
+				$nomb_talla = $tallas["talla"];
+			}
 
 		  	/*=============================================
  	 		STOCK
@@ -95,12 +131,13 @@ class TablaProductos{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$productos[$i]["codigo"].'",
-			      "'.$productos[$i]["descripcion"].'",
 			      "'.$categorias["categoria"].'",
-				 
+				  "'.$nomb_subcategoria.'",
+				  "'.$nomb_color.'",
+				  "'.$nomb_talla.'",
 			      "'.$stock.'",
-			      "'.$productos[$i]["precio_compra"].'",
-			      "'.$productos[$i]["precio_venta"].'",
+			      "'. "$" . number_format($productos[$i]["precio_compra"], 2) .'",
+				  "'. "$" . number_format($productos[$i]["precio_venta"], 2) .'",
 			      "'.$productos[$i]["fecha"].'",
 			      "'.$botones.'"
 			    ],';
@@ -115,9 +152,7 @@ class TablaProductos{
 		
 		echo $datosJson;
 
-
 	}
-
 }
 
 /*=============================================

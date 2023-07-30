@@ -7,15 +7,20 @@ class ModeloSubCategorias{
 	MOSTRAR SUBCATEGORIAS
 	=============================================*/
 	
-	public static function mdlMostrarSubCategorias($tabla, $item, $valor){
+	public static function mdlMostrarSubCategorias($tabla, $item, $valor, $sw){
 
 		if($item != null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY nombre");
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 			$stmt -> execute();
-			return $stmt -> fetchAll();
 
+			if ($sw){
+				return $stmt -> fetchAll();		// Consultar las Subcategorias al Ingresar Nvo Producto
+			}else{
+				return $stmt -> fetch();		// Consultar solo un Registro de Subcateg al llenar Tabla Productos
+			}
+			
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");

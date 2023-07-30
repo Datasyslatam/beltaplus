@@ -99,7 +99,6 @@ $("#nuevaCategoria").change(() => {
 	var datos = new FormData();
  	datos.append("idCategoria", idCategoria);
 	
-
 	$.ajax({
 		url: "ajax/subcategorias.ajax.php",
 		method: "POST",
@@ -120,7 +119,6 @@ $("#nuevaCategoria").change(() => {
 
 		}
 	})
-
 })
 
 /*=============================================
