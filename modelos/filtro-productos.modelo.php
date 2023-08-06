@@ -81,6 +81,24 @@ class ModeloFiltroProductos{
         
     }
 
+    public static function mdlMostrarFiltroProductosVentas($clausula){
+
+        $stmt = Conexion::conectar()->prepare("SELECT p.id as id_producto,p.codigo, ca.categoria, sb.nombre AS subcategoria, 
+                                            co.color, t.talla, p.stock
+                                            FROM productos p
+                                            INNER JOIN tallas t ON  t.id = p.id_talla
+                                            INNER JOIN colores co ON co.id = p. id_color
+                                            INNER JOIN categorias ca ON ca.id = p.id_categoria
+                                            INNER JOIN subcategorias sb ON sb.id = p.id_subcategoria 
+                                            $clausula");
+
+        $stmt -> execute();
+        
+        $resultado = $stmt -> fetchAll();
+        return $resultado;
+        
+    }
+
     public static function getTallas(){
         $stmt = Conexion::conectar()->prepare("SELECT id FROM tallas ORDER BY talla");
         $stmt -> execute();

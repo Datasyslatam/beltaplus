@@ -200,7 +200,6 @@ CUERPO DOCUMENTO
 
   ?>
 <script src="vistas/js/plantilla.js"></script>
-<script src="vistas/js/filterDynamic.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
 <script src="vistas/js/subcategorias.js"></script>
@@ -208,11 +207,18 @@ CUERPO DOCUMENTO
 <script src="vistas/js/tallas.js"></script>
 <script src="vistas/js/motivos.js"></script>
 <script src="vistas/js/productos.js"></script>
-<script src="vistas/js/filtro-productos.js"></script>
 <script src="vistas/js/movimientos.js"></script>
 <script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/ventas.js"></script>
 <script src="vistas/js/reportes.js"></script>
+
+<?php if($_GET["ruta"] == "filtrop"){?>
+  <script src="vistas/js/filterDynamic.js"></script>
+  <script src="vistas/js/filtro-productos.js"></script>
+<?php }elseif($_GET["ruta"] == "crear-venta"){?>
+  <script src="vistas/js/crear-venta.js"></script>
+  <script src="vistas/js/filterDynamicVentas.js"></script>
+<?php }?>
 
 </body>
 </html>

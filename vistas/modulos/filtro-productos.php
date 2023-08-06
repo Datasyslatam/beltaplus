@@ -43,6 +43,7 @@ if($_SESSION["perfil"] == "Vendedor"){
       </div>
 
     </div>
+
     <hr>
       <div class="box-header with-border">
         <button class="btn btn-primary me-2" onclick="mostrarTabla('tabla-filtro-tallas')"> Mostrar Filtro por Tallas </button>

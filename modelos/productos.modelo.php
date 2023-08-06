@@ -21,6 +21,27 @@ class ModeloProductos{
 		$stmt -> close();
 		$stmt = null;
 	}
+
+	/*=============================================
+	FILTRAR PRODUCTOS
+	=============================================*/
+	public static function mdlFiltrarProductos($valor){
+		
+		
+		$stmt = Conexion::conectar()->prepare("SELECT CONCAT(p.codigo,' ', ca.categoria,' ',sb.nombre) AS descripcion_producto,
+												p.*
+												FROM productos p
+												INNER JOIN tallas t ON  t.id = p.id_talla
+												INNER JOIN colores co ON co.id = p. id_color
+												INNER JOIN categorias ca ON ca.id = p.id_categoria
+												INNER JOIN subcategorias sb ON sb.id = p.id_subcategoria 
+												WHERE p.id = :id ORDER BY id_categoria ASC");
+		$stmt -> bindParam(":id", $valor, PDO::PARAM_STR);
+		$stmt -> execute();
+		
+		return $stmt -> fetch();
+	}
+	
 	/*=============================================
 	MOSTRAR PRODUCTOS UNICOS	
 	=============================================*/

@@ -72,6 +72,16 @@ class AjaxProductos{
 
   }
 
+  public function ajaxFiltrarProductos(){
+
+    $valor = $this->idProducto;
+
+    $respuesta = ControladorProductos::ctrFiltrarProductos($valor);
+    echo json_encode($respuesta);
+
+  }
+  
+
 }
 
 
@@ -95,6 +105,17 @@ if(isset($_POST["idProducto"])){
   $editarProducto = new AjaxProductos();
   $editarProducto -> idProducto = $_POST["idProducto"];
   $editarProducto -> ajaxEditarProducto();
+
+}
+
+/*=============================================
+MOSTRAR PRODUCTO
+=============================================*/ 
+if(isset($_POST["agregar_producto"])){
+
+  $editarProducto = new AjaxProductos();
+  $editarProducto -> idProducto = $_POST["id_producto"];
+  $editarProducto -> ajaxFiltrarProductos();
 
 }
 
