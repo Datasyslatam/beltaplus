@@ -48,6 +48,44 @@ class ControladorClientes{
 			}
 		}
 	}
+
+	/*=============================================
+	CREAR NUEVO CLIENTES
+	=============================================*/
+	public static function ctrCrearNuevoCliente(){
+		if(isset($_POST["nuevoCliente"])){
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
+			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
+			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
+			   	$tabla = "clientes";
+
+
+				//Validar existencia de clientes
+				$item = "documento";
+				$valor = $_POST["nuevoDocumentoId"];
+				$existe_usuario = ControladorClientes::ctrMostrarClientes($item, $valor);
+				if ($existe_usuario) {
+					return ["error" => 1, "msg" => "Ya existe un cliente con este documento de identidad"];	
+				}
+
+			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
+					           "documento"=>$_POST["nuevoDocumentoId"],
+					           "email"=>$_POST["nuevoEmail"],
+					           "telefono"=>$_POST["nuevoTelefono"],
+					           "direccion"=>$_POST["nuevaDireccion"],
+					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
+			   	$respuesta = ModeloClientes::mdlIngresarClienteVenta($tabla, $datos);
+			   	if($respuesta != "error"){
+					return ["error" => 0, "msg" => "El cliente ha sido guardado correctamente", "data" => $respuesta];
+				}
+			}else{
+				return ["error" => 1, "msg" => "¡El cliente no puede ir vacío o llevar caracteres especiales!"];
+			}
+		}
+	}
+
 	/*=============================================
 	MOSTRAR CLIENTES
 	=============================================*/

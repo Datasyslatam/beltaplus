@@ -14,7 +14,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 // })// 
 
 $('.tablaVentas').DataTable( {
-    "ajax": "ajax/datatable-ventas.ajax.php",
+    //"ajax": "ajax/datatable-ventas.ajax.php",
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
@@ -44,7 +44,6 @@ $('.tablaVentas').DataTable( {
 			}
 
 	}
-
 } );
 
 /*=============================================
@@ -60,7 +59,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 	$(this).addClass("btn-default");
 
 	var datos = new FormData();
-    datos.append("idProducto", idProducto);
+    datos.append("id_producto", idProducto);
+    datos.append("agregar_producto", true);
 
      $.ajax({
 
@@ -73,7 +73,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
       	dataType:"json",
       	success:function(respuesta){
 
-      	    var descripcion = respuesta["descripcion"];
+      	    var descripcion = respuesta["descripcion_producto"];
           	var stock = respuesta["stock"];
           	var precio = respuesta["precio_venta"];
 
@@ -254,7 +254,7 @@ AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
 var numProducto = 0;
 
 $(".btnAgregarProducto").click(function(){
-
+	console.log("Aca es");
 	numProducto ++;
 
 	var datos = new FormData();

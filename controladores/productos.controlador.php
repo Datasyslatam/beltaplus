@@ -13,6 +13,16 @@ class ControladorProductos{
 	}
 
 	/*=============================================
+	FILTRAR PRODUCTOS
+	=============================================*/
+
+	public static function ctrFiltrarProductos($valor){
+		$tabla = "productos";
+		$respuesta = ModeloProductos::mdlFiltrarProductos($valor);
+		return $respuesta;
+	}
+
+	/*=============================================
 	MOSTRAR PRODUCTOS UNICO
 	=============================================*/
 
