@@ -23,7 +23,6 @@ class ControladorFiltroProductos{
         }
 
 		$respuesta = ModeloFiltroProductos::mdlMostrarFiltroProductosTallas($condiciones, $color);
-		
 		return $respuesta;
 	
 	}
@@ -45,7 +44,26 @@ class ControladorFiltroProductos{
         }
 
 		$respuesta = ModeloFiltroProductos::mdlMostrarFiltroProductosPrecios($condiciones);
-		
+		return $respuesta;
+	
+	}
+    public static function ctrMostrarFiltroProductosVentas($data){
+
+        $condiciones = "";
+        if(!empty($data["idcategoria"])){
+            $condiciones .= "WHERE p.id_categoria = ".$data["idcategoria"];
+        }
+        
+        if(!empty($data["idsubcategoria"])){
+            $condiciones .= " AND p.id_subcategoria = ".$data["idsubcategoria"];
+        }
+        
+        if(!empty($data["idcolor"])){
+            $condiciones .= " AND p.id_color = ".$data["idcolor"];
+            $color = true;
+        }
+
+		$respuesta = ModeloFiltroProductos::mdlMostrarFiltroProductosVentas($condiciones);
 		return $respuesta;
 	
 	}

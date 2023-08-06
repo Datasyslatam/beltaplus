@@ -46,6 +46,39 @@
 			</li>
 
 			<li>
+
+				<a href="subcategorias">
+
+					<i class="fa fa-th"></i>
+					<span>Subcategorías</span>
+
+				</a>
+
+			</li>
+
+			<li>
+
+				<a href="colores">
+
+					<i class="fa fa-paint-brush"></i>
+					<span>Colores</span>
+
+				</a>
+
+			</li>
+
+			<li>
+
+				<a href="tallas">
+
+					<i class="fa fa-th"></i>
+					<span>Tallas</span>
+
+				</a>
+
+			</li>
+
+			<li>
 				<a href="productos">
 					<i class="fa fa-product-hunt"></i>
 					<span>Productos</span>

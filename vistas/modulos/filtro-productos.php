@@ -43,24 +43,33 @@ if($_SESSION["perfil"] == "Vendedor"){
       </div>
 
     </div>
+
     <hr>
       <div class="box-header with-border">
         <button class="btn btn-primary me-2" onclick="mostrarTabla('tabla-filtro-tallas')"> Mostrar Filtro por Tallas </button>
         <button class="btn btn-success" onclick="mostrarTabla('tabla-filtro-precios')"> Mostrar Precios</button>
       </div>
       <div class="box-body" id="tabla-filtro-tallas">
+
+          <?php
+              $item = null;
+              $valor = null;
+              $tallas = ControladorTallas::ctrMostrarTallas($item, $valor);
+
+          ?>
         <table class="table table-bordered table-striped dt-responsive tablaTallas" width="100%">
           <thead>
             <tr>
               <th style="width:10px">#</th>
-              <th>Código</th>
+              <!-- <th>Código</th> -->
               <th>Color</th>
-              <th>TALLA 12</th>
-              <th>TALLA 14</th>
-              <th>TALLA 16</th>
-              <th>TALLA 18</th>
-              <th>TALLA 20</th>
-              <th>TALLA 22</th>
+              <?php
+              // iMPRIMIR DE MANERA DINAMICA LOS NOMBRE DE TALLAS EN LAS COLUMNAS DE LA TABLA
+                foreach ($tallas as $key => $value) {
+                  
+                  echo '<th>'. $value["talla"].'</th>';
+                }
+              ?>
             </tr>
           </thead>
           <tbody>
@@ -82,10 +91,10 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>Color</th>
               <th>Categoria</th>
               <th>Cantidad</th>
-              <th>H Salida Cantidad</th>
-              <th>Inventario Final</th>
-              <th>Presion Mayor</th>
-              <th>Presion Unidad</th>
+              <!-- <th>H Salida Cantidad</th> -->
+              <!-- <th>Inventario Final</th> -->
+              <th>Precio Unitario</th>
+              <th>Precio Mayorista</th>
             </tr>
           </thead>
 

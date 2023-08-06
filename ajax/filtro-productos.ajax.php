@@ -21,25 +21,26 @@ class AjaxFiltroProductos
         ];
     }
 
-    public function filtrarTallas()
-    {
+    public function filtrarTallas() {
 
         $respuesta = ControladorFiltroProductos::ctrMostrarFiltroProductosTallas($this->datos);
-
         return $respuesta;
     }
     
-    public function filtrarPrecios()
-    {
+    public function filtrarPrecios() {
 
         $respuesta = ControladorFiltroProductos::ctrMostrarFiltroProductosPrecios($this->datos);
+        return $respuesta;
+    }
 
+    public function filtrarProductosVentas(){
+        $respuesta = ControladorFiltroProductos::ctrMostrarFiltroProductosVentas($this->datos);
         return $respuesta;
     }
 }
 
 /*=====================================
-    FILTAR LA SUBCATEGORIAS
+    FILTRADO DINAMICO PRODUCTOS
 ======================================= */
 if (isset($_POST['idCategoria'])) {
     $filtrar = new AjaxFiltroProductos();
@@ -58,4 +59,20 @@ if (isset($_POST['idCategoria'])) {
     ];
 
     echo json_encode($array_respuestas);
+}
+
+/*=====================================
+    FILTRADO DINAMICO VENTAS
+======================================= */
+if (isset($_POST['id_categoria'])) {
+    $filtrar = new AjaxFiltroProductos();
+    $filtrar->categoria_id = $_POST['id_categoria'];
+    $filtrar->subcategoria_id = $_POST['id_subcategoria'];
+    $filtrar->color_id = $_POST['id_calor'];
+
+    $filtrar->setData();
+
+    $respuesta_productos = $filtrar->filtrarProductosVentas();
+
+    echo json_encode($respuesta_productos);
 }

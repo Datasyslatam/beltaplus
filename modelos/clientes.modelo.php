@@ -13,7 +13,31 @@ class ModeloClientes{
 		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_nacimiento", $datos["fecha_nacimiento"], PDO::PARAM_STR);
 		if($stmt->execute()){
+			$id = Conexion::conectar()->lastInsertId();
 			return "ok";
+		}else{
+			return "error";
+		
+		}
+		$stmt->close();
+		$stmt = null;
+	}
+	
+	/*=============================================
+	CREAR CLIENTE 2
+	=============================================*/
+	public static function mdlIngresarClienteVenta($tabla, $datos){
+		$base_datos = Conexion::conectar();
+		$stmt = $base_datos->prepare("INSERT INTO $tabla(nombre, documento, email, telefono, direccion, fecha_nacimiento) VALUES (:nombre, :documento, :email, :telefono, :direccion, :fecha_nacimiento)");
+		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_INT);
+		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_nacimiento", $datos["fecha_nacimiento"], PDO::PARAM_STR);
+		if($stmt->execute()){
+			$id = $base_datos->lastInsertId();
+			return $id;
 		}else{
 			return "error";
 		
@@ -31,7 +55,7 @@ class ModeloClientes{
 			$stmt -> execute();
 			return $stmt -> fetch();
 		}else{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre ASC");
 			$stmt -> execute();
 			return $stmt -> fetchAll();
 		}

@@ -5,7 +5,7 @@
       <div class="login-box-body">
 
         <div class="login-logo">
-          <img src="vistas/img/plantilla/logo.png" width="250px" height="250px" aling="center" class="img-responsive">
+          <img src="vistas/img/plantilla/logo.png" style = "width: 250px; height: 250px; margin-left:30px" class="img-responsive">
         </div>
 
         <p class="login-box-msg">Ingreso al sistema</p>

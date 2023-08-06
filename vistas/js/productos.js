@@ -99,7 +99,6 @@ $("#nuevaCategoria").change(() => {
 	var datos = new FormData();
  	datos.append("idCategoria", idCategoria);
 	
-
 	$.ajax({
 		url: "ajax/subcategorias.ajax.php",
 		method: "POST",
@@ -120,7 +119,6 @@ $("#nuevaCategoria").change(() => {
 
 		}
 	})
-
 })
 
 /*=============================================
@@ -256,7 +254,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
       success:function(respuesta){
           
           var datosCategoria = new FormData();
-          datosCategoria.append("idCategoria",respuesta["id_categoria"]);
+          datosCategoria.append("idCategoria", respuesta["id_categoria"]);
 
            $.ajax({
 
@@ -271,6 +269,9 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
                   
                   $("#editarCategoria").val(respuesta["id"]);
                   $("#editarCategoria").html(respuesta["categoria"]);
+/* 
+				  $("#editarSubCategoria").val(respuesta["id"]);
+                  $("#editarSubCategoria").html(respuesta["nombre"]); */
 
               }
 
