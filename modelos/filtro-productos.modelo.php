@@ -25,25 +25,31 @@ class ModeloFiltroProductos{
             $id = $value["id"];
             $color = $value["color"];
 
-            
+            $clausula_color = $clausula;
             if(!$filtroColor){
-                $clausula .= empty($clausula) ? "WHERE" : " AND";
-                $clausula .= " p.id_color = ".$id;
+                $clausula_color .= empty($clausula) ? "WHERE" : " AND";
+                $clausula_color .= " p.id_color = ".$id;
             }
 
-            $fila = [$i,$id,$color];
+            $fila = [$i,$color];
 
             foreach ($tallas as $value2){
                 $id_talla = $value2["id"];
-                $clausula .= " AND p.id_talla = ".$id_talla;
+                $clausula_talla = $clausula_color." AND p.id_talla = ".$id_talla;
 
-                $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM productos p $clausula");
+                $stmt = Conexion::conectar()->prepare("SELECT SUM(stock) AS conteo FROM productos p $clausula_talla");
                 $stmt -> execute();
 
+                
                 $conteo = $stmt -> fetchAll();
-                $num_prod = count($conteo) > 0 ? $conteo[0]["COUNT(*)"] : 0;
-                array_push($fila, $num_prod);
 
+                $num_prod = 0;
+                if ($conteo){
+                    $num = $conteo[0]["conteo"];
+                    $num_prod = $num == "" ? 0 : $num;
+                }
+                
+                array_push($fila, $num_prod);
             }
             
             array_push($datos_tallas, $fila);
@@ -58,7 +64,7 @@ class ModeloFiltroProductos{
 
     public static function mdlMostrarFiltroProductosPrecios($clausula){
 
-        $stmt = Conexion::conectar()->prepare("SELECT p.id, p.descripcion, t.talla, co.color, ca.categoria, 
+        $stmt = Conexion::conectar()->prepare("SELECT p.codigo, p.descripcion, t.talla, co.color, ca.categoria, 
                         p.stock as cantidad, COALESCE(p.h_salida_cantidad, 0) as h_salida_cantidad, 
                         COALESCE(p.inventario_final,0) as inventario_final, p.precio_venta, 
                         p.precio_compra
@@ -71,13 +77,12 @@ class ModeloFiltroProductos{
         $stmt -> execute();
         
         $resultado = $stmt -> fetchAll();
-
         return $resultado;
         
     }
 
     public static function getTallas(){
-        $stmt = Conexion::conectar()->prepare("SELECT id FROM tallas");
+        $stmt = Conexion::conectar()->prepare("SELECT id FROM tallas ORDER BY talla");
         $stmt -> execute();
         
         $tallas = $stmt -> fetchAll();

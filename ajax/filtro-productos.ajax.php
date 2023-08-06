@@ -21,19 +21,15 @@ class AjaxFiltroProductos
         ];
     }
 
-    public function filtrarTallas()
-    {
+    public function filtrarTallas() {
 
         $respuesta = ControladorFiltroProductos::ctrMostrarFiltroProductosTallas($this->datos);
-
         return $respuesta;
     }
     
-    public function filtrarPrecios()
-    {
+    public function filtrarPrecios() {
 
         $respuesta = ControladorFiltroProductos::ctrMostrarFiltroProductosPrecios($this->datos);
-
         return $respuesta;
     }
 }

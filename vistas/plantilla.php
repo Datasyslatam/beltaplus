@@ -1,8 +1,9 @@
 <?php
 
-session_start();
+  session_start();
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@ session_start();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Sistema Inventario | BELTAPLUS</title>
+  <title>Sistema de Inventario | BELTAPLUS</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -152,6 +153,9 @@ CUERPO DOCUMENTO
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
          $_GET["ruta"] == "categorias" ||
+         $_GET["ruta"] == "subcategorias" ||
+         $_GET["ruta"] == "colores" ||
+         $_GET["ruta"] == "tallas" ||
          $_GET["ruta"] == "motivos" ||
          $_GET["ruta"] == "productos" ||
          $_GET["ruta"] == "movimientos" ||
@@ -159,7 +163,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "editar-venta" ||
-		 $_GET["ruta"] == "kardex-producto" ||
+		    $_GET["ruta"] == "kardex-producto" ||
          $_GET["ruta"] == "reportes" ||
          $_GET["ruta"] == "acerca" ||
          $_GET["ruta"] == "salir"){
@@ -199,6 +203,9 @@ CUERPO DOCUMENTO
 <script src="vistas/js/filterDynamic.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
+<script src="vistas/js/subcategorias.js"></script>
+<script src="vistas/js/colores.js"></script>
+<script src="vistas/js/tallas.js"></script>
 <script src="vistas/js/motivos.js"></script>
 <script src="vistas/js/productos.js"></script>
 <script src="vistas/js/filtro-productos.js"></script>
