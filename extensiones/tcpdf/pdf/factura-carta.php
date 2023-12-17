@@ -63,17 +63,17 @@ $bloque1 = <<<EOF
 		
 		<tr>
 			
-			<td style="width:150px"><img src="images/logo-negro-bloque.png"></td>
+			<td style="width:150px"><img src="images/logoBeltaFull.png"></td>
 
 			<td style="background-color:white; width:140px">
 				
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					NIT: 67.759.963-6
+					<H3>PEDIDOS:</H3>
 
 					<br>
-					Dirección: Calle 34V 123-10
+					NIT: 52163724-2
 
 				</div>
 
@@ -84,16 +84,16 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					Teléfono: 786 786 52 34
+					<H3>312 808 4806</H3>
 					
 					<br>
-					ventas@ysystem.com
+					beltaplusize@gmail.com
 
 				</div>
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>PEDIDO No.<br>$valorVenta</td>
 
 		</tr>
 
@@ -132,6 +132,36 @@ $bloque2 = <<<EOF
 				Fecha: $fecha
 
 			</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Cédula / Nit: $respuestaVendedor[nombre]</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Dirección de envio: $respuestaVendedor[nombre]</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Ciudad: $respuestaVendedor[nombre]</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Transporte: $respuestaVendedor[nombre]</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
 
 		</tr>
 
