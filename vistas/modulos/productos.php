@@ -33,8 +33,8 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>Color</th>
               <th>Talla</th>
               <th>Stock</th>
-              <th>Precio Unitario</th>
               <th>Precio Mayorista</th>
+              <th>Precio x Unidad</th>
               <th>Agregado</th>
               <th>Acciones</th>
             </tr>
