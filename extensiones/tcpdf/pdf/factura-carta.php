@@ -113,13 +113,13 @@ $bloque2 = <<<EOF
 		
 		<tr>
 			
-			<td style="width:540px"><img src="images/back.jpg"></td>
+			<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>
 		
 		</tr>
 
 	</table>
 
-	<table style="border: white 1px none; font-size:10px; padding:5px 10px;">
+	<table style="border: white 1px none; font-size:10px; padding:2px 5px;">
 	
 		<tr>
 		
@@ -175,7 +175,7 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-		<td style="border-bottom: 0px none; background-color:white; width:540px"></td>
+		<td style="border-bottom: 1px ; background-color:white; width:540px"></td>
 
 		</tr>
 
