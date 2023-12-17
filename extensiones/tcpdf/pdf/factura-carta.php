@@ -27,9 +27,9 @@ $respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
 
 $fecha = substr($respuestaVenta["fecha"],0,-8);
 $productos = json_decode($respuestaVenta["productos"], true);
-$neto = number_format($respuestaVenta["neto"],2);
-$impuesto = number_format($respuestaVenta["impuesto"],2);
-$total = number_format($respuestaVenta["total"],2);
+$neto = number_format($respuestaVenta["neto"]);
+$impuesto = number_format($respuestaVenta["impuesto"]);
+$total = number_format($respuestaVenta["total"]);
 
 //TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
@@ -178,47 +178,45 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 foreach ($productos as $key => $item) {
 
-$itemProducto = "descripcion";
-$valorProducto = $item["descripcion"];
-$orden = null;
+	$itemProducto = "descripcion";
+	$valorProducto = $item["descripcion"];
+	$orden = null;
 
-$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
-$valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
+	$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
-$precioTotal = number_format($item["total"], 2);
+	$precioTotal = number_format($item["total"]);
 
-$bloque4 = <<<EOF
+	$bloque4 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+		<table style="font-size:10px; padding:5px 10px;">
 
-		<tr>
-			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-				$item[descripcion]
-			</td>
+			<tr>
+				
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
+					$item[descripcion]
+				</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
-				$item[cantidad]
-			</td>
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+					$item[cantidad]
+				</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$valorUnitario
-			</td>
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+					$valorUnitario
+				</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$precioTotal
-			</td>
-
-
-		</tr>
-
-	</table>
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+					$precioTotal
+				</td>
 
 
-EOF;
+			</tr>
 
-$pdf->writeHTML($bloque4, false, false, false, false, '');
+		</table>
+	EOF;
+
+	$pdf->writeHTML($bloque4, false, false, false, false, '');
 
 }
 
@@ -286,8 +284,6 @@ $bloque5 = <<<EOF
 EOF;
 
 $pdf->writeHTML($bloque5, false, false, false, false, '');
-
-
 
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
