@@ -107,7 +107,7 @@ $pdf->writeHTML($bloque1, false, false, false, false, '');
 
 $bloque2 = <<<EOF
 
-	<table>
+	<table border="0">
 		
 		<tr>
 			
@@ -117,7 +117,7 @@ $bloque2 = <<<EOF
 
 	</table>
 
-	<table style="font-size:10px; padding:5px 10px;" border=0>
+	<table style="font-size:10px; padding:5px 10px;" border="0">
 	
 		<tr>
 		
