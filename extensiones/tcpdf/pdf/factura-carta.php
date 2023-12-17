@@ -123,13 +123,13 @@ $bloque2 = <<<EOF
 	
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:390px">
+			<td style="border: white 1px; background-color:white; width:390px">
 
 				Cliente: $respuestaCliente[nombre]
 
 			</td>
 
-			<td style="border: 0px; background-color:white; width:150px; text-align:right">
+			<td style="border: white 1px; background-color:white; width:150px; text-align:right">
 			
 				Fecha: $fecha
 
@@ -139,37 +139,37 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
+			<td style="border: white 1px; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Celular: $respuestaCliente[telefono]</td>
+			<td style="border: white 1px; background-color:white; width:540px">Celular: $respuestaCliente[telefono]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
+			<td style="border: white 1px; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Ciudad: $ciudad</td>
+			<td style="border: white 1px; background-color:white; width:540px">Ciudad: $ciudad</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Transporte: $transportadora</td>
+			<td style="border: white 1px; background-color:white; width:540px">Transporte: $transportadora</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 0px; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
+			<td style="border: white 1px; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
 
 		</tr>
 
