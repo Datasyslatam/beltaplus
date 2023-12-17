@@ -136,8 +136,8 @@ class TablaProductos{
 				  "'.$nomb_color.'",
 				  "'.$nomb_talla.'",
 			      "'.$stock.'",
-			      "'. "$" . number_format($productos[$i]["precio_compra"], 2) .'",
-				  "'. "$" . number_format($productos[$i]["precio_venta"], 2) .'",
+			      "'. "$" . number_format($productos[$i]["precio_compra"]) .'",
+				  "'. "$" . number_format($productos[$i]["precio_venta"]) .'",
 			      "'.$productos[$i]["fecha"].'",
 			      "'.$botones.'"
 			    ],';

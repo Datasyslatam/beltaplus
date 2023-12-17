@@ -135,7 +135,6 @@ class TablaProductosVentas{
 			      "'.$stock.'",
 			      "'.$botones.'"
 			    ],'; */
-
 		  }
 
 		  $datosJson = substr($datosJson, 0, -1);
@@ -149,7 +148,6 @@ class TablaProductosVentas{
 
 	}
 
-
 }
 
 /*=============================================
@@ -157,4 +155,3 @@ ACTIVAR TABLA DE PRODUCTOS
 =============================================*/ 
 $activarProductosVentas = new TablaProductosVentas();
 $activarProductosVentas -> mostrarTablaProductosVentas();
-
