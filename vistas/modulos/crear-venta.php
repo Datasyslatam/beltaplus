@@ -189,6 +189,41 @@ if ($_SESSION["perfil"] == "Especial") {
                 </div>
                 <br>
 
+                <!--=====================================
+                ENTRADA CIUDAD Y TRANSPORTADORA
+                ======================================-->
+                <div class="form-group row">
+
+                  <div class="col-xs-6" style="padding-right:0px">
+
+                    <div class="input-group">
+
+                      <select class="form-control" id="nuevaCiudad" name="nuevaCiudad" required>
+                        <option value="">Seleccione ciudad de envío</option>
+                        <option value="BOG">Bogota</option>
+                        <option value="BAQ">Barranquilla</option>
+                        <option value="MED">Medellin</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="cajasMetodoPago"></div>
+                  <input type="hidden" id="listaCiudad" name="listaCiudad">
+                </div>
+
+                <div class="form-group row">
+
+                  <div class="col-xs-6" style="padding-right:0px">
+
+                    <div class="input-group">
+                      <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" ></textarea>
+                    </div>
+                  </div>
+                  <div class="cajasMetodoPago"></div>
+                  <input type="hidden" id="nuevaTransportad" name="nuevaTransportad">
+                </div>
+                <br>
+
               </div>
             </div>
             <div class="box-footer">

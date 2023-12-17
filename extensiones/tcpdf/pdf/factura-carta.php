@@ -30,6 +30,8 @@ $productos = json_decode($respuestaVenta["productos"], true);
 $neto = number_format($respuestaVenta["neto"]);
 $impuesto = number_format($respuestaVenta["impuesto"]);
 $total = number_format($respuestaVenta["total"]);
+$ciudad = $respuestaVenta["ciudad"];
+$transportadora = $respuestaVenta["transportadora"];
 
 //TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
@@ -59,7 +61,7 @@ $pdf->AddPage();
 
 $bloque1 = <<<EOF
 
-	<table>
+	<table border="0">
 		
 		<tr>
 			
@@ -67,7 +69,7 @@ $bloque1 = <<<EOF
 
 			<td style="background-color:white; width:140px">
 				
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
+				<div style="font-size:8.5px; text-align:right; line-height:14px;">
 					
 					<br>
 					<H3 style="font: size 14px; color=green;">PEDIDOS:</H3>
@@ -137,25 +139,31 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Cédula / Nit: $respuestaVendedor[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Dirección de envio: $respuestaVendedor[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Dirección de envio: $respuestaCliente[telefono]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Ciudad: $respuestaVendedor[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
 
 		</tr>
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Transporte: $respuestaVendedor[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Ciudad: $ciudad</td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border: 1px solid #666; background-color:white; width:540px">Transporte: $transportadora</td>
 
 		</tr>
 

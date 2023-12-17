@@ -84,7 +84,10 @@ class ControladorVentas{
 						   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
 						   "neto"=>$_POST["nuevoPrecioNeto"],
 						   "total"=>$_POST["totalVenta"],
-						   "metodo_pago"=>$_POST["listaMetodoPago"]);
+						   "metodo_pago"=>$_POST["listaMetodoPago"],
+						   "ciudad"=>$_POST["listaCiudad"],
+						   "transportadora"=>$_POST["txtTransportad"]
+						);-
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if($respuesta == "ok"){
 				// $impresora = "epson20";
