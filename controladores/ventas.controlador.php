@@ -87,7 +87,7 @@ class ControladorVentas{
 						   "metodo_pago"=>$_POST["listaMetodoPago"],
 						   "ciudad"=>$_POST["listaCiudad"],
 						   "transportadora"=>$_POST["txtTransportad"]
-						);-
+						);
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if($respuesta == "ok"){
 				// $impresora = "epson20";
