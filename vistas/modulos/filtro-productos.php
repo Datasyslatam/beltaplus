@@ -93,8 +93,8 @@ if($_SESSION["perfil"] == "Vendedor"){
               <th>Cantidad</th>
               <!-- <th>H Salida Cantidad</th> -->
               <!-- <th>Inventario Final</th> -->
-              <th>Precio Unitario</th>
               <th>Precio Mayorista</th>
+              <th>Precio x Unidad</th>
             </tr>
           </thead>
 
