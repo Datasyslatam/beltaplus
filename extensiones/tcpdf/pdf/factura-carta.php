@@ -70,7 +70,7 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					<H3>PEDIDOS:</H3>
+					<H3 style="font: size 14px; color=green;">PEDIDOS:</H3>
 
 					<br>
 					NIT: 52163724-2
@@ -117,7 +117,7 @@ $bloque2 = <<<EOF
 
 	</table>
 
-	<table style="font-size:10px; padding:5px 10px;">
+	<table style="font-size:10px; padding:5px 10px;" border=0>
 	
 		<tr>
 		
