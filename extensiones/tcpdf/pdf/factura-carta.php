@@ -30,7 +30,6 @@ $productos = json_decode($respuestaVenta["productos"], true);
 $neto = number_format($respuestaVenta["neto"]);
 $impuesto = number_format($respuestaVenta["impuesto"]);
 $total = number_format($respuestaVenta["total"]);
-$ciudad = $respuestaVenta["ciudad"];
 $transportadora = $respuestaVenta["transportadora"];
 
 //TRAEMOS LA INFORMACIÓN DEL CLIENTE
@@ -72,7 +71,7 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:14px;">
 					
 					<br>
-					<H3 style="font: size 14px; color=green;">PEDIDOS:</H3>
+					<H3 style="font: size 14px; color: #27ae60;">PEDIDOS:</H3>
 
 					<br>
 					NIT: 52163724-2
@@ -95,7 +94,7 @@ $bloque1 = <<<EOF
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>PEDIDO No.<br>$valorVenta</td>
+			<td style="background-color:white; width:110px; text-align:center; color: red; font-weight: bold;"><br><br>PEDIDO No.<br>$valorVenta</td>
 
 		</tr>
 
@@ -157,7 +156,7 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: white 1px none; background-color:white; width:540px">Ciudad: $ciudad</td>
+			<td style="border: white 1px none; background-color:white; width:540px">Ciudad: $respuestaCliente[ciudad]</td>
 
 		</tr>
 
@@ -189,7 +188,7 @@ $pdf->writeHTML($bloque2, false, false, false, false, '');
 
 $bloque3 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+	<table style="font-size:10px; padding:3px 6px;">
 
 		<tr>
 		
@@ -222,7 +221,7 @@ foreach ($productos as $key => $item) {
 
 	$bloque4 = <<<EOF
 
-		<table style="font-size:10px; padding:5px 10px;">
+		<table style="font-size:10px; padding:3px 6px;">
 
 			<tr>
 				
