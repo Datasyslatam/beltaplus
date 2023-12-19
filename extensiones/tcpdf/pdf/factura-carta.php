@@ -240,19 +240,19 @@ EOF;
 				$valorUnitario = "Na";
 				$valorMayor = "Na";
 			}else{
-				$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 				if ($cantidad >= 6) {
 					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-					$total = $valorMayor + $respuestaVenta["impuesto"];
-
+					$precioFinal = $valorMayor + $respuestaVenta["impuesto"];
+					
 				} else {
+					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 					$valorMayor = "No aplica";
-					$total = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
+					$precioTotal = $respuestaProducto["precio_venta"] * $cantidad;
+					$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
 
 				}	
 			}
 
-			$precioTotal = $valorUnitario * $cantidad;
 
 			$bloque4 = <<<EOF
 
@@ -342,7 +342,7 @@ EOF;
 			</td>
 			
 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $total
+				$ $precioFinal
 			</td>
 
 		</tr>
