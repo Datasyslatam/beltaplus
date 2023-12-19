@@ -45,6 +45,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Email</th>
            <th>Teléfono</th>
            <th>Dirección</th>
+           <th>Ciudad</th>
            <th>Fecha nacimiento</th> 
            <th>Total compras</th>
            <th>Última compra</th>
@@ -66,6 +67,7 @@ if($_SESSION["perfil"] == "Especial"){
                     <td>'.$value["email"].'</td>
                     <td>'.$value["telefono"].'</td>
                     <td>'.$value["direccion"].'</td>
+                    <td>'.$value["ciudad"].'</td>
                     <td>'.$value["fecha_nacimiento"].'</td>             
                     <td>'.$value["compras"].'</td>
                     <td>'.$value["ultima_compra"].'</td>
@@ -150,6 +152,14 @@ MODAL AGREGAR CLIENTE
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                 <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección" required>
+              </div>
+            </div>
+            <!-- ENTRADA PARA LA DIRECCIÓN -->
+            <label for="">Ciudad</label>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-building"></i></span> 
+                <input type="text" class="form-control input-lg" name="nuevaCiudad" placeholder="Ingresar ciudad de residencia" required>
               </div>
             </div>
              <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
