@@ -211,10 +211,10 @@ EOF;
 		<tr>
 		
 		<td style="border: 1px solid #666; background-color:white; width:150px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor Total</td>
+		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Cantidad</td>
+		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
 70	</tr>
 
 	</table>
@@ -241,7 +241,7 @@ EOF;
 			}else{
 				if ($cantidad >= 6) {
 					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-					$precioFinal = $valorMayor + $respuestaVenta["impuesto"];
+					$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
 					
 				} else {
 					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
@@ -262,19 +262,19 @@ EOF;
 					$item[descripcion]
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center">
 					$cantidad
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center">$ 
 					$valorUnitario
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center"> 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center"> 
 					$valorMayor
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
 					$precioTotal
 				</td>
 
