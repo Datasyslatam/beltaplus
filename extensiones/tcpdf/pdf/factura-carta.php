@@ -211,9 +211,9 @@ EOF;
 		<tr>
 		
 		<td style="border: 1px solid #666; background-color:white; width:150px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width: 83.3px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Cantidad</td>
+		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor por mayor.</td>
 		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
 70	</tr>
 
@@ -262,15 +262,15 @@ EOF;
 					$item[descripcion]
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">
 					$cantidad
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">$ 
 					$valorUnitario
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:83.3px; text-align:center"> 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center"> 
 					$valorMayor
 				</td>
 
