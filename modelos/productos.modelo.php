@@ -14,12 +14,12 @@ class ModeloProductos
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_categoria ASC");
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
-			echo $stmt->queryString;
-			$resultado = $stmt->fetch();
-			var_dump($resultado);
-			$errorInfo = $stmt->errorInfo();
-			print_r($errorInfo);
-			// return $stmt->fetch();
+			// echo $stmt->queryString;
+			// $resultado = $stmt->fetch();
+			// var_dump($resultado);
+			// $errorInfo = $stmt->errorInfo();
+			// print_r($errorInfo);
+			return $stmt->fetch();
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
 			$stmt->execute();
