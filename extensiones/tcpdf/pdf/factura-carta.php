@@ -71,7 +71,7 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:14px;">
 					
 					<br>
-					<H3 style="font: size 14px; color: #27ae60;">SOLICITUD NoU:</H3>
+					<H3 style="font: size 14px; color: #27ae60;">PEDIDOS:</H3>
 
 					<br>
 					NIT: 52163724-2
