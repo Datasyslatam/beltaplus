@@ -1,5 +1,6 @@
 <?php
 require_once "conexion.php";
+
 class ModeloVentas{
 	/*=============================================
 	MOSTRAR VENTAS
@@ -19,6 +20,7 @@ class ModeloVentas{
 		$stmt -> close();
 		$stmt = null;
 	}
+	
 	/*=============================================
 	REGISTRO DE VENTA
 	=============================================*/
