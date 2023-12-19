@@ -20,7 +20,7 @@ class ModeloProductos
 			// $errorInfo = $stmt->errorInfo();
 			// print_r($errorInfo);
 			$resultado = $stmt->fetch();
-			if(!$resultado){
+			if($resultado){
 				return $stmt->fetch();
 			}else{
 				return "Producto no encontrado";
