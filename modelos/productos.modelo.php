@@ -15,7 +15,8 @@ class ModeloProductos
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			echo $stmt->queryString;
-			echo $stmt->fetch();
+			$resultado = $stmt->fetch();
+			var_dump($resultado);
 			$errorInfo = $stmt->errorInfo();
 			print_r($errorInfo);
 			// return $stmt->fetch();
