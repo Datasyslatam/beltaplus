@@ -237,7 +237,7 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			if(is_string(!$respuestaProducto)){
+			if(is_string($respuestaProducto)){
 				$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 				if ($cantidad >= 6) {
 					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
