@@ -210,13 +210,12 @@ EOF;
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor Total</td>
-
-		</tr>
+		<td style="border: 1px solid #666; background-color:white; width:150px; text-align:center">Producto</td>
+		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Cantidad</td>
+		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width:70px; text-align:center">Valor Total</td>
+70	</tr>
 
 	</table>
 
@@ -259,23 +258,23 @@ EOF;
 		<table style="font-size:10px; padding:3px 6px;">
 			<tr>
 				
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:150px; text-align:center">
 					$item[descripcion]
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center">
 					$cantidad
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center">$ 
 					$valorUnitario
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center"> 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center"> 
 					$valorMayor
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:70px; text-align:center">$ 
 					$precioTotal
 				</td>
 
