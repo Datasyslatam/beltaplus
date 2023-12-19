@@ -20,8 +20,8 @@ class ModeloProductos
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
-		$stmt->close();
-		$stmt = null;
+		// $stmt->close();
+		// $stmt = null;
 	}
 
 	/*=============================================
