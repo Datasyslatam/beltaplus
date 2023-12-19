@@ -15,6 +15,7 @@ class ModeloProductos
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			echo $stmt->queryString;
+			echo $stmt->fetch();
 			// return $stmt->fetch();
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
