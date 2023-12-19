@@ -19,7 +19,12 @@ class ModeloProductos
 			// var_dump($resultado);
 			// $errorInfo = $stmt->errorInfo();
 			// print_r($errorInfo);
-			return $stmt->fetch();
+			$resultado = $stmt->fetch();
+			if(!$resultado){
+				return $stmt->fetch();
+			}else{
+				return "Producto no encontrado";
+			}
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
 			$stmt->execute();
