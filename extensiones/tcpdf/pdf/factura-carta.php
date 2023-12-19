@@ -245,8 +245,8 @@ EOF;
 					$valorMayor = "No aplica";
 				}	
 			}else{
-				$valorUnitario = $respuestaProducto["precio_venta"];
-				$valorMayor = $respuestaProducto["precio_venta"];
+				$valorUnitario = "Na";
+				$valorMayor = "Na";
 			}
 
 			$precioTotal = number_format($item["total"]);
