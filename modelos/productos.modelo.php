@@ -15,10 +15,10 @@ class ModeloProductos
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			$resultado = $stmt->fetch();
-			if(!$resultado){
-				return "Producto no encontrado";
-			}else{
+			if($resultado){
 				return $resultado;
+			}else{
+				return "Producto no encontrado";
 			}
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
