@@ -223,7 +223,7 @@ EOF;
 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 			
 			if ($cantidad >= 3) {
-				$valorMayor = "$" + number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 			} else {
 				$valorMayor = "No aplica";
 			}
