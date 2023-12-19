@@ -46,7 +46,7 @@ class imprimirFactura
 			$cantidad = $item["cantidad"];
 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 			
-			var_dump($respuestaProducto);
+			var_dump($item);
 		}
 		
 		echo '</pre>';
