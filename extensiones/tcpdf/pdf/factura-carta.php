@@ -210,7 +210,7 @@ EOF;
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width: 190px; text-align:center">Producto</td>
+		<td style="border: 1px solid #666; background-color:white; width: 188px; text-align:center">Producto</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Cantidad</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor Unit.</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor por mayor.</td>
@@ -258,7 +258,7 @@ EOF;
 		<table style="font-size:10px; padding:3px 6px;">
 			<tr>
 				
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 190px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 188px; text-align:center">
 					$item[descripcion]
 				</td>
 
