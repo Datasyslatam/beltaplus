@@ -221,7 +221,7 @@ foreach ($productos as $key => $item) {
 	$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
 	if($cantidad >= 6){
-		$valorMayor = number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+		$valorMayor = "$" + number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 	}else{
 		$valorMayor = "No aplica";
 	}
@@ -242,15 +242,15 @@ foreach ($productos as $key => $item) {
 					$cantidad
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
 					$valorUnitario
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center"> 
 					$valorMayor
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
 					$precioTotal
 				</td>
 
