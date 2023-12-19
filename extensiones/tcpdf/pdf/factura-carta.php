@@ -194,9 +194,9 @@ $bloque3 = <<<EOF
 		
 		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
 		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
+		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">Valor Total</td>
 
 		</tr>
 
@@ -245,8 +245,7 @@ foreach ($productos as $key => $item) {
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
 					$valorUnitario
 				</td>
-
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center"> 
+50td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center"> 
 					$valorMayor
 				</td>
 
