@@ -31,7 +31,7 @@ class imprimirFactura
 		$productos = json_decode($respuestaVenta["productos"], true);
 		$neto = number_format($respuestaVenta["neto"]);
 		$impuesto = number_format($respuestaVenta["impuesto"]);
-		$total = number_format($respuestaVenta["total"]);
+		$total = $neto + $impuesto;
 		$transportadora = $respuestaVenta["transportadora"];
 
 		// echo '<pre>';
@@ -249,7 +249,7 @@ EOF;
 				}	
 			}
 
-			$precioTotal = number_format($item["total"]);
+			$precioTotal = $valorUnitario * $cantidad;
 
 			$bloque4 = <<<EOF
 
