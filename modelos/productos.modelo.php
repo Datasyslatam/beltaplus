@@ -20,10 +20,10 @@ class ModeloProductos
 			// $errorInfo = $stmt->errorInfo();
 			// print_r($errorInfo);
 			$resultado = $stmt->fetch();
-			if($resultado){
-				return $stmt->fetch();
-			}else{
+			if(!$resultado){
 				return "Producto no encontrado";
+			}else{
+				return $stmt->fetch();
 			}
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
