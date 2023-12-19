@@ -195,6 +195,7 @@ $bloque3 = <<<EOF
 		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
 		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor por mayor.</td>
 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
 
 		</tr>
@@ -207,6 +208,8 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
+
+
 foreach ($productos as $key => $item) {
 
 	$itemProducto = "descripcion";
@@ -214,8 +217,14 @@ foreach ($productos as $key => $item) {
 	$orden = null;
 
 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-
+	$cantidad = $item["cantidad"];
 	$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+
+	if($cantidad >= 6){
+		$valorMayor = number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+	}else{
+		$valorMayor = "No aplica";
+	}
 
 	$precioTotal = number_format($item["total"]);
 
@@ -230,11 +239,15 @@ foreach ($productos as $key => $item) {
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
-					$item[cantidad]
+					$cantidad
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
 					$valorUnitario
+				</td>
+
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+					$valorMayor
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
