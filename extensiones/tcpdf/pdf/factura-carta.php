@@ -34,6 +34,10 @@ class imprimirFactura
 		$total = number_format($respuestaVenta["total"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
+		echo '<pre>';
+		var_dump($productos);
+		echo '</pre>';
+
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
 		$itemCliente = "id";
@@ -233,9 +237,6 @@ EOF;
 			$bloque4 = <<<EOF
 
 		<table style="font-size:10px; padding:3px 6px;">
-			<script type="text/javascript">
-			 	console.log($item);
-			</script>
 			<tr>
 				
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
