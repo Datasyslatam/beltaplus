@@ -36,6 +36,19 @@ class imprimirFactura
 
 		echo '<pre>';
 		var_dump($productos);
+		foreach ($productos as $key => $item) {
+
+			$itemProducto = "descripcion";
+			$valorProducto = $item["descripcion"];
+			$orden = null;
+
+			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+			$cantidad = $item["cantidad"];
+			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+			
+			var_dump($respuestaProducto);
+		}
+		
 		echo '</pre>';
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
@@ -226,7 +239,7 @@ EOF;
 			$cantidad = $item["cantidad"];
 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 			// echo $respuestaProducto;
-			if ($cantidad >= 3) {
+			if ($cantidad >= 6) {
 				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 			} else {
 				$valorMayor = "No aplica";
