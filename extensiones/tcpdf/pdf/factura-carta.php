@@ -247,7 +247,7 @@ EOF;
 				} else {
 					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 					$valorMayor = "No aplica";
-					$precioTotal = $respuestaProducto["precio_venta"] * $cantidad;
+					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
 					$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
 
 				}	
