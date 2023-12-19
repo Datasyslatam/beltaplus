@@ -221,7 +221,7 @@ EOF;
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 			$cantidad = $item["cantidad"];
 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
-			echo $respuestaProducto;
+			// echo $respuestaProducto;
 			if ($cantidad >= 3) {
 				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 			} else {
@@ -233,7 +233,7 @@ EOF;
 			$bloque4 = <<<EOF
 
 		<table style="font-size:10px; padding:3px 6px;">
-
+			
 			<tr>
 				
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
@@ -245,7 +245,7 @@ EOF;
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
-					$valorUnitario
+					$item
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center"> 
