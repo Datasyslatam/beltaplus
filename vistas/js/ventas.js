@@ -74,6 +74,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
+			var id = respuesta[codigo]
             ajaxRespuestas.push(respuesta);
             console.log(1.1);
             /*=============================================
@@ -121,8 +122,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
                     '<div class="input-group">' +
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                    '<input id="' +
-                    respuesta[codigo] +
+                    '<input id="' + id
+                     +
                     '" type="text" class="form-control nuevoPrecioProducto" precioReal="' +
                     precio +
                     '" name="nuevoPrecioProducto" value="' +
