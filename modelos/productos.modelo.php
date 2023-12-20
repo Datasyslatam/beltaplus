@@ -17,7 +17,7 @@ class ModeloProductos
 
 			$resultado = $stmt->fetch();
 			echo $stmt->queryString;
-			
+			var_dump($item);
 
 			if($resultado){
 				return $resultado;
