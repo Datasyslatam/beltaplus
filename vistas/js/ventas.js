@@ -124,7 +124,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
                     '<div class="input-group">' +
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                    '<input id="' + id +
+                    '<input id="' +
+                    id +
                     '" type="text" class="form-control nuevoPrecioProducto" precioReal="' +
                     precio +
                     '" name="nuevoPrecioProducto" value="' +
@@ -153,7 +154,6 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         },
     });
 });
-
 
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
@@ -389,10 +389,10 @@ MODIFICAR LA CANTIDAD
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     console.log("2");
 
-    var idBuscado = $(this).attr("id");
-    var elementoEncontrado = ajaxRespuestas.find(
-        (elemento) => elemento.codigo === idBuscado);
+    var codigoBuscado = $(this).attr("id");
+    var elementoEncontrado = ajaxRespuestas.find(producto => producto.codigo === codigoBuscado);
 
+    console.log(ajaxRespuestas);
     console.log(elementoEncontrado);
 
     var precio = $(this)
