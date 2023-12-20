@@ -242,9 +242,9 @@ EOF;
 
 		foreach ($productos as $key => $item) {
 
-			$itemProducto = "descripcion";
+			$itemProducto = "codigo";
 			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-			$valorProducto = $item["descripcion"];
+			$valorProducto = $item["codigo"];
 			$orden = null;
 
 			$cantidad = $item["cantidad"];
