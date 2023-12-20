@@ -70,10 +70,11 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            ajaxRespuesta.push(respuesta);
-            var descripcion = respuesta["descripcion_producto"];
+			console.log(1);
+			var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
+            ajaxRespuesta.push(respuesta);
 
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
@@ -383,6 +384,7 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
+	console.log("2");
 	ajaxRespuestas.forEach(element => {
 		console.log(element);
 	});
