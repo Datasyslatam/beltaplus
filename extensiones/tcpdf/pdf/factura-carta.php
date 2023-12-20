@@ -38,15 +38,29 @@ class imprimirFactura
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "descripcion";
+			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
 			$valorProducto = $item["descripcion"];
 			$orden = null;
 
-			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 			$cantidad = $item["cantidad"];
-			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+			if (is_string($respuestaProducto)) {
+				$valorUnitario = "Na";
+				$valorMayor = "Na";
+			} else {
+				if ($cantidad >= 6) {
+					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+					$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
 
+				} else {
+					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+					$valorMayor = "No aplica";
+					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
+					$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
+
+				}
+			}
 		}
-
 		echo '</pre>';
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
