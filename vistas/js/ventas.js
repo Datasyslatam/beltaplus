@@ -398,9 +398,9 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 		}
 	  }
 	  
-	console.log(codigoBuscado);
-    console.log(ajaxRespuestas);
-    console.log(elementoEncontrado);
+	// console.log(codigoBuscado);
+    // console.log(ajaxRespuestas);
+    // console.log(elementoEncontrado);
 
     var precio = $(this)
         .parent()
@@ -416,7 +416,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad >= 7) {
         nuevoPrecio = elementoEncontrado;
-        $(this).css("background-color", "tuColor"); // Asegúrate de reemplazar "tuColor" con el color deseado.
+        $(this).css("background-color", "reed");
     } else {
         nuevoPrecio = precioReal;
     }
