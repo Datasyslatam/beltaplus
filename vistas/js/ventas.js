@@ -413,7 +413,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         nuevoPrecio = elementoEncontrado.precio_compra;
         precioInput.css("background-color", "red !important");
         precio.css("background-color", "red !important");
-		console.log(precio, $(this));
+		console.log(precio, $(this), $precioInput);
     } else {
         nuevoPrecio = precioReal;
     }
