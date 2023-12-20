@@ -210,7 +210,7 @@ EOF;
 
 
 		$acum = 0;
-		$neto = $acum;
+	
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
@@ -235,7 +235,7 @@ EOF;
 
 
 			}
-
+			$neto = $acum;
 			$precioFinal = number_format($acum + $respuestaVenta["impuesto"]);
 
 
