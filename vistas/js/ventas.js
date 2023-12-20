@@ -50,11 +50,11 @@ $(".tablaVentas").DataTable({
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
 let ajaxRespuestas = [];
+
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var idProducto = $(this).attr("idProducto");
 
     $(this).removeClass("btn-primary agregarProducto");
-
     $(this).addClass("btn-default");
 
     var datos = new FormData();
@@ -74,9 +74,11 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
-			var id = respuesta[codigo]
+            var id = respuesta["codigo"];
+
             ajaxRespuestas.push(respuesta);
             console.log(1.1);
+
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
           	=============================================*/
@@ -122,8 +124,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
                     '<div class="input-group">' +
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                    '<input id="' + id
-                     +
+                    '<input id="' + id +
                     '" type="text" class="form-control nuevoPrecioProducto" precioReal="' +
                     precio +
                     '" name="nuevoPrecioProducto" value="' +
@@ -135,26 +136,24 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             );
             console.log(1.2);
             console.log(ajaxRespuestas);
-            // SUMAR TOTAL DE PRECIOS
 
+            // SUMAR TOTAL DE PRECIOS
             sumarTotalPrecios();
 
             // AGREGAR IMPUESTO
-
             agregarImpuesto();
 
             // AGRUPAR PRODUCTOS EN FORMATO JSON
-
             listarProductos();
 
             // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-
             $(".nuevoPrecioProducto").number(true, 2);
 
             localStorage.removeItem("quitarProducto");
         },
     });
 });
+
 
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
