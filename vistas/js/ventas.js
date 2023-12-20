@@ -74,8 +74,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
-            var id = respuesta["codigo"];
-
+			var id = respuesta["codigo"];
             ajaxRespuestas.push(respuesta);
             console.log(1.1);
 
@@ -114,7 +113,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     "</div>" +
                     "<!-- Cantidad del producto -->" +
                     '<div class="col-xs-3">' +
-                    '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
+                    '<input id="'+ id +'"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
                     stock +
                     '" nuevoStock="' +
                     Number(stock - 1) +
@@ -124,9 +123,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
                     '<div class="input-group">' +
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                    '<input id="' +
-                    id +
-                    '" type="text" class="form-control nuevoPrecioProducto" precioReal="' +
+                    '<input type="text" class="form-control nuevoPrecioProducto" precioReal="' +
                     precio +
                     '" name="nuevoPrecioProducto" value="' +
                     precio +
@@ -257,6 +254,7 @@ $(".btnAgregarProducto").click(function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
+			let id = respuesta["codigo"];
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
                     "<!-- Descripción del producto -->" +
@@ -272,7 +270,7 @@ $(".btnAgregarProducto").click(function () {
                     "</div>" +
                     "<!-- Cantidad del producto -->" +
                     '<div class="col-xs-3 ingresoCantidad">' +
-                    '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
+                    '<input id="'+ id +'"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
                     "</div>" +
                     "<!-- Precio del producto -->" +
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
