@@ -9,6 +9,7 @@ class ControladorProductos{
 	public static function ctrMostrarProductos($item, $valor, $orden){
 		$tabla = "productos";
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor, $orden);
+		
 		return $respuesta;
 	}
 
