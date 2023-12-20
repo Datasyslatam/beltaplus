@@ -410,7 +410,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad >= 7) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        precio[0].style.backgroundColor = "#63A355";
+        precio[0].style.backgroundColor = "#7AB4AD";
         precio[0].style.opacity = "1";
 
     } else {
