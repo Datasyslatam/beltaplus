@@ -470,9 +470,9 @@ SUMAR TODOS LOS PRECIOS
 function sumarTotalPrecios(){
 
 	var precioItem = $(".nuevoPrecioProducto");
-	
+	console.log(precioItem);
 	var arraySumaPrecio = [];  
-
+	console.log(arraySumaPrecio);
 	for(var i = 0; i < precioItem.length; i++){
 
 		 arraySumaPrecio.push(Number($(precioItem[i]).val()));
