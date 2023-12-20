@@ -29,9 +29,9 @@ class imprimirFactura
 
 		$fecha = substr($respuestaVenta["fecha"], 0, -8);
 		$productos = json_decode(stripslashes($respuestaVenta["productos"]), true);
-		$neto = number_format($respuestaVenta["neto"], 2);
+		// $neto = number_format($respuestaVenta["neto"], 2);
 		$impuesto = number_format($respuestaVenta["impuesto"], 2);
-		$total = number_format($respuestaVenta["total"], 2);
+		// $total = number_format($respuestaVenta["total"], 2);
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
@@ -110,12 +110,24 @@ EOF;
 
 		// ---------------------------------------------------------
 
-
+		$acum = 0;
 		foreach ($productos as $key => $item) {
+			
+			$itemProducto = "id";
+			$valorProducto = $item["id"];
+			$orden = null;
 
-			$valorUnitario = number_format($item["precio"], 2);
+			$cantidad = $item["cantidad"];
+			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+			if($cantidad >= 6){
+				$valorUnitario = number_format($respuestaProducto["precio_compra"], 2);
+				$acum += $respuestaProducto["precio_compra"] * $cantidad;
+			}else{
+				$valorUnitario = number_format($item["precio"], 2);
+				$acum += $item["precio"] * $cantidad;
+			}
 
-			$precioTotal = number_format($item["total"], 2);
+			$precioTotal = number_format($acum, 2);
 
 			$bloque2 = <<<EOF
 
