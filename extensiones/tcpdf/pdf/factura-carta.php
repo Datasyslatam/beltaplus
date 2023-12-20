@@ -219,6 +219,7 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
 			if ($cantidad >= 6) {
 
@@ -228,7 +229,6 @@ EOF;
 
 
 			} else {
-				$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 				$valorMayor = "No aplica";
 				$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
 				$acum += $respuestaProducto["precio_venta"] * $cantidad;
