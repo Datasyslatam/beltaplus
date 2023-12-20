@@ -388,7 +388,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 	for (var i = 0; i < ajaxRespuestas.length; i++) {
 		var producto = ajaxRespuestas[i];
 		if (producto.codigo === codigoBuscado) {
-		  elementoEncontrado = producto.precio_compra;
+		  elementoEncontrado = producto;
 		  break;
 		}
 	  }
@@ -406,10 +406,11 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
+	var precioInput = contenedor.find(".nuevoPrecioProducto");
 
     if (cantidad >= 7) {
-        nuevoPrecio = elementoEncontrado;
-        $(this).css("background-color", "red !important");
+        nuevoPrecio = elementoEncontrado.precio_compra;
+        precioInput.css("background-color", "red !important");
         precio.css("background-color", "red !important");
 		console.log(precio, $(this));
     } else {
