@@ -49,7 +49,7 @@ $(".tablaVentas").DataTable({
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
-let ajaxRespuesta;
+let ajaxRespuestas = [];
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var idProducto = $(this).attr("idProducto");
 
@@ -70,7 +70,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            ajaxRespuesta = respuesta;
+            ajaxRespuesta += respuesta;
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
@@ -383,6 +383,9 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
+	ajaxRespuestas.forEach(element => {
+		console.log(element);
+	});
     var precio = $(this)
         .parent()
         .parent()
@@ -397,6 +400,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad >= 7) {
         nuevoPrecio = ajaxRespuesta["precio_compra"];
+        $('.nuevaCantidadProducto[value="tuValor"]').css(
+            "background-color",
+            "tuColor"
+        );
     } else {
         nuevoPrecio = precioReal;
     }
