@@ -43,7 +43,6 @@ class ControladorVentas
 			$totalProductosComprados = array();
 			foreach ($listaProductos as $key => $value) {
 				array_push($totalProductosComprados, $value["cantidad"]);
-				var_dump($listaProductos);
 				$tablaProductos = "productos";
 				$item = "id";
 				$valor = $value["id"];

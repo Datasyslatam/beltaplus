@@ -75,8 +75,15 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 
       	    var descripcion = respuesta["descripcion_producto"];
           	var stock = respuesta["stock"];
-          	var precio = respuesta["precio_venta"];
-
+          	var precioUnitario = respuesta["precio_venta"];
+			var precioMayor = respuesta["precio_compra"];
+			if(stock >= 6){
+				var precio = precioMayor;
+				var color = "#EAEFC8";
+			}else{
+				var precio = precioUnitario;
+				var color = "white";
+			}
           	/*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
           	=============================================*/
@@ -129,7 +136,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 
 	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 	                 
-	              '<input type="text" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+	              '<input type="text" style="background-color:'+color+'" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
 	 
 	            '</div>'+
 	             
