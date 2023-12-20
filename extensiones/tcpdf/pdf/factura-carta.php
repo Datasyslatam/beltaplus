@@ -29,7 +29,7 @@ class imprimirFactura
 
 		$fecha = substr($respuestaVenta["fecha"], 0, -8);
 		$productos = json_decode($respuestaVenta["productos"], true);
-		$neto = number_format($respuestaVenta["neto"]);
+		// $neto = number_format($respuestaVenta["neto"]);
 		$impuesto = number_format($respuestaVenta["impuesto"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
@@ -209,7 +209,8 @@ EOF;
 		// ---------------------------------------------------------
 
 
-
+		$acum = 0;
+		$neto = $acum;
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
@@ -218,24 +219,24 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			if (is_string($respuestaProducto)) {
-				$valorUnitario = "Na";
-				$valorMayor = "Na";
+
+			if ($cantidad >= 6) {
+
+				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+				$precioTotal = number_format($respuestaProducto["precio_compra"] * $cantidad);
+				$acum += $respuestaProducto["precio_compra"] * $cantidad;
+
+
 			} else {
-				if ($cantidad >= 6) {
-					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-					$precioTotal = number_format($respuestaProducto["precio_compra"] * $cantidad);
-					$precioFinal = number_format(($respuestaProducto["precio_compra"] * $cantidad) + $respuestaVenta["impuesto"]);
+				$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+				$valorMayor = "No aplica";
+				$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
+				$acum += $respuestaProducto["precio_venta"] * $cantidad;
 
 
-				} else {
-					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
-					$valorMayor = "No aplica";
-					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-					$precioFinal = number_format(($respuestaProducto["precio_venta"] * $cantidad) + $respuestaVenta["impuesto"]);
-
-				}
 			}
+
+			$precioFinal = number_format($acum + $respuestaVenta["impuesto"]);
 
 
 			$bloque4 = <<<EOF
