@@ -406,6 +406,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
+	var contenedor = $(this).closest(".row");
 	var precioInput = contenedor.find(".nuevoPrecioProducto");
 
     if (cantidad >= 7) {
