@@ -11,8 +11,8 @@ class ModeloProductos
 	public static function mdlMostrarProductos($tabla, $item, $valor, $orden)
 	{
 		if ($item != null) {
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_categoria ASC");
-			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = $valor ORDER BY id_categoria ASC");
+			$stmt->bindParam($item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			$resultado = $stmt->fetch();
 			
