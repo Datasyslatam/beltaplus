@@ -51,6 +51,7 @@ AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
 
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
+	console.log("texto1");
     var idProducto = $(this).attr("idProducto");
 
     $(this).removeClass("btn-primary agregarProducto");
@@ -70,10 +71,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
+			console.log("texto aqui");
             console.log(respuesta);
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
+
             // var precioMayor = respuesta["precio_compra"];
             // if(stock >= 6){
             // 	var precio = precioMayor;
@@ -175,7 +178,6 @@ $(".nuevoProducto").on("change", ".nuevaCantidadProducto", function () {
         .find(".nuevoPrecioProducto")
         .attr("precioReal");
     var precioMayor = respuesta["precio_compra"];
-
     var precio, color;
 
     if (stock >= 7) {
