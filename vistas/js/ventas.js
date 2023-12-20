@@ -70,13 +70,11 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            console.log(1);
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
 			var id = respuesta["codigo"];
             ajaxRespuestas.push(respuesta);
-            console.log(1.1);
 
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
@@ -132,8 +130,6 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     "</div>" +
                     "</div>"
             );
-            console.log(1.2);
-            console.log(ajaxRespuestas);
 
             // SUMAR TOTAL DE PRECIOS
             sumarTotalPrecios();
@@ -385,7 +381,6 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
-    console.log("2");
 
     var codigoBuscado = $(this).attr("id");
 
@@ -398,9 +393,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 		}
 	  }
 	  
-	// console.log(codigoBuscado);
-    // console.log(ajaxRespuestas);
-    // console.log(elementoEncontrado);
+	
 
     var precio = $(this)
         .parent()
@@ -416,7 +409,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad >= 7) {
         nuevoPrecio = elementoEncontrado;
-        $(this).css("background-color", "reed");
+        $(this).css("background-color", "red !important");
     } else {
         nuevoPrecio = precioReal;
     }
