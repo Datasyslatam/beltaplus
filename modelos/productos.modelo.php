@@ -13,15 +13,13 @@ class ModeloProductos
 		if ($item != null) {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_categoria ASC");
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
-
-			// echo $stmt->queryString;
 			$stmt->execute();
 			$resultado = $stmt->fetch();
 			
 			if($resultado){
 				return $resultado;
 			}else{
-				return 1111;
+				return "Producto no encontrado";
 			}
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden ASC");
