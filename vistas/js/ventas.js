@@ -390,7 +390,14 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     console.log("2");
 
     var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado = ajaxRespuestas.find(producto => producto.codigo === codigoBuscado);
+    var elementoEncontrado; 
+	ajaxRespuestas.forEach(function (producto) {
+		console.log(producto);
+		if (producto.codigo === codigoBuscado) {
+		  productoEncontrado = producto;
+		}
+	  });
+	  
 
     console.log(ajaxRespuestas);
     console.log(elementoEncontrado);
