@@ -37,9 +37,9 @@ class imprimirFactura
 		var_dump($productos);
 		foreach ($productos as $key => $item) {
 
-			$itemProducto = "codigo";
+			$itemProducto = "id";
 			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-			$valorProducto = $item["codigo"];
+			$valorProducto = $item["id"];
 			$orden = null;
 
 			$cantidad = $item["cantidad"];
