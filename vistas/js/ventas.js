@@ -409,7 +409,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad >= 7) {
         nuevoPrecio = elementoEncontrado;
-        $(this).css("background-color", "red !important");
+        precio.css("background-color", "red !important");
     } else {
         nuevoPrecio = precioReal;
     }
