@@ -406,14 +406,12 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
-	var contenedor = $(this).closest(".row");
-	var precioInput = contenedor.find(".nuevoPrecioProducto");
+
 
     if (cantidad >= 7) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        precioInput.css("background-color", "red !important");
-        precio.css("background-color", "red !important");
-		console.log(precio, $(this), $precioInput);
+        precio[0].style.backgroundColor = "red";
+		console.log(precio, $(this));
     } else {
         nuevoPrecio = precioReal;
     }
