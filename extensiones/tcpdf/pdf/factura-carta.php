@@ -33,24 +33,22 @@ class imprimirFactura
 		$impuesto = number_format($respuestaVenta["impuesto"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
-		echo '<pre>';
-		var_dump($productos);
-		foreach ($productos as $key => $item) {
+		// echo '<pre>';
+		// var_dump($productos);
+		// foreach ($productos as $key => $item) {
 
-			$itemProducto = "descripcion";
-			$valorProducto = $item["codigo"] . " ". $item["descripcion"];
+		// 	$itemProducto = "descripcion";
+		// 	$valorProducto = $item["descripcion"];
+		// 	$orden = null;
 
-			$orden = null;
+		// 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+		// 	$cantidad = $item["cantidad"];
+		// 	$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
-			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			$cantidad = $item["cantidad"];
-			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+		// 	var_dump($respuestaProducto);
+		// }
 
-			// var_dump($respuestaProducto);
-		}
-
-
-		echo '</pre>';
+		// echo '</pre>';
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
@@ -232,7 +230,7 @@ EOF;
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "descripcion";
-			$valorProducto = $item["codigo"] . " " . $item["descripcion"];
+			$valorProducto = $item["descripcion"];
 			$orden = null;
 
 			$cantidad = $item["cantidad"];
@@ -249,7 +247,7 @@ EOF;
 					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 					$valorMayor = "No aplica";
 					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-					$precioFinal = number_format($respuestaVenta["neto"] + $respuestaVenta["impuesto"]);
+					$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
 
 				}
 			}
