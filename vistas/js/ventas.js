@@ -70,7 +70,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            ajaxRespuesta += respuesta;
+            ajaxRespuesta.push(respuesta);
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
