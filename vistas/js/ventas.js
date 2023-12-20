@@ -74,7 +74,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
-
+			console.log(precio);
             // var precioMayor = respuesta["precio_compra"];
             // if(stock >= 6){
             // 	var precio = precioMayor;
