@@ -33,22 +33,22 @@ class imprimirFactura
 		$impuesto = number_format($respuestaVenta["impuesto"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
-		echo '<pre>';
-		var_dump($productos);
-		foreach ($productos as $key => $item) {
+		// echo '<pre>';
+		// var_dump($productos);
+		// foreach ($productos as $key => $item) {
 
-			$itemProducto = "descripcion";
-			$valorProducto = $item["descripcion"];
-			$orden = null;
+		// 	$itemProducto = "descripcion";
+		// 	$valorProducto = $item["descripcion"];
+		// 	$orden = null;
 
-			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			$cantidad = $item["cantidad"];
-			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+		// 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+		// 	$cantidad = $item["cantidad"];
+		// 	$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
-			var_dump($respuestaProducto);
-		}
+		// 	var_dump($respuestaProducto);
+		// }
 
-		echo '</pre>';
+		// echo '</pre>';
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
