@@ -391,8 +391,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     var idBuscado = $(this).attr("id");
     var elementoEncontrado = ajaxRespuestas.find(
-        (elemento) => elemento.id === parseInt(idBuscado)
-    );
+        (elemento) => elemento.id === idBuscado);
 
     console.log(elementoEncontrado);
 
