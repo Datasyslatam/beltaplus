@@ -242,9 +242,9 @@ EOF;
 
 		foreach ($productos as $key => $item) {
 
-			$itemProducto = "descripcion";
+			$itemProducto = "codigo";
 			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-			$valorProducto = $item["descripcion"];
+			$valorProducto = $item["codigo"];
 			$orden = null;
 
 			$cantidad = $item["cantidad"];
@@ -256,6 +256,7 @@ EOF;
 				if ($cantidad >= 6) {
 					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 					$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
+					
 
 				} else {
 					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
