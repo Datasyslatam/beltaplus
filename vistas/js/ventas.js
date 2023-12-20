@@ -70,12 +70,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-			console.log(1);
-			var descripcion = respuesta["descripcion_producto"];
+            console.log(1);
+            var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
             ajaxRespuestas.push(respuesta);
-			console.log(1.1)
+            console.log(1.1);
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
           	=============================================*/
@@ -121,7 +121,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
                     '<div class="input-group">' +
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                    '<input type="text" class="form-control nuevoPrecioProducto" precioReal="' +
+                    '<input id="' +
+                    respuesta[codigo] +
+                    '" type="text" class="form-control nuevoPrecioProducto" precioReal="' +
                     precio +
                     '" name="nuevoPrecioProducto" value="' +
                     precio +
@@ -130,8 +132,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     "</div>" +
                     "</div>"
             );
-			console.log(1.2)
-			console.log(ajaxRespuestas);
+            console.log(1.2);
+            console.log(ajaxRespuestas);
             // SUMAR TOTAL DE PRECIOS
 
             sumarTotalPrecios();
@@ -151,7 +153,6 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             localStorage.removeItem("quitarProducto");
         },
     });
-
 });
 
 /*=============================================
@@ -386,10 +387,15 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
-	console.log("2");
-	ajaxRespuestas.forEach(element => {
-		console.log(element);
-	});
+    console.log("2");
+
+    var idBuscado = $(this).attr("id");
+    var elementoEncontrado = ajaxRespuestas.find(
+        (elemento) => elemento.id === parseInt(idBuscado)
+    );
+
+    console.log(elementoEncontrado);
+
     var precio = $(this)
         .parent()
         .parent()
@@ -403,11 +409,8 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var nuevoPrecio;
 
     if (cantidad >= 7) {
-        nuevoPrecio = ajaxRespuesta["precio_compra"];
-        $('.nuevaCantidadProducto[value="tuValor"]').css(
-            "background-color",
-            "tuColor"
-        );
+        nuevoPrecio = elementoEncontrado["precio_compra"];
+        $(this).css("background-color", "tuColor"); // Asegúrate de reemplazar "tuColor" con el color deseado.
     } else {
         nuevoPrecio = precioReal;
     }
