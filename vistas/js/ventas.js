@@ -49,7 +49,7 @@ $(".tablaVentas").DataTable({
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
-let respuesta = null;
+
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var idProducto = $(this).attr("idProducto");
 
@@ -69,13 +69,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (ajaxRespuesta) {
-			respuesta = ajaxRespuesta
-            console.log(ajaxRespuesta);
-            var descripcion = ajaxRespuesta["descripcion_producto"];
-            var stock = ajaxRespuesta["stock"];
-            var precio = ajaxRespuesta["precio_venta"];
-			console.log(precio);
+        success: function (respuesta) {
+            console.log(respuesta);
+            var descripcion = respuesta["descripcion_producto"];
+            var stock = respuesta["stock"];
+            var precio = respuesta["precio_venta"];
+            console.log(precio);
             // var precioMayor = respuesta["precio_compra"];
             // if(stock >= 6){
             // 	var precio = precioMayor;
@@ -126,7 +125,18 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '" required>' +
                     "</div>" +
                     "<!-- Precio del producto -->" +
-                    generarPrecio(precio) +
+                    '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
+                    '<div class="input-group">' +
+                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
+                    '<input type="text" style="background-color:' +
+                    color +
+                    '" class="form-control nuevoPrecioProducto" precioReal="' +
+                    precio +
+                    '" name="nuevoPrecioProducto" value="' +
+                    precio +
+                    '" readonly required>' +
+                    "</div>" +
+                    "</div>" +
                     "</div>"
             );
 
