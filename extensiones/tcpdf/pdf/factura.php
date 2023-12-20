@@ -157,7 +157,8 @@ EOF;
 			$pdf->writeHTML($bloque2, false, false, false, false, '');
 
 		}
-
+		$neto = number_format($acum,2);
+		$total = number_format($acum + $impuesto,2);
 		// ---------------------------------------------------------
 
 		$bloque3 = <<<EOF
