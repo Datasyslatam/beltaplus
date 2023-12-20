@@ -38,7 +38,8 @@ class imprimirFactura
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "descripcion";
-			$valorProducto = $item["descripcion"];
+			$valorProducto = $item["codigo"] . " ". $item["descripcion"];
+
 			$orden = null;
 
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
