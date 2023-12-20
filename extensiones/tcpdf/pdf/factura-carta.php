@@ -235,7 +235,7 @@ EOF;
 
 
 			}
-			$neto = $acum;
+			$neto = number_format($acum);
 			$precioFinal = number_format($acum + $respuestaVenta["impuesto"]);
 
 
