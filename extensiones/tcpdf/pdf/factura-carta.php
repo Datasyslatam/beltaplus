@@ -33,35 +33,35 @@ class imprimirFactura
 		$impuesto = number_format($respuestaVenta["impuesto"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
-		echo '<pre>';
-		var_dump($productos);
-		foreach ($productos as $key => $item) {
+		// echo '<pre>';
+		// var_dump($productos);
+		// foreach ($productos as $key => $item) {
 
-			$itemProducto = "id";
-			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-			$valorProducto = $item["id"];
-			$orden = null;
+		// 	$itemProducto = "id";
+		// 	// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
+		// 	$valorProducto = $item["id"];
+		// 	$orden = null;
 
-			$cantidad = $item["cantidad"];
-			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			if (is_string($respuestaProducto)) {
-				$valorUnitario = "Na";
-				$valorMayor = "Na";
-			} else {
-				if ($cantidad >= 6) {
-					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-					$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
+		// 	$cantidad = $item["cantidad"];
+		// 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+		// 	if (is_string($respuestaProducto)) {
+		// 		$valorUnitario = "Na";
+		// 		$valorMayor = "Na";
+		// 	} else {
+		// 		if ($cantidad >= 6) {
+		// 			$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
+		// 			$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
 
-				} else {
-					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
-					$valorMayor = "No aplica";
-					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-					$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
+		// 		} else {
+		// 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
+		// 			$valorMayor = "No aplica";
+		// 			$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
+		// 			$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
 
-				}
-			}
-		}
-		echo '</pre>';
+		// 		}
+		// 	}
+		// }
+		// echo '</pre>';
 
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
@@ -242,9 +242,9 @@ EOF;
 
 		foreach ($productos as $key => $item) {
 
-			$itemProducto = "codigo";
+			$itemProducto = "id";
 			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-			$valorProducto = $item["codigo"];
+			$valorProducto = $item["id"];
 			$orden = null;
 
 			$cantidad = $item["cantidad"];

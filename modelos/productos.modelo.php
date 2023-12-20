@@ -13,9 +13,9 @@ class ModeloProductos
 		if ($item != null) {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_categoria ASC");
 
-			echo "Sentencia SQL preparada: " . $stmt->queryString . PHP_EOL;
+			// echo "Sentencia SQL preparada: " . $stmt->queryString . PHP_EOL;
 
-			echo "Valores asignados: " . json_encode([$item => $valor]) . PHP_EOL;
+			// echo "Valores asignados: " . json_encode([$item => $valor]) . PHP_EOL;
 
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
