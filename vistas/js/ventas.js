@@ -400,7 +400,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 		}
 	  }
 	  
-
+	console.log(codigoBuscado);
     console.log(ajaxRespuestas);
     console.log(elementoEncontrado);
 
