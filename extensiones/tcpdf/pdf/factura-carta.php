@@ -33,36 +33,6 @@ class imprimirFactura
 		$impuesto = number_format($respuestaVenta["impuesto"]);
 		$transportadora = $respuestaVenta["transportadora"];
 
-		// echo '<pre>';
-		// var_dump($productos);
-		// foreach ($productos as $key => $item) {
-
-		// 	$itemProducto = "id";
-		// 	// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
-		// 	$valorProducto = $item["id"];
-		// 	$orden = null;
-
-		// 	$cantidad = $item["cantidad"];
-		// 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-		// 	if (is_string($respuestaProducto)) {
-		// 		$valorUnitario = "Na";
-		// 		$valorMayor = "Na";
-		// 	} else {
-		// 		if ($cantidad >= 6) {
-		// 			$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-		// 			$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
-
-		// 		} else {
-		// 			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
-		// 			$valorMayor = "No aplica";
-		// 			$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-		// 			$precioFinal = $respuestaVenta["neto"] + $respuestaVenta["impuesto"];
-
-		// 		}
-		// 	}
-		// }
-		// echo '</pre>';
-
 		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
 		$itemCliente = "id";
@@ -243,7 +213,6 @@ EOF;
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
-			// $valorProducto = $item["codigo"] . " " .$item["descripcion"];
 			$valorProducto = $item["id"];
 			$orden = null;
 
@@ -255,14 +224,15 @@ EOF;
 			} else {
 				if ($cantidad >= 6) {
 					$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
-					$precioFinal = number_format($valorMayor + $respuestaVenta["impuesto"]);
-					
+					$precioTotal = number_format($respuestaProducto["precio_compra"] * $cantidad);
+					$precioFinal = number_format(($respuestaProducto["precio_compra"] * $cantidad) + $respuestaVenta["impuesto"]);
+
 
 				} else {
 					$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 					$valorMayor = "No aplica";
 					$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-					$precioFinal = number_format($respuestaVenta["neto"] + $respuestaVenta["impuesto"]);
+					$precioFinal = number_format(($respuestaProducto["precio_venta"] * $cantidad) + $respuestaVenta["impuesto"]);
 
 				}
 			}
