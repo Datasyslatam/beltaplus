@@ -210,7 +210,7 @@ EOF;
 
 
 		$acum = 0;
-	
+
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
@@ -219,16 +219,19 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-			$valorUnitario = number_format($respuestaProducto["precio_venta"]);
 
 			if ($cantidad >= 6) {
 
 				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 				$precioTotal = number_format($respuestaProducto["precio_compra"] * $cantidad);
 				$acum += $respuestaProducto["precio_compra"] * $cantidad;
+				$valorUnitario = "No aplica";
+
 
 
 			} else {
+				$valorUnitario = "$" . number_format($respuestaProducto["precio_venta"]);
+
 				$valorMayor = "No aplica";
 				$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
 				$acum += $respuestaProducto["precio_venta"] * $cantidad;
@@ -252,7 +255,7 @@ EOF;
 					$cantidad
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center"> 
 					$valorUnitario
 				</td>
 
