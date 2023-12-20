@@ -49,7 +49,7 @@ $(".tablaVentas").DataTable({
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
-
+let respuesta = null;
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var idProducto = $(this).attr("idProducto");
 
@@ -69,11 +69,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
-            console.log(respuesta);
-            var descripcion = respuesta["descripcion_producto"];
-            var stock = respuesta["stock"];
-            var precio = respuesta["precio_venta"];
+        success: function (ajaxRespuesta) {
+			respuesta = ajaxRespuesta
+            console.log(ajaxRespuesta);
+            var descripcion = ajaxRespuesta["descripcion_producto"];
+            var stock = ajaxRespuesta["stock"];
+            var precio = ajaxRespuesta["precio_venta"];
 			console.log(precio);
             // var precioMayor = respuesta["precio_compra"];
             // if(stock >= 6){
