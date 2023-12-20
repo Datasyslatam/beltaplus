@@ -6,18 +6,23 @@ class ModeloProductos
 {
 
 	/*=============================================
-		  MOSTRAR PRODUCTOS
-		  =============================================*/
+			 MOSTRAR PRODUCTOS
+			 =============================================*/
 	public static function mdlMostrarProductos($tabla, $item, $valor, $orden)
 	{
 		if ($item != null) {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_categoria ASC");
+
+			echo "Sentencia SQL preparada: " . $stmt->queryString . PHP_EOL;
+
+			echo "Valores asignados: " . json_encode([$item => $valor]) . PHP_EOL;
+
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			$resultado = $stmt->fetch();
-			if($resultado){
+			if ($resultado) {
 				return $resultado;
-			}else{
+			} else {
 				return "Producto no encontrado";
 			}
 		} else {
@@ -30,8 +35,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  FILTRAR PRODUCTOS
-		  =============================================*/
+			 FILTRAR PRODUCTOS
+			 =============================================*/
 	public static function mdlFiltrarProductos($valor)
 	{
 
@@ -51,8 +56,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  MOSTRAR PRODUCTOS UNICOS	
-		  =============================================*/
+			 MOSTRAR PRODUCTOS UNICOS	
+			 =============================================*/
 	public static function mdlMostrarProductosUnicos($tabla, $item, $valor)
 	{
 		if ($item != null) {
@@ -69,8 +74,8 @@ class ModeloProductos
 		$stmt = null;
 	}
 	/*=============================================
-		  REGISTRO DE PRODUCTO
-		  =============================================*/
+			 REGISTRO DE PRODUCTO
+			 =============================================*/
 	public static function mdlIngresarProducto($tabla, $datos)
 	{
 
@@ -104,8 +109,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  EDITAR PRODUCTO
-		  =============================================*/
+			 EDITAR PRODUCTO
+			 =============================================*/
 	public static function mdlEditarProducto($tabla, $datos)
 	{
 
@@ -136,8 +141,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  BORRAR PRODUCTO
-		  =============================================*/
+			 BORRAR PRODUCTO
+			 =============================================*/
 
 	public static function mdlEliminarProducto($tabla, $datos)
 	{
@@ -162,8 +167,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  ACTUALIZAR PRODUCTO
-		  =============================================*/
+			 ACTUALIZAR PRODUCTO
+			 =============================================*/
 
 	public static function mdlActualizarProducto($tabla, $item1, $valor1, $valor)
 	{
@@ -189,8 +194,8 @@ class ModeloProductos
 	}
 
 	/*=============================================
-		  MOSTRAR SUMA VENTAS
-		  =============================================*/
+			 MOSTRAR SUMA VENTAS
+			 =============================================*/
 
 	public static function mdlMostrarSumaVentas($tabla)
 	{
