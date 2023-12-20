@@ -50,6 +50,7 @@ $(".tablaVentas").DataTable({
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
 let ajaxRespuestas = [];
+let ajax;
 $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var idProducto = $(this).attr("idProducto");
 
@@ -74,7 +75,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
 			var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
-            ajaxRespuesta.push(respuesta);
+            ajax = respuesta;
 			console.log(1.1)
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
@@ -151,8 +152,10 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             localStorage.removeItem("quitarProducto");
         },
     });
-});
 
+});
+ajaxRespuestas.append(ajax);
+console.log(ajaxRespuestas);
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
 =============================================*/
