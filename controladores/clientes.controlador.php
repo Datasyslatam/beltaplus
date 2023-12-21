@@ -17,7 +17,7 @@ class ControladorClientes{
 					           "email"=>$_POST["nuevoEmail"],
 					           "telefono"=>$_POST["nuevoTelefono"],
 					           "direccion"=>$_POST["nuevaDireccion"],
-							   "direccion"=>$_POST["nuevaCiudad"],
+							   "ciudad"=>$_POST["nuevaCiudad"],
 					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
 			   	$respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
 			   	if($respuesta == "ok"){
