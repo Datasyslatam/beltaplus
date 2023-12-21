@@ -67,45 +67,48 @@ class imprimirFactura
 
 		$bloque1 = <<<EOF
 
-	<table border="0">
-		
+		<table border="0" style="width: 100%; border-collapse: collapse;">
+
 		<tr>
-			
-			<td style="width:150px"><img src="images/logoBeltaFull.png"></td>
-
-			<td style="background-color:white; width:140px">
-				
-				<div style="font-size:8.5px; text-align:right; line-height:14px;">
-					
+	
+			<td style="width: 150px; vertical-align: top;"><img src="images/logoBeltaFull.png"></td>
+	
+			<td style="background-color: white; width: 140px; vertical-align: top;">
+	
+				<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
+	
 					<br>
-					<H3 style="font: size 14px; color: #27ae60;">PEDIDOS:</H3>
-
+					<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
+	
 					<br>
 					NIT: 52163724-2
-
+	
 				</div>
-
+	
 			</td>
-
-			<td style="background-color:white; width:140px">
-
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
-					
+	
+			<td style="background-color: white; width: 140px; vertical-align: top;">
+	
+				<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
+	
 					<br>
-					<H3>312 808 4806</H3>
-					
+					<h3 style="margin: 0;">312 808 4806</h3>
+	
 					<br>
 					beltaplusize@gmail.com
-
+	
 				</div>
-				
+	
 			</td>
-
-			<td style="background-color:white; width:110px; text-align:center; color: red; font-weight: bold;"><br><br>PEDIDO No.<br>$valorVenta</td>
-
+	
+			<td style="background-color: white; width: 110px; text-align: center; color: red; font-weight: bold; vertical-align: top;">
+				<br><br>PEDIDO No.<br>$valorVenta
+			</td>
+	
 		</tr>
-
+	
 	</table>
+	
 
 EOF;
 
@@ -228,10 +231,10 @@ EOF;
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
-			
+
 			$respuestaTalla = ControladorTallas::ctrMostrarTallas($itemProducto, $respuestaProducto["id_talla"]);
 			$respuestaColor = ControladorColores::ctrMostrarColores($itemProducto, $respuestaProducto["id_color"]);
-			
+
 
 			$talla = $respuestaTalla["talla"] ?? "NaN";
 			$color = $respuestaColor["color"] ?? "NaN";
