@@ -82,10 +82,8 @@ if($_SESSION["perfil"] == "Especial"){
                       echo '</div>  
                     </td>
                   </tr>';
-          
             }
         ?>
-   
         </tbody>
        </table>
       </div>
@@ -257,6 +255,16 @@ MODAL EDITAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
                 <input type="text" class="form-control input-lg" name="editarDireccion" id="editarDireccion"  required>
+              </div>
+            </div>
+            <!-- ENTRADA PARA LA CIUDAD -->
+            <label for="">Ciudad</label>
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
+                <input type="text" class="form-control input-lg" name="editarCiudad" id="editarCiudad"  required>
               </div>
             </div>
              <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->

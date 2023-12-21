@@ -76,21 +76,22 @@ class ControladorVentas
 			$hora = date('H:i:s');
 			$valor1b = $fecha . ' ' . $hora;
 			$fechaCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1b, $valor1b, $valor);
+
 			/*=============================================
-					 GUARDAR LA COMPRA
+					 GUARDAR LA VENTA
 					 =============================================*/
 			$tabla = "ventas";
-			$datos = array("id_vendedor" => $_POST["idVendedor"],
-				"id_cliente" => $_POST["seleccionarCliente"],
-				"codigo" => $_POST["nuevaVenta"],
-				"productos" => $_POST["listaProductos"],
-				"impuesto" => $_POST["nuevoPrecioImpuesto"],
-				"neto" => $_POST["nuevoPrecioNeto"],
-				"total" => $_POST["totalVenta"],
-				"metodo_pago" => $_POST["listaMetodoPago"],
-				"ciudad" => $_POST["listaCiudad"],
-				"transportadora" => $_POST["txtTransportad"]
-			);
+			$datos = array("id_vendedor"=>$_POST["idVendedor"],
+						   "id_cliente"=>$_POST["seleccionarCliente"],
+						   "codigo"=>$_POST["nuevaVenta"],
+						   "productos"=>$_POST["listaProductos"],
+						   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
+						   "neto"=>$_POST["nuevoPrecioNeto"],
+						   "total"=>$_POST["totalVenta"],
+						   "metodo_pago"=>$_POST["listaMetodoPago"],
+						   "transportadora"=>$_POST["nuevaTransporta"]
+						);
+						
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
 				// $impresora = "epson20";

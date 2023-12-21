@@ -1,5 +1,6 @@
 /*=============================================
 EDITAR CLIENTE
+
 =============================================*/
 $(".tablas").on("click", ".btnEditarCliente", function(){
 
@@ -9,7 +10,6 @@ $(".tablas").on("click", ".btnEditarCliente", function(){
     datos.append("idCliente", idCliente);
 
     $.ajax({
-
       url:"ajax/clientes.ajax.php",
       method: "POST",
       data: datos,
@@ -19,17 +19,17 @@ $(".tablas").on("click", ".btnEditarCliente", function(){
       dataType:"json",
       success:function(respuesta){
       
-      	   $("#idCliente").val(respuesta["id"]);
-	       $("#editarCliente").val(respuesta["nombre"]);
-	       $("#editarDocumentoId").val(respuesta["documento"]);
-	       $("#editarEmail").val(respuesta["email"]);
-	       $("#editarTelefono").val(respuesta["telefono"]);
-	       $("#editarDireccion").val(respuesta["direccion"]);
-           $("#editarFechaNacimiento").val(respuesta["fecha_nacimiento"]);
-	  }
+        $("#idCliente").val(respuesta["id"]);
+        $("#editarCliente").val(respuesta["nombre"]);
+        $("#editarDocumentoId").val(respuesta["documento"]);
+        $("#editarEmail").val(respuesta["email"]);
+        $("#editarTelefono").val(respuesta["telefono"]);
+        $("#editarDireccion").val(respuesta["direccion"]);
+        $("#editarCiudad").val(respuesta["ciudad"]);
+        $("#editarFechaNacimiento").val(respuesta["fecha_nacimiento"]);
+	   }
 
   	})
-
 })
 
 /*=============================================

@@ -20,7 +20,6 @@ class AjaxClientes{
 
 		echo json_encode($respuesta);
 
-
 	}
 	
 	public function ajaxFiltrarClientes(){
@@ -31,7 +30,6 @@ class AjaxClientes{
 		$respuesta = ControladorClientes::ctrMostrarClientes($item, $valor);
 
 		echo json_encode($respuesta);
-
 
 	}
 
