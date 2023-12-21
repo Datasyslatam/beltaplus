@@ -12,6 +12,12 @@ require_once "../../../modelos/usuarios.modelo.php";
 require_once "../../../controladores/productos.controlador.php";
 require_once "../../../modelos/productos.modelo.php";
 
+require_once "../../../controladores/colores.controlador.php";
+require_once "../../../modelos/colores.modelo.php";
+
+require_once "../../../controladores/tallas.controlador.php";
+require_once "../../../modelos/tallas.modelo.php";
+
 class imprimirFactura
 {
 
@@ -117,6 +123,13 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+
+			$respuestaTalla = ControladorTallas::ctrMostrarTallas($itemProducto, $respuestaProducto["id_talla"]);
+			$respuestaColor = ControladorColores::ctrMostrarColores($itemProducto, $respuestaProducto["id_color"]);
+			
+
+			$talla = $respuestaTalla["talla"] ?? "NaN";
+			$color = $respuestaColor["color"] ?? "NaN";
 			if ($cantidad >= 6) {
 				$valorUnitario = number_format($respuestaProducto["precio_compra"], 2);
 				$acum += $respuestaProducto["precio_compra"] * $cantidad;
@@ -134,7 +147,7 @@ EOF;
 	<tr>
 	
 		<td style="width:160px; text-align:left">
-		$item[descripcion] 
+		$item[descripcion] $color $talla
 		</td>
 
 	</tr>
