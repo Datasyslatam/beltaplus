@@ -12,11 +12,11 @@ require_once "../../../modelos/usuarios.modelo.php";
 require_once "../../../controladores/productos.controlador.php";
 require_once "../../../modelos/productos.modelo.php";
 
-require_once "../controladores/colores.controlador.php";
-require_once "../modelos/colores.modelo.php";
+require_once "../../../controladores/colores.controlador.php";
+require_once "../../../modelos/colores.modelo.php";
 
-require_once "../controladores/tallas.controlador.php";
-require_once "../modelos/tallas.modelo.php";
+require_once "../../../controladores/tallas.controlador.php";
+require_once "../../../modelos/tallas.modelo.php";
 
 class imprimirFactura
 {
@@ -228,12 +228,12 @@ EOF;
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
-			echo '<pre>';
+			// echo '<pre>';
 			$respuestaTalla = ControladorTallas::ctrMostrarTallas($itemProducto, $respuestaProducto["id_talla"]);
 			$respuestaColor = ControladorColores::ctrMostrarColores($itemProducto, $respuestaProducto["id_color"]);
-			print_r($respuestaTalla);
-			print_r($respuestaColor);
-			echo '</pre>';
+			// print_r($respuestaTalla);
+			// print_r($respuestaColor);
+			// echo '</pre>';
 
 			$talla = $respuestaTalla["talla"] ?? "NaN";
 			$color = $respuestaColor["color"] ?? "NaN";
