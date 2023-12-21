@@ -12,6 +12,12 @@ require_once "../../../modelos/usuarios.modelo.php";
 require_once "../../../controladores/productos.controlador.php";
 require_once "../../../modelos/productos.modelo.php";
 
+require_once "../controladores/colores.controlador.php";
+require_once "../modelos/colores.modelo.php";
+
+require_once "../controladores/tallas.controlador.php";
+require_once "../modelos/tallas.modelo.php";
+
 class imprimirFactura
 {
 
@@ -195,6 +201,8 @@ EOF;
 		
 		<td style="border: 1px solid #666; background-color:white; width: 188px; text-align:center">Producto</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Cantidad</td>
+		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Talla</td>
+		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Color</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor Unit.</td>
 		<td style="border: 1px solid #666; background-color:white; width:  85px; text-align:center">Valor por mayor.</td>
 		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
@@ -219,6 +227,13 @@ EOF;
 
 			$cantidad = $item["cantidad"];
 			$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+			$respuestaTalla = ControladorTallas::ctrMostrarTallas($itemProducto, $respuestaProducto["id_talla"]);
+			$respuestaColor = ControladorColores::ctrMostrarColores($itemProducto, $respuestaProducto["id_color"]);
+
+			$talla = $respuestaTalla["talla"] ?? "NaN";
+			$color = $respuestaColor["color"] ?? "NaN";
+
+
 
 			if ($cantidad >= 6) {
 
@@ -253,6 +268,12 @@ EOF;
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">
 					$cantidad
+				</td>
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">
+					$talla
+				</td>
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center">
+					$color
 				</td>
 
 				<td style="border: 1px solid #666; color:#333; background-color:white; width: 85px; text-align:center"> 
