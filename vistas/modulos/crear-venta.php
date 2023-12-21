@@ -6,6 +6,7 @@ if ($_SESSION["perfil"] == "Especial") {
   return;
 }
 ?>
+
 <div class="content-wrapper">
   <section class="content-header">
 
@@ -71,8 +72,6 @@ if ($_SESSION["perfil"] == "Especial") {
                       echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . $codigo . '" readonly>';
                     }
                     ?>
-
-
                   </div>
 
                 </div>
@@ -158,7 +157,6 @@ if ($_SESSION["perfil"] == "Especial") {
                               <input type="text" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
                               <input type="hidden" name="totalVenta" id="totalVenta">
 
-
                             </div>
                           </td>
                         </tr>
@@ -190,26 +188,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 <br>
 
                 <!--=====================================
-                ENTRADA CIUDAD Y TRANSPORTADORA
+                ENTRADA TRANSPORTADORA
                 ======================================-->
-                <div class="form-group row">
-
-                  <div class="col-xs-6" style="padding-right:0px">
-
-                    <div class="input-group">
-
-                      <select class="form-control" id="nuevaCiudad" name="nuevaCiudad" required>
-                        <option value="">Seleccione ciudad de envío</option>
-                        <option value="BOG">Bogota</option>
-                        <option value="BAQ">Barranquilla</option>
-                        <option value="MED">Medellin</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div class="cajasMetodoPago"></div>
-                  <input type="hidden" id="listaCiudad" name="listaCiudad">
-                </div>
 
                 <div class="form-group row">
 
@@ -242,7 +222,6 @@ if ($_SESSION["perfil"] == "Especial") {
       LA TABLA DE PRODUCTOS
       ======================================-->
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
-
 
         <div class="box box-warning">
 
@@ -366,6 +345,16 @@ MODAL AGREGAR CLIENTE
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                 <input type="text" class="form-control input-lg" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingresar dirección" required>
+              </div>
+            </div>
+            <!-- ENTRADA PARA LA CIUDAD -->
+            <label for="">Ciudad</label>
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <input type="text" class="form-control input-lg" name="nuevaCiudad" id="nuevaCiudad" placeholder="Ingresar ciudad de residencia" required>
               </div>
             </div>
             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
