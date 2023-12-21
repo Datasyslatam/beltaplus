@@ -196,7 +196,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <div class="col-xs-6" style="padding-right:0px">
 
                     <div class="input-group">
-                      <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" ></textarea>
+                      <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" placeholder="Digite el Nombre de la EMpresa de Transporte"></textarea>
                     </div>
                   </div>
                   <div class="cajasMetodoPago"></div>
