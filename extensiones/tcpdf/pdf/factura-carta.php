@@ -205,7 +205,7 @@ EOF;
 		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Color</td>
 		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor Unit.</td>
 		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width: 50px; text-align:center">Valor Total</td>
+		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
 	</tr>
 
 	</table>
@@ -287,7 +287,7 @@ EOF;
 					$valorMayor
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">$ 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 100px; text-align:center">$ 
 					$precioTotal
 				</td>
 
