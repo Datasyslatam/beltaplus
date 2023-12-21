@@ -89,7 +89,7 @@ class imprimirFactura
 	
 			<td style="background-color: white; width: 140px; vertical-align: top;">
 	
-				<div style="font-size: 8.5px; text-align: right; line-height: 15px; margin-bot: 100px;">
+				<div style="font-size: 8.5px; text-align: right; line-height: 15px; padding-bot: 100px;">
 	
 					<br>
 					<h3 style="margin: 0;">312 808 4806</h3>
