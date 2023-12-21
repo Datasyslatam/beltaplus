@@ -202,9 +202,9 @@ EOF;
 		<td style="border: 1px solid #666; background-color:white; width: 150px; text-align:center">Producto</td>
 		<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
 		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
-		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Color</td>
-		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width:  55px; text-align:center">Color</td>
+		<td style="border: 1px solid #666; background-color:white; width:  55px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:  55px; text-align:center">Valor por mayor.</td>
 		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
 	</tr>
 
@@ -275,15 +275,15 @@ EOF;
 				<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
 					$talla
 				</td>
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 55px; text-align:center">
 					$color
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center"> 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 55px; text-align:center"> 
 					$valorUnitario
 				</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center"> 
+				<td style="border: 1px solid #666; color:#333; background-color:white; width: 55px; text-align:center"> 
 					$valorMayor
 				</td>
 
