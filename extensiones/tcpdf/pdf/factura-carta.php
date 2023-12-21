@@ -199,13 +199,13 @@ EOF;
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width: 154px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:  77px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:  77px; text-align:center">Talla</td>
-		<td style="border: 1px solid #666; background-color:white; width:  77px; text-align:center">Color</td>
-		<td style="border: 1px solid #666; background-color:white; width:  77px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:  77px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width: 77px; text-align:center">Valor Total</td>
+		<td style="border: 1px solid #666; background-color:white; width: 50px; text-align:center">Producto</td>
+		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Cantidad</td>
+		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
+		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Color</td>
+		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Valor por mayor.</td>
+		<td style="border: 1px solid #666; background-color:white; width: 50px; text-align:center">Valor Total</td>
 	</tr>
 
 	</table>
