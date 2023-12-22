@@ -74,21 +74,21 @@ class imprimirFactura
 						{$pdf->Image('images/logoBeltaFull.png', $pdf->GetX() + 10, $pdf->GetY() + 10, 50, "")}
 					</td>
 					<td style="width: 140px; $tdStyle">
-						<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
+						<div style="font-size: 8.5px; text-align: right; line-height: 10px;">
 							<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-							<h5>NIT: 52163724-2</h5>	
+							<h6>NIT: 52163724-2</h6>	
 						</div>
 					</td>
 					<td style="width: 140px; $tdStyle">
-						<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
+						<div style="font-size: 8.5px; text-align: right; line-height: 10px;">
 							<h3 style="margin: 0;">312 808 4806</h3>
-							<h5>beltaplusize@gmail.com</h5>	
+							<h6>beltaplusize@gmail.com</h6>	
 						</div>
 					</td>
 					<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
 						<div style="text-align: right; line-height: 15px; margin-top: 50px;">
 							<br>
-					
+							<br>
 							PEDIDO No.<br>$valorVenta
 						</div>
 					</td>
@@ -154,10 +154,10 @@ class imprimirFactura
 					<td style="border: 1px solid #666; background-color:white; width: 152px; text-align:center">Producto</td>
 					<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
 					<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Color</td>
-					<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
-					<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor Unit.</td>
-					<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor por mayor.</td>
-					<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
+					<td style="border: 1px solid #666; background-color:white; width:  60px; text-align:center">Cantidad</td>
+					<td style="border: 1px solid #666; background-color:white; width:  60px; text-align:center">Valor Unit.</td>
+					<td style="border: 1px solid #666; background-color:white; width:  60px; text-align:center">Valor por mayor.</td>
+					<td style="border: 1px solid #666; background-color:white; width: 102px; text-align:center">Valor Total</td>
 				</tr>
 			</table>
 
@@ -222,25 +222,22 @@ class imprimirFactura
 						<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center; font-size:8px; padding:2px 4px;">
 							$item[descripcion]
 						</td>
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center; font-size:8px; padding:2px 4px;">
 							$talla
 						</td>
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center">
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center; font-size:8px; padding:2px 4px;">
 							$color
 						</td>
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center"> 
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center; font-size:8px; padding:2px 4px;">
 							$cantidad
 						</td>
-
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center"> 
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center; font-size:8px; padding:2px 4px;">
 							$valorUnitario
 						</td>
-
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center"> 
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center; font-size:8px; padding:2px 4px;">
 							$valorMayor
 						</td>
-
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 102px; text-align:center">$ 
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 102px; text-align:center; font-size:10px; padding:2px 4px; font-weight: bold;">$ 
 							$precioTotal
 						</td>
 					</tr>
