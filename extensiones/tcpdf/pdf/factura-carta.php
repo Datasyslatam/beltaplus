@@ -70,7 +70,7 @@ class imprimirFactura
 		$bloque1 = <<<EOF
 			<table border="0" style="$tableStyle">
 				<tr>
-					<td style="width: 150px; vertical-align: middle;">
+					<td style="width: 150px; vertical-align: bottom;">
 						<img src="images/logoBeltaFull.png">
 					</td>
 					<td style="width: 140px; $tdStyle">
