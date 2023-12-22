@@ -184,7 +184,7 @@ class imprimirFactura
 			$tallaString = $respuestaTalla["talla"] ?? "NaN";
 			$color = $respuestaColor["color"] ?? "NaN";
 			if ($tallaString !== "NaN") {
-				$talla = preg_replace("/[^0-9]/", "", $talla);
+				$talla = preg_replace("/[^0-9]/", "", $tallaString);
 			} else {
 				$talla = $tallaString;
 			}
