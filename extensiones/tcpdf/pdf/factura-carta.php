@@ -65,9 +65,10 @@ class imprimirFactura
 
 		// ---------------------------------------------------------
 
+		// border="0"
 		$bloque1 = <<<EOF
 
-		<table border="0" style="width: 100%; border-collapse: collapse;">
+		<table style="width: 100%; border-collapse: collapse;">
 
 		<tr>
 	
@@ -101,7 +102,7 @@ class imprimirFactura
 	
 			</td>
 	
-			<td style="background-color: white; width: 110px; text-align: center; color: green; font-weight: bold; vertical-align: top; padding-top: 200px !important;">
+			<td style="background-color: white; width: 110px; text-align: center; color: red; font-weight: bold; vertical-align: top; padding-top: 200px !important;">
 				<br><br>PEDIDO No.<br>$valorVenta
 			</td>
 	
