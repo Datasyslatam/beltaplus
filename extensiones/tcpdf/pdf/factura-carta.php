@@ -66,44 +66,44 @@ class imprimirFactura
 		// ---------------------------------------------------------
 
 		$tableStyle = 'width: 100%; border-collapse: collapse; border: 1px solid #000;';
-$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
+		$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
 
-$bloque1 = <<<EOF
-    <table border="0" style="$tableStyle">
+		$bloque1 = <<<EOF
+		<table border="0" style="$tableStyle">
 
-        <tr>
+			<tr>
 
-            <td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
+				<td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
 
-            <td style="width: 140px; $tdStyle">
-                <div style="font-size: 8.5px; text-align: right; line-height: 14px;">
-                    <br>
-                    <h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-                    <br>
-                    NIT: 52163724-2
-                </div>
-            </td>
+				<td style="width: 140px; $tdStyle">
+					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
+						<br>
+						<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
+						<br>
+						NIT: 52163724-2
+					</div>
+				</td>
 
-            <td style="width: 140px; $tdStyle">
-                <div style="font-size: 8.5px; text-align: right; line-height: 15px;">
-                    <br>
-                    <h3 style="margin: 0;">312 808 4806</h3>
-                    <br>
-                    beltaplusize@gmail.com
-                </div>
-            </td>
+				<td style="width: 140px; $tdStyle">
+					<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
+						<br>
+						<h3 style="margin: 0;">312 808 4806</h3>
+						<br>
+						beltaplusize@gmail.com
+					</div>
+				</td>
 
-			
+				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
+					<div style="text-align: right; line-height: 15px; margin-top: 50px;">
+						<br><br>PEDIDO No.<br>$valorVenta
+					</div>
+				</td>
+
 			</tr>
-			
-			</table>
-			EOF;
-			
-            // <td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
-            //     <div style="text-align: right; line-height: 15px; margin-top: 50px;">
-            //         <br><br>PEDIDO No.<br>$valorVenta
-            //     </div>
-            // </td>
+
+		</table>
+		EOF;
+
 
 		$pdf->writeHTML($bloque1, false, false, false, false, '');
 
@@ -111,79 +111,79 @@ $bloque1 = <<<EOF
 
 		$bloque2 = <<<EOF
 
-	<table style="border: white 1px none;  background-color:white">
-		
-		<tr>
+		<table style="border: white 1px none;  background-color:white">
 			
-			<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>
-		
-		</tr>
-
-	</table>
-
-	<table style="border: white 1px none; font-size:10px; padding:2px 4px;">
-	
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:390px">
-
-				Cliente: $respuestaCliente[nombre]
-
-			</td>
-
-			<td style="border: white 1px none; background-color:white; width:150px; text-align:right">
+			<tr>
+				
+				<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>
 			
-				Fecha: $fecha
+			</tr>
 
-			</td>
+		</table>
 
-		</tr>
-
-		<tr>
+		<table style="border: white 1px none; font-size:10px; padding:2px 4px;">
 		
-			<td style="border: white 1px none; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:390px">
 
-		</tr>
+					Cliente: $respuestaCliente[nombre]
 
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:540px">Celular: $respuestaCliente[telefono]</td>
+				</td>
 
-		</tr>
+				<td style="border: white 1px none; background-color:white; width:150px; text-align:right">
+				
+					Fecha: $fecha
 
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
+				</td>
 
-		</tr>
+			</tr>
 
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:540px">Ciudad: $respuestaCliente[ciudad]</td>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
 
-		</tr>
+			</tr>
 
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:540px">Transporte: $transportadora</td>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Celular: $respuestaCliente[telefono]</td>
 
-		</tr>
+			</tr>
 
-		<tr>
-		
-			<td style="border: white 1px none; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
 
-		</tr>
+			</tr>
 
-		<tr>
-		
-		<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Ciudad: $respuestaCliente[ciudad]</td>
 
-		</tr>
+			</tr>
 
-	</table>
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Transporte: $transportadora</td>
 
-EOF;
+			</tr>
+
+			<tr>
+			
+				<td style="border: white 1px none; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
+
+			</tr>
+
+			<tr>
+			
+			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
+
+			</tr>
+
+		</table>
+
+		EOF;
 
 		$pdf->writeHTML($bloque2, false, false, false, false, '');
 
@@ -191,22 +191,22 @@ EOF;
 
 		$bloque3 = <<<EOF
 
-	<table style="font-size:10px; padding:3px 6px;">
+		<table style="font-size:10px; padding:3px 6px;">
 
-		<tr>
-		
-		<td style="border: 1px solid #666; background-color:white; width: 152px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
-		<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Color</td>
-		<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor por mayor.</td>
-		<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
-	</tr>
+			<tr>
+			
+			<td style="border: 1px solid #666; background-color:white; width: 152px; text-align:center">Producto</td>
+			<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
+			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Color</td>
+			<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
+			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor Unit.</td>
+			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor por mayor.</td>
+			<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
+		</tr>
 
-	</table>
+		</table>
 
-EOF;
+		EOF;
 
 		$pdf->writeHTML($bloque3, false, false, false, false, '');
 
@@ -258,40 +258,40 @@ EOF;
 
 			$bloque4 = <<<EOF
 
-		<table style="font-size:10px; padding:3px 6px;">
-			<tr>
-				
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center">
-					$item[descripcion]
-				</td>
+			<table style="font-size:10px; padding:3px 6px;">
+				<tr>
+					
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center">
+						$item[descripcion]
+					</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
-					$talla
-				</td>
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center">
-					$color
-				</td>
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 70px; text-align:center">
-					$cantidad
-				</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
+						$talla
+					</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center">
+						$color
+					</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 70px; text-align:center">
+						$cantidad
+					</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center"> 
-					$valorUnitario
-				</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center"> 
+						$valorUnitario
+					</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center"> 
-					$valorMayor
-				</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center"> 
+						$valorMayor
+					</td>
 
-				<td style="border: 1px solid #666; color:#333; background-color:white; width: 100px; text-align:center">$ 
-					$precioTotal
-				</td>
+					<td style="border: 1px solid #666; color:#333; background-color:white; width: 100px; text-align:center">$ 
+						$precioTotal
+					</td>
 
 
-			</tr>
+				</tr>
 
-		</table>
-	EOF;
+			</table>
+			EOF;
 
 			$pdf->writeHTML($bloque4, false, false, false, false, '');
 
@@ -301,64 +301,64 @@ EOF;
 
 		$bloque5 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+		<table style="font-size:10px; padding:5px 10px;">
 
-		<tr>
+			<tr>
 
-			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
+				<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
 
-			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
+				<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
 
-			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
+				<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
 
-		</tr>
-		
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
-				Neto:
-			</td>
-
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $neto
-			</td>
-
-		</tr>
-
-		<tr>
-
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Impuesto:
-			</td>
-		
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $impuesto
-			</td>
-
-		</tr>
-
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Total:
-			</td>
+			</tr>
 			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $precioFinal
-			</td>
+			<tr>
+			
+				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
 
-		</tr>
+				<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
+					Neto:
+				</td>
+
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					$ $neto
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+
+				<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
+					Impuesto:
+				</td>
+			
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					$ $impuesto
+				</td>
+
+			</tr>
+
+			<tr>
+			
+				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+
+				<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
+					Total:
+				</td>
+				
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					$ $precioFinal
+				</td>
+
+			</tr>
 
 
-	</table>
+		</table>
 
-EOF;
+		EOF;
 
 		$pdf->writeHTML($bloque5, false, false, false, false, '');
 
