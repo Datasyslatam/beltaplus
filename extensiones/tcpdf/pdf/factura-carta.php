@@ -66,9 +66,10 @@ class imprimirFactura
 		// ---------------------------------------------------------
 
 		// border="0"
+		// border-collapse: collapse;
 		$bloque1 = <<<EOF
 
-		<table style="width: 100%; border-collapse: collapse;">
+		<table style="width: 100%;">
 
 		<tr>
 	
