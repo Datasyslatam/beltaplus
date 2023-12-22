@@ -71,7 +71,7 @@ class imprimirFactura
 			<table border="0" style="$tableStyle">
 				<tr>
 					<td style="width: 150px; $tdStyle">
-						{$pdf->Image('images/logoBeltaFull.png', $pdf->GetX() + 10, $pdf->GetY() + 10, 40, "")}
+						{$pdf->Image('images/logoBeltaFull.png', $pdf->GetX() + 10, $pdf->GetY() + 10, 50, "")}
 					</td>
 					<td style="width: 140px; $tdStyle">
 						<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
