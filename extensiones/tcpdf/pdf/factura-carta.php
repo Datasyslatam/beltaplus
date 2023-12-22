@@ -101,7 +101,7 @@ class imprimirFactura
 	
 			</td>
 	
-			<td style="background-color: white; width: 110px; text-align: center; color: red; font-weight: bold; vertical-align: top;">
+			<td style="background-color: white; width: 110px; text-align: center; color: red; font-weight: bold; vertical-align: top; padding-top: 200px !important;">
 				<br><br>PEDIDO No.<br>$valorVenta
 			</td>
 	
