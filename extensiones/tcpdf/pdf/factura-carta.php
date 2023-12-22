@@ -81,7 +81,7 @@ class imprimirFactura
 					</td>
 					<td style="width: 140px; $tdStyle">
 						<div style="font-size: 8.5px; text-align: right; line-height: 10px;">
-							<h3 style="margin: 0;">312 808 4806</h3>
+							<h3 style="margin: 0;"><i class="fa fa-whatsapp" aria-hidden="true"></i> 312 808 4806</h3>
 							<h6>beltaplusize@gmail.com</h6>	
 						</div>
 					</td>
@@ -237,7 +237,7 @@ class imprimirFactura
 						<td style="border: 1px solid #666; color:#333; background-color:white; width: 60px; text-align:center; font-size:8px; padding:2px 4px;">
 							$valorMayor
 						</td>
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 102px; text-align:center; font-size:10px; padding:2px 4px; font-weight: bold;">$ 
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 102px; text-align:center; font-size:10px; padding:2px 4px;">$ 
 							$precioTotal
 						</td>
 					</tr>
@@ -263,7 +263,7 @@ class imprimirFactura
 					<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
 						Neto:
 					</td>
-					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center; font-size:8px; padding:2px 4px;">
 						$ $neto
 					</td>
 				</tr>
@@ -272,7 +272,7 @@ class imprimirFactura
 					<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
 						Impuesto:
 					</td>			
-					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center; font-size:8px; padding:2px 4px;">
 						$ $impuesto
 					</td>
 				</tr>
@@ -281,7 +281,7 @@ class imprimirFactura
 					<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
 						Total:
 					</td>			
-					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+					<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center; font-size:11px; padding:2px 4px; font-weight: bold;">
 						$ $precioFinal
 					</td>
 				</tr>
