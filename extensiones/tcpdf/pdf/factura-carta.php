@@ -73,18 +73,21 @@ class imprimirFactura
 				<td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
+						</br>
 						<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
 						<p>NIT: 52163724-2</p>	
 					</div>
 				</td>
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
+						</br>
 						<h3 style="margin: 0;">312 808 4806</h3>
 						<p>beltaplusize@gmail.com</p>	
 					</div>
 				</td>
 				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
 					<div style="text-align: right; line-height: 15px; margin-top: 50px;">
+						</br>
 						<br>
 						<br>
 						PEDIDO No.<br>$valorVenta
