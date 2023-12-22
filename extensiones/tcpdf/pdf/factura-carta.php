@@ -65,54 +65,43 @@ class imprimirFactura
 
 		// ---------------------------------------------------------
 
-		// border="0"
-		// border-collapse: collapse;
+		$tableStyle = 'width: 100%; border-collapse: collapse; border: 1px solid #000;';
+		$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
+
 		$bloque1 = <<<EOF
+    <table border="0" style="$tableStyle">
 
-		<table style="width: 100%;">
+        <tr>
 
-		<tr>
-	
-			<td style="width: 150px; vertical-align: top;"><img src="images/logoBeltaFull.png"></td>
-	
-			<td style="background-color: white; width: 140px; vertical-align: top;">
-	
-				<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
-	
-					<br>
-					<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-	
-					<br>
-					NIT: 52163724-2
-	
-				</div>
-	
-			</td>
-	
-			<td style="background-color: white; width: 140px; vertical-align: top;">
-	
-				<div style="font-size: 8.5px; text-align: right; line-height: 15px; margin-bottom: 100px !important;">
-	
-					<br>
-					<h3 style="margin: 0;">312 808 4806</h3>
-	
-					<br>
-					beltaplusize@gmail.com
-	
-				</div>
-	
-			</td>
-	
-			<td style="background-color: white; width: 110px; text-align: center; color: red; font-weight: bold; vertical-align: top; padding-top: 200px !important;">
-				<br><br>PEDIDO No.<br>$valorVenta
-			</td>
-	
-		</tr>
-	
-	</table>
-	
+            <td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
 
+            <td style="width: 140px; $tdStyle">
+                <div style="font-size: 8.5px; text-align: right; line-height: 14px;">
+                    <br>
+                    <h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
+                    <br>
+                    NIT: 52163724-2
+                </div>
+            </td>
+
+            <td style="width: 140px; $tdStyle">
+                <div style="font-size: 8.5px; text-align: right; line-height: 15px;">
+                    <br>
+                    <h3 style="margin: 0;">312 808 4806</h3>
+                    <br>
+                    beltaplusize@gmail.com
+                </div>
+            </td>
+
+            <td style="width: 110px; text-align: center; color: green; font-weight: bold; $tdStyle;">
+                <br><br>PEDIDO No.<br>$valorVenta
+            </td>
+
+        </tr>
+
+    </table>
 EOF;
+
 
 		$pdf->writeHTML($bloque1, false, false, false, false, '');
 
