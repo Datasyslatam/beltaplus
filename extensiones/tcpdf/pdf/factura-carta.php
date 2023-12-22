@@ -75,7 +75,7 @@ class imprimirFactura
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<br>
 						<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-						NIT: 52163724-2
+						<p style="margin-top: -10px;">NIT: 52163724-2</p>	
 					</div>
 				</td>
 				<td style="width: 140px; $tdStyle">
