@@ -74,13 +74,13 @@ class imprimirFactura
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-						<p style="margin-top: -10px;">NIT: 52163724-2</p>	
+						<p>NIT: 52163724-2</p>	
 					</div>
 				</td>
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
 						<h3 style="margin: 0;">312 808 4806</h3>
-						<p style="margin-top: -10px;">beltaplusize@gmail.com</p>	
+						<p>beltaplusize@gmail.com</p>	
 					</div>
 				</td>
 				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
