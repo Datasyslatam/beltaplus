@@ -70,7 +70,7 @@ class imprimirFactura
 		$bloque1 = <<<EOF
 		<table border="0" style="$tableStyle">
 			<tr>
-				<td style="width: 120px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
+				<td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<br>
@@ -87,8 +87,8 @@ class imprimirFactura
 						beltaplusize@gmail.com
 					</div>
 				</td>
-				<td style="width: 140px; $tdStyle;">
-					<div style="text-align: right; line-height: 15px; margin-top: 50px; color: red; font-weight: bold;">
+				<td style="width: 110px; $tdStyle;">
+					<div style="font-size: 8.5px; text-align: right; line-height: 15px; color: red; font-weight: bold;">
 						<br><br>PEDIDO No.<br>$valorVenta
 					</div>
 				</td>
