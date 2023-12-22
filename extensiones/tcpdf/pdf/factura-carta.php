@@ -89,7 +89,10 @@ class imprimirFactura
 				</td>
 				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
 					<div style="text-align: right; line-height: 15px; margin-top: 50px;">
-						<br><br>PEDIDO No.<br>$valorVenta
+						<br>
+						<br>
+						<br>
+						PEDIDO No.<br>$valorVenta
 					</div>
 				</td>
 			</tr>
