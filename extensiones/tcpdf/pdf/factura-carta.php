@@ -81,7 +81,7 @@ class imprimirFactura
 					</td>
 					<td style="width: 140px; $tdStyle">
 						<div style="font-size: 8.5px; text-align: right; line-height: 10px;">
-							<h3 style="margin: 0;"><img src="images/fa-whatsapp.webp" width="80px" height="80px"> 312 808 4806</h3>
+							<h3 style="margin: 0;"><img src="images/fa-whatsapp.jpg" width="20px" height="20px"> 312 808 4806</h3>
 							<h6>beltaplusize@gmail.com</h6>	
 						</div>
 					</td>
