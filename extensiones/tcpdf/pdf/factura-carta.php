@@ -76,19 +76,19 @@ class imprimirFactura
 					<td style="width: 140px; $tdStyle">
 						<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 							<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-							<p>NIT: 52163724-2</p>	
+							<h2>NIT: 52163724-2</h2>	
 						</div>
 					</td>
 					<td style="width: 140px; $tdStyle">
 						<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
 							<h3 style="margin: 0;">312 808 4806</h3>
-							<p>beltaplusize@gmail.com</p>	
+							<h2>beltaplusize@gmail.com</h2>	
 						</div>
 					</td>
 					<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
 						<div style="text-align: right; line-height: 15px; margin-top: 50px;">
 							<br>
-							<br>
+					
 							PEDIDO No.<br>$valorVenta
 						</div>
 					</td>
@@ -105,7 +105,7 @@ class imprimirFactura
 
 			<table style="border: white 1px none;  background-color:white">
 				<tr>				
-					<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>	
+					<td style="border: white 1px none; width:540px"><img src="images/back001.jpg"></td>	
 				</tr>
 			</table>
 			<table style="border: white 1px none; font-size:10px; padding:2px 4px;">		
@@ -216,9 +216,9 @@ class imprimirFactura
 
 			$bloque4 = <<<EOF
 
-				<table style="font-size:10px; padding:3px 6px;">
+				<table style="font-size:10px; padding:2px 4px;">
 					<tr>					
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center">
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center; font-size:10px; padding:2px 4px;">
 							$item[descripcion]
 						</td>
 						<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
@@ -227,7 +227,7 @@ class imprimirFactura
 						<td style="border: 1px solid #666; color:#333; background-color:white; width: 56px; text-align:center">
 							$color
 						</td>
-						<td style="border: 1px solid #666; color:#333; background-color:white; width: 70px; text-align:center">
+						<td style="border: 1px solid #666; color:#333; background-color:white; width: 70px; text-align:center"> 
 							$cantidad
 						</td>
 
