@@ -75,7 +75,6 @@ class imprimirFactura
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<br>
 						<h3 style="font-size: 14px; color: #27ae60; margin: 0;">PEDIDOS:</h3>
-						<br>
 						NIT: 52163724-2
 					</div>
 				</td>
@@ -83,7 +82,6 @@ class imprimirFactura
 					<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
 						<br>
 						<h3 style="margin: 0;">312 808 4806</h3>
-						<br>
 						beltaplusize@gmail.com
 					</div>
 				</td>
