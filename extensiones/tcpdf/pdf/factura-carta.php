@@ -64,8 +64,8 @@ class imprimirFactura
 		$pdf->AddPage();
 
 		// ---------------------------------------------------------
-
-		$tableStyle = 'width: 100%; border-collapse: collapse; border: 1px solid #000;';
+		// width: 100%
+		$tableStyle = 'border-collapse: collapse; border: 1px solid #000;';
 		$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
 
 		$bloque1 = <<<EOF
