@@ -93,17 +93,17 @@ $bloque1 = <<<EOF
                 </div>
             </td>
 
-            <td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
-                <div style="text-align: right; line-height: 15px; margin-top: 50px;">
-                    <br><br>PEDIDO No.<br>$valorVenta
-                </div>
-            </td>
-
-        </tr>
-
-    </table>
-EOF;
-
+			
+			</tr>
+			
+			</table>
+			EOF;
+			
+            // <td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
+            //     <div style="text-align: right; line-height: 15px; margin-top: 50px;">
+            //         <br><br>PEDIDO No.<br>$valorVenta
+            //     </div>
+            // </td>
 
 		$pdf->writeHTML($bloque1, false, false, false, false, '');
 
