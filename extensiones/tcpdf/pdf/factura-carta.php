@@ -64,14 +64,13 @@ class imprimirFactura
 		$pdf->AddPage();
 
 		// ---------------------------------------------------------
-		// width: 100%
-		$tableStyle = 'border-collapse: collapse; border: 1px solid #000;';
+		$tableStyle = ' width: 100%; border-collapse: collapse; border: 1px solid #000;';
 		$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
 
 		$bloque1 = <<<EOF
 		<table border="0" style="$tableStyle">
 			<tr>
-				<td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
+				<td style="width: 120px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<br>
@@ -88,8 +87,8 @@ class imprimirFactura
 						beltaplusize@gmail.com
 					</div>
 				</td>
-				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
-					<div style="text-align: right; line-height: 15px; margin-top: 50px;">
+				<td style="width: 140px; $tdStyle;">
+					<div style="text-align: right; line-height: 15px; margin-top: 50px; color: red; font-weight: bold;">
 						<br><br>PEDIDO No.<br>$valorVenta
 					</div>
 				</td>
