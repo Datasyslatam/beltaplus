@@ -66,9 +66,9 @@ class imprimirFactura
 		// ---------------------------------------------------------
 
 		$tableStyle = 'width: 100%; border-collapse: collapse; border: 1px solid #000;';
-		$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
+$tdStyle = 'background-color: white; vertical-align: top; border: 1px solid #000;';
 
-		$bloque1 = <<<EOF
+$bloque1 = <<<EOF
     <table border="0" style="$tableStyle">
 
         <tr>
@@ -94,9 +94,9 @@ class imprimirFactura
             </td>
 
             <td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
-				<div style="text-align: right; line-height: 15px; padding-top: 200px !important;">
-                	<br><br>PEDIDO No.<br>$valorVenta
-				</div>
+                <div style="text-align: right; line-height: 15px; padding-top: 40px;">
+                    <br><br>PEDIDO No.<br>$valorVenta
+                </div>
             </td>
 
         </tr>
