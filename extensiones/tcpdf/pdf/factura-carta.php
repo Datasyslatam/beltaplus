@@ -70,11 +70,8 @@ class imprimirFactura
 
 		$bloque1 = <<<EOF
 		<table border="0" style="$tableStyle">
-
 			<tr>
-
 				<td style="width: 150px; $tdStyle"><img src="images/logoBeltaFull.png"></td>
-
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 14px;">
 						<br>
@@ -83,7 +80,6 @@ class imprimirFactura
 						NIT: 52163724-2
 					</div>
 				</td>
-
 				<td style="width: 140px; $tdStyle">
 					<div style="font-size: 8.5px; text-align: right; line-height: 15px;">
 						<br>
@@ -92,15 +88,12 @@ class imprimirFactura
 						beltaplusize@gmail.com
 					</div>
 				</td>
-
 				<td style="width: 110px; text-align: right; color: red; font-weight: bold; $tdStyle;">
 					<div style="text-align: right; line-height: 15px; margin-top: 50px;">
 						<br><br>PEDIDO No.<br>$valorVenta
 					</div>
 				</td>
-
 			</tr>
-
 		</table>
 		EOF;
 
@@ -112,75 +105,40 @@ class imprimirFactura
 		$bloque2 = <<<EOF
 
 		<table style="border: white 1px none;  background-color:white">
-			
-			<tr>
-				
-				<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>
-			
+			<tr>				
+				<td style="border: white 1px none; width:540px"><img src="images/back.jpg"></td>	
 			</tr>
-
 		</table>
-
-		<table style="border: white 1px none; font-size:10px; padding:2px 4px;">
-		
-			<tr>
-			
+		<table style="border: white 1px none; font-size:10px; padding:2px 4px;">		
+			<tr>		
 				<td style="border: white 1px none; background-color:white; width:390px">
-
 					Cliente: $respuestaCliente[nombre]
-
 				</td>
-
-				<td style="border: white 1px none; background-color:white; width:150px; text-align:right">
-				
+				<td style="border: white 1px none; background-color:white; width:150px; text-align:right">				
 					Fecha: $fecha
-
 				</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Cédula / Nit: $respuestaCliente[documento]</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Celular: $respuestaCliente[telefono]</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Dirección de envio: $respuestaCliente[direccion]</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Ciudad: $respuestaCliente[ciudad]</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Transporte: $transportadora</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>			
 				<td style="border: white 1px none; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
-
 			</tr>
-
-			<tr>
-			
-			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
-
+			<tr>			
+				<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
 			</tr>
-
 		</table>
 
 		EOF;
@@ -192,18 +150,15 @@ class imprimirFactura
 		$bloque3 = <<<EOF
 
 		<table style="font-size:10px; padding:3px 6px;">
-
-			<tr>
-			
-			<td style="border: 1px solid #666; background-color:white; width: 152px; text-align:center">Producto</td>
-			<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
-			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Color</td>
-			<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
-			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor Unit.</td>
-			<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor por mayor.</td>
-			<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
-		</tr>
-
+			<tr>		
+				<td style="border: 1px solid #666; background-color:white; width: 152px; text-align:center">Producto</td>
+				<td style="border: 1px solid #666; background-color:white; width:  50px; text-align:center">Talla</td>
+				<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Color</td>
+				<td style="border: 1px solid #666; background-color:white; width:  70px; text-align:center">Cantidad</td>
+				<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor Unit.</td>
+				<td style="border: 1px solid #666; background-color:white; width:  56px; text-align:center">Valor por mayor.</td>
+				<td style="border: 1px solid #666; background-color:white; width: 100px; text-align:center">Valor Total</td>
+			</tr>
 		</table>
 
 		EOF;
@@ -259,12 +214,10 @@ class imprimirFactura
 			$bloque4 = <<<EOF
 
 			<table style="font-size:10px; padding:3px 6px;">
-				<tr>
-					
+				<tr>					
 					<td style="border: 1px solid #666; color:#333; background-color:white; width: 152px; text-align:center">
 						$item[descripcion]
 					</td>
-
 					<td style="border: 1px solid #666; color:#333; background-color:white; width: 50px; text-align:center">
 						$talla
 					</td>
@@ -286,10 +239,7 @@ class imprimirFactura
 					<td style="border: 1px solid #666; color:#333; background-color:white; width: 100px; text-align:center">$ 
 						$precioTotal
 					</td>
-
-
 				</tr>
-
 			</table>
 			EOF;
 
@@ -302,60 +252,38 @@ class imprimirFactura
 		$bloque5 = <<<EOF
 
 		<table style="font-size:10px; padding:5px 10px;">
-
 			<tr>
-
 				<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
-
 				<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
-
 				<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
-
-			</tr>
-			
-			<tr>
-			
+			</tr>		
+			<tr>			
 				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
 				<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
 					Neto:
 				</td>
-
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
 					$ $neto
 				</td>
-
 			</tr>
-
 			<tr>
-
 				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
 				<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
 					Impuesto:
-				</td>
-			
+				</td>			
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
 					$ $impuesto
 				</td>
-
 			</tr>
-
-			<tr>
-			
+			<tr>		
 				<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
 				<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
 					Total:
-				</td>
-				
+				</td>			
 				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
 					$ $precioFinal
 				</td>
-
 			</tr>
-
-
 		</table>
 
 		EOF;
