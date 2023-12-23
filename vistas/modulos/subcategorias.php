@@ -38,8 +38,8 @@ if($_SESSION["perfil"] == "Vendedor"){
          
         <thead>
          <tr>
-           <th style="width:10px">#</th>
-           <th>Subcategoria</th>
+           <th style="width:10px">Cod #</th>
+           <th>Nombre Subcategoria</th>
            <th>Acciones</th>
          </tr> 
         </thead>
@@ -52,7 +52,7 @@ if($_SESSION["perfil"] == "Vendedor"){
           foreach ($subcategorias as $key => $value) {
            
             echo ' <tr>
-                    <td>'.($key+1).'</td>
+                    <td>'.$value["id"].'</td>
                     <td class="text-uppercase">'.$value["nombre"].'</td>
                     <td>
                       <div class="btn-group">

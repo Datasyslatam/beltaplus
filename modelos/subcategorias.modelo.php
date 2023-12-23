@@ -23,7 +23,7 @@ class ModeloSubCategorias{
 			
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id");
 			$stmt -> execute();
 			return $stmt -> fetchAll();
 
