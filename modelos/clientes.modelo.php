@@ -26,7 +26,7 @@ class ModeloClientes{
 	}
 	
 	/*=============================================
-	CREAR CLIENTE 2
+	CREAR CLIENTE DESDE VENTAS
 	=============================================*/
 	public static function mdlIngresarClienteVenta($tabla, $datos){
 		$base_datos = Conexion::conectar();

@@ -7,10 +7,11 @@ $("#crear-nuevo-cliente").submit(function(event){
     let email = $("#nuevoEmail").val()
     let telefono = $("#nuevoTelefono").val()
     let direccion = $("#nuevaDireccion").val()
+    let ciudad = $("#nuevaCiudad").val()
     let fecha_nac = $("#nuevaFechaNacimiento").val()
 
     // validamos todos los campos
-    if (!nombre || !documento || !email || !telefono || !direccion || !fecha_nac) {
+    if (!nombre || !documento || !email || !telefono || !direccion || !ciudad || !fecha_nac) {
         swal({
             type: "error",
             title: "¡Rellenar todos los campos obligatorios!",
@@ -20,13 +21,13 @@ $("#crear-nuevo-cliente").submit(function(event){
         return
     }
 
-
     var datos = new FormData();
 	datos.append("nuevoCliente", nombre);
 	datos.append("nuevoDocumentoId", documento);
 	datos.append("nuevoEmail", email);
 	datos.append("nuevoTelefono", telefono);
 	datos.append("nuevaDireccion", direccion);
+    datos.append("nuevaCiudad", ciudad);
 	datos.append("nuevaFechaNacimiento", fecha_nac);
 	datos.append("guardar", true);
 
@@ -176,6 +177,7 @@ function limpiarCampoModalCliente(){
     $("#nuevoEmail").val(null)
     $("#nuevoTelefono").val(null)
     $("#nuevaDireccion").val(null)
+    $("#nuevaCiudad").val(null)
     $("#nuevaFechaNacimiento").val(null)
 
     /* 

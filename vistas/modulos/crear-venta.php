@@ -179,6 +179,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <option value="Efectivo">Efectivo</option>
                         <option value="TC">Tarjeta Crédito</option>
                         <option value="TD">Tarjeta Débito</option>
+                        <option value="NQ">Nequi</option>
                       </select>
                     </div>
                   </div>
@@ -278,7 +279,7 @@ if ($_SESSION["perfil"] == "Especial") {
 </div>
 
 <!--=====================================
-MODAL AGREGAR CLIENTE
+MODAL AGREGAR CLIENTE VENTAS
 ======================================-->
 <div id="modalAgregarCliente" class="modal fade" role="dialog">
 
@@ -417,7 +418,7 @@ MODAL FILTRAR CLIENTE
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="number" min="0" class="form-control input-lg" name="filtrarDocumento" id="filtrarDocumento" placeholder="Ingresar documento" required>
+                <input type="number" min="0" class="form-control input-lg" name="filtrarDocumento" id="filtrarDocumento" placeholder="Ingresar documento">
               </div>
             </div>
             <!-- ENTRADA PARA EL EMAIL -->
@@ -427,7 +428,7 @@ MODAL FILTRAR CLIENTE
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="email" class="form-control input-lg" name="filtrarEmail" id="filtrarEmail" placeholder="Ingresar email" required>
+                <input type="email" class="form-control input-lg" name="filtrarEmail" id="filtrarEmail" placeholder="Ingresar email">
               </div>
             </div>
             <!-- ENTRADA PARA EL TELÉFONO -->
@@ -437,7 +438,7 @@ MODAL FILTRAR CLIENTE
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                <input type="text" class="form-control input-lg" name="filtrarTelefono" id="filtrarTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="filtrarTelefono" id="filtrarTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask>
               </div>
             </div>
 

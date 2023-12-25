@@ -52,7 +52,7 @@ class ControladorClientes{
 	}
 
 	/*=============================================
-	CREAR NUEVO CLIENTES
+	CREAR NUEVO CLIENTES DESDE VENTAS
 	=============================================*/
 	public static function ctrCrearNuevoCliente(){
 		if(isset($_POST["nuevoCliente"])){
