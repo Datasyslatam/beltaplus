@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-xs-3">
               
-                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="' . $value["cantidad"] . '" stock="' . $stockAntiguo . '" nuevoStock="' . $value["stock"] . '" required>
+                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="' . $value["cantidad"] . '" stock="' . $stockAntiguo . '" nuevoStock="' . $value["stock"] . '"  id="2131" required>
                         </div>
                         <div class="col-xs-3 ingresoPrecio" style="padding-left:0px">
                           <div class="input-group">
