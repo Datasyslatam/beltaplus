@@ -134,6 +134,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     "</div>"
             );
 
+            marcarOferta();
             // SUMAR TOTAL DE PRECIOS
             sumarTotalPrecios();
 
@@ -218,6 +219,7 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
         
+        marcarOferta();
         // SUMAR TOTAL DE PRECIOS
         
         sumarTotalPrecios();
@@ -229,7 +231,6 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         // AGRUPAR PRODUCTOS EN FORMATO JSON
         
         listarProductos();
-        marcarOferta();
     }
 });
 
