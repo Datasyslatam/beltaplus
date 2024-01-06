@@ -379,6 +379,7 @@ $(".formularioVenta").on(
                 // AGRUPAR PRODUCTOS EN FORMATO JSON
 
                 listarProductos();
+                marcarOferta();
             },
         });
     }
@@ -441,7 +442,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     } else {
         nuevoPrecio = precioReal;
     }
-    marcarOferta();
 
     var precioFinal = cantidad * nuevoPrecio;
     precio.val(precioFinal);
@@ -465,6 +465,8 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
+
+    marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
