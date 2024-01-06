@@ -228,7 +228,6 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         // AGRUPAR PRODUCTOS EN FORMATO JSON
 
         listarProductos();
-
     }
 });
 
@@ -381,10 +380,9 @@ $(".formularioVenta").on(
         });
     }
 );
-function marcarOferta() {
-
-    let valores = $('input[name="nuevoPrecioProducto"]');
-    let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
+function marcarOferta($cantidades, $valores) {
+    // let valores = $('input[name="nuevoPrecioProducto"]');
+    // let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
     let suma = 0;
     cantidades.each(function () {
         let valor = parseFloat($(this).val()) || 0;
@@ -439,7 +437,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     } else {
         nuevoPrecio = precioReal;
     }
-    marcarOferta();
 
     var precioFinal = cantidad * nuevoPrecio;
     precio.val(precioFinal);
@@ -463,6 +460,8 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
+
+    marcarOferta($('input[name="nuevaCantidadProducto"]'), $('input[name="nuevoPrecioProducto"]'));
 
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
