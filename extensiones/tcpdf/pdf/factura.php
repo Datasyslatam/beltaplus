@@ -144,7 +144,7 @@ EOF;
 			}
 
 			$precioTotal = number_format($valor_acumulado, 2);
-			$precioProducto = $valorUnitario * $cantidad;
+			$precioProducto = number_format($respuestaProducto["precio_compra"] * $cantidad);
 			$bloque2 = <<<EOF
 
 			<table style="font-size:9px;">
