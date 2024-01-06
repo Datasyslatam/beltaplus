@@ -217,6 +217,8 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
+        marcarOferta();
+
         // SUMAR TOTAL DE PRECIOS
 
         sumarTotalPrecios();
@@ -282,7 +284,6 @@ $(".btnAgregarProducto").click(function () {
                     "</div>" +
                     "</div>"
             );
-            marcarOferta();
             // AGREGAR LOS PRODUCTOS AL SELECT
 
             respuesta.forEach(funcionForEach);
@@ -300,6 +301,7 @@ $(".btnAgregarProducto").click(function () {
                     );
                 }
             }
+            marcarOferta();
 
             // SUMAR TOTAL DE PRECIOS
 
@@ -373,16 +375,16 @@ $(".formularioVenta").on(
                     respuesta["precio_venta"]
                 );
 
+                marcarOferta();
                 // AGRUPAR PRODUCTOS EN FORMATO JSON
-
                 listarProductos();
             },
         });
     }
 );
-function marcarOferta(cantidades, valores) {
-    // let valores = $('input[name="nuevoPrecioProducto"]');
-    // let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
+function marcarOferta() {
+    let valores = $('input[name="nuevoPrecioProducto"]');
+    let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
     let suma = 0;
     cantidades.each(function () {
         let valor = parseFloat($(this).val()) || 0;
@@ -454,7 +456,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         return;
     }
 
-    marcarOferta($('input[name="nuevaCantidadProducto"]'), $('input[name="nuevoPrecioProducto"]'));
+    marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
