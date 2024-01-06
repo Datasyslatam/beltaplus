@@ -392,6 +392,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     cantidades.each(function () {
         var valor = parseFloat($(this).val()) || 0;
         suma += valor;
+        console.log(valor);
     });
     cantidad_acumulada = suma;
     var codigoBuscado = $(this).attr("id");
@@ -418,12 +419,13 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad_acumulada >= 6) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        valores.style.backgroundColor = "#7AB4AD";
-        valores.style.opacity = "1";
+        valores.each(function() {
+            $(this).css('background-color', '#7AB4AD');
+        });
     } else {
-        valores.style.backgroundColor = "#eee";
-        valores.style.opacity = "1";
-
+        valores.each(function() {
+            $(this).css('background-color', '#eee');
+        });
         nuevoPrecio = precioReal;
     }
 
