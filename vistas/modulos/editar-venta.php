@@ -113,7 +113,7 @@
                           <div class="input-group">
                 
                             <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
-                            <input type="text" class="form-control nuevaDescripcionProducto nombre" idProducto="'.$value["id"].'" name="agregarProducto" value="'.$value["descripcion"].'" readonly required>
+                            <input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value="'.$value["descripcion"].'" readonly required>
                           </div>
                         </div>
                         <div class="col-xs-3">

@@ -61,6 +61,14 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var datos = new FormData();
     datos.append("id_producto", idProducto);
     datos.append("agregar_producto", true);
+    $.ajax({
+        url: "ajax/colores.ajax.php",
+        method: "GET",
+        dataType: "json",
+        success: function (respuesta){
+            console.log(respuesta);
+        }
+    });
     
     $.ajax({
         url: "ajax/productos.ajax.php",
