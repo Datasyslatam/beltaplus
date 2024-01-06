@@ -144,29 +144,29 @@ EOF;
 			}
 
 			$precioTotal = number_format($valor_acumulado, 2);
-
+			$precioProducto = $valorUnitario * $cantidad;
 			$bloque2 = <<<EOF
 
-<table style="font-size:9px;">
+			<table style="font-size:9px;">
 
-	<tr>
-	
-		<td style="width:160px; text-align:left">
-		$item[descripcion] $color $talla
-		</td>
+				<tr>
+				
+					<td style="width:160px; text-align:left">
+					$item[descripcion] $color $talla
+					</td>
 
-	</tr>
+				</tr>
 
-	<tr>
-	
-		<td style="width:160px; text-align:right">
-		$ $valorUnitario Und * $item[cantidad]  = $ $precioTotal
-		<br>
-		</td>
+				<tr>
+				
+					<td style="width:160px; text-align:right">
+					$ $valorUnitario Und * $item[cantidad]  = $precioProducto
+					<br>
+					</td>
 
-	</tr>
+				</tr>
 
-</table>
+			</table>
 
 EOF;
 
