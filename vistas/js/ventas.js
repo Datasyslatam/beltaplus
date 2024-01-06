@@ -217,19 +217,19 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
-        marcarOferta();
-
+        
         // SUMAR TOTAL DE PRECIOS
-
+        
         sumarTotalPrecios();
-
+        
         // AGREGAR IMPUESTO
-
+        
         agregarImpuesto();
-
+        
         // AGRUPAR PRODUCTOS EN FORMATO JSON
-
+        
         listarProductos();
+        marcarOferta();
     }
 });
 
@@ -375,9 +375,9 @@ $(".formularioVenta").on(
                     respuesta["precio_venta"]
                 );
 
-                marcarOferta();
                 // AGRUPAR PRODUCTOS EN FORMATO JSON
                 listarProductos();
+                marcarOferta();
             },
         });
     }
