@@ -12,6 +12,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 // 	}
 
 // })//
+var cantidad_acumulada = 0; // cantidad de productos total
 
 $(".tablaVentas").DataTable({
     //"ajax": "ajax/datatable-ventas.ajax.php",
@@ -227,6 +228,8 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         // AGRUPAR PRODUCTOS EN FORMATO JSON
 
         listarProductos();
+
+        marcarOferta();
     }
 });
 
@@ -281,7 +284,7 @@ $(".btnAgregarProducto").click(function () {
                     "</div>" +
                     "</div>"
             );
-
+            marcarOferta();
             // AGREGAR LOS PRODUCTOS AL SELECT
 
             respuesta.forEach(funcionForEach);
@@ -300,6 +303,7 @@ $(".btnAgregarProducto").click(function () {
                 }
             }
 
+            marcarOferta();
             // SUMAR TOTAL DE PRECIOS
 
             sumarTotalPrecios();
@@ -379,15 +383,30 @@ $(".formularioVenta").on(
         });
     }
 );
+function marcarOferta() {
 
+    let valores = $('input[name="nuevoPrecioProducto"]');
+    let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
+    let suma = 0;
+    cantidades.each(function () {
+        let valor = parseFloat($(this).val()) || 0;
+        suma += valor;
+    });
+    cantidad_acumulada = suma;
+    if (cantidad_acumulada >= 6) {
+        valores.each(function () {
+            $(this).css("background-color", "#7AB4AD");
+        });
+    } else {
+        valores.each(function () {
+            $(this).css("background-color", "#eee");
+        });
+    }
+}
 /*=============================================
 MODIFICAR LA CANTIDAD
 =============================================*/
-var cantidad_acumulada = 0;
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
-
-    var valores = $('input[name="nuevoPrecioProducto"]');
-    var cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad 
     var suma = 0;
     cantidades.each(function () {
         var valor = parseFloat($(this).val()) || 0;
@@ -419,15 +438,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad_acumulada >= 6) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        valores.each(function() {
-            $(this).css('background-color', '#7AB4AD');
-        });
     } else {
-        valores.each(function() {
-            $(this).css('background-color', '#eee');
-        });
         nuevoPrecio = precioReal;
     }
+    marcarOferta();
 
     var precioFinal = cantidad * nuevoPrecio;
     precio.val(precioFinal);
