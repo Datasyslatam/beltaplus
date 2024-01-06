@@ -403,13 +403,6 @@ function marcarOferta($cantidades, $valores) {
 MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
-    var suma = 0;
-    cantidades.each(function () {
-        var valor = parseFloat($(this).val()) || 0;
-        suma += valor;
-        console.log(valor);
-    });
-    cantidad_acumulada = suma;
     var codigoBuscado = $(this).attr("id");
     var elementoEncontrado;
     for (var i = 0; i < ajaxRespuestas.length; i++) {
