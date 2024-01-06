@@ -61,7 +61,20 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var datos = new FormData();
     datos.append("id_producto", idProducto);
     datos.append("agregar_producto", true);
-
+    
+    $.ajax({
+        url: "ajax/colores.ajax.php",
+        method: "GET",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta){
+            let color = respuesta["color"];
+            console.log(color);
+        },
+    });
     $.ajax({
         url: "ajax/productos.ajax.php",
         method: "POST",
@@ -219,8 +232,8 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
         
-        marcarOferta();
         // SUMAR TOTAL DE PRECIOS
+        marcarOferta();
         
         sumarTotalPrecios();
         
@@ -401,6 +414,7 @@ function marcarOferta() {
             $(this).css("background-color", "#eee");
         });
     }
+    console.log(suma, cantidad_acumulada);
 }
 /*=============================================
 MODIFICAR LA CANTIDAD
