@@ -73,7 +73,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
-			var id = respuesta["codigo"];
+            var id = respuesta["codigo"];
             ajaxRespuestas.push(respuesta);
 
             /*=============================================
@@ -111,7 +111,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     "</div>" +
                     "<!-- Cantidad del producto -->" +
                     '<div class="col-xs-3">' +
-                    '<input id="'+ id +'"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
+                    '<input id="' +
+                    id +
+                    '"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
                     stock +
                     '" nuevoStock="' +
                     Number(stock - 1) +
@@ -149,7 +151,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
 });
 
 /*=============================================
-CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
+CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA   
 =============================================*/
 
 $(".tablaVentas").on("draw.dt", function () {
@@ -250,7 +252,7 @@ $(".btnAgregarProducto").click(function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-			let id = respuesta["codigo"];
+            let id = respuesta["codigo"];
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
                     "<!-- Descripción del producto -->" +
@@ -266,7 +268,9 @@ $(".btnAgregarProducto").click(function () {
                     "</div>" +
                     "<!-- Cantidad del producto -->" +
                     '<div class="col-xs-3 ingresoCantidad">' +
-                    '<input id="'+ id +'"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
+                    '<input id="' +
+                    id +
+                    '"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="0" stock nuevoStock required>' +
                     "</div>" +
                     "<!-- Precio del producto -->" +
                     '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
@@ -379,21 +383,26 @@ $(".formularioVenta").on(
 /*=============================================
 MODIFICAR LA CANTIDAD
 =============================================*/
-
+var cantidad_acumulada = 0;
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
+    var valores = $('input[name="nuevoPrecioProducto"]');
+    var cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad 
+    var suma = 0;
+    cantidades.each(function () {
+        var valor = parseFloat($(this).val()) || 0;
+        suma += valor;
+    });
+    cantidad_acumulada = suma;
     var codigoBuscado = $(this).attr("id");
-
-    var elementoEncontrado; 
-	for (var i = 0; i < ajaxRespuestas.length; i++) {
-		var producto = ajaxRespuestas[i];
-		if (producto.codigo === codigoBuscado) {
-		  elementoEncontrado = producto;
-		  break;
-		}
-	  }
-	  
-	
+    var elementoEncontrado;
+    for (var i = 0; i < ajaxRespuestas.length; i++) {
+        var producto = ajaxRespuestas[i];
+        if (producto.codigo === codigoBuscado) {
+            elementoEncontrado = producto;
+            break;
+        }
+    }
 
     var precio = $(this)
         .parent()
@@ -407,16 +416,14 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
 
-
-    if (cantidad >= 6) {
+    if (cantidad_acumulada >= 6) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        precio[0].style.backgroundColor = "#7AB4AD";
-        precio[0].style.opacity = "1";
-
+        valores.style.backgroundColor = "#7AB4AD";
+        valores.style.opacity = "1";
     } else {
-        precio[0].style.backgroundColor = "#eee";
-        precio[0].style.opacity = "1";
-		
+        valores.style.backgroundColor = "#eee";
+        valores.style.opacity = "1";
+
         nuevoPrecio = precioReal;
     }
 

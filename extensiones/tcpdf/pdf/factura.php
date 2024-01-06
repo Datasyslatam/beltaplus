@@ -114,7 +114,12 @@ EOF;
 
 		// ---------------------------------------------------------
 
-		$acum = 0;
+		$valor_acumulado = 0;
+		$cantidad_acumulada = 0;
+		foreach ($productos as $key => $item){
+			$cantidad = $item["cantidad"];
+			$cantidad_acumulada += $cantidad;
+		}
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
@@ -130,15 +135,15 @@ EOF;
 
 			$talla = $respuestaTalla["talla"] ?? "NaN";
 			$color = $respuestaColor["color"] ?? "NaN";
-			if ($cantidad >= 6) {
+			if ($cantidad_acumulada >= 6) {
 				$valorUnitario = number_format($respuestaProducto["precio_compra"], 2);
-				$acum += $respuestaProducto["precio_compra"] * $cantidad;
+				$valor_acumulado += $respuestaProducto["precio_compra"] * $cantidad;
 			} else {
 				$valorUnitario = number_format($item["precio"], 2);
-				$acum += $item["precio"] * $cantidad;
+				$valor_acumulado += $item["precio"] * $cantidad;
 			}
 
-			$precioTotal = number_format($acum, 2);
+			$precioTotal = number_format($valor_acumulado, 2);
 
 			$bloque2 = <<<EOF
 
@@ -168,8 +173,8 @@ EOF;
 			$pdf->writeHTML($bloque2, false, false, false, false, '');
 
 		}
-		$neto = number_format($acum, 2);
-		$total = number_format($acum + $respuestaVenta["impuesto"], 2);
+		$neto = number_format($valor_acumulado, 2);
+		$total = number_format($valor_acumulado + $respuestaVenta["impuesto"], 2);
 		// ---------------------------------------------------------
 
 		$bloque3 = <<<EOF
