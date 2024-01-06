@@ -380,7 +380,7 @@ $(".formularioVenta").on(
         });
     }
 );
-function marcarOferta($cantidades, $valores) {
+function marcarOferta(cantidades, valores) {
     // let valores = $('input[name="nuevoPrecioProducto"]');
     // let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
     let suma = 0;
