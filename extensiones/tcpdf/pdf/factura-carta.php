@@ -168,8 +168,12 @@ class imprimirFactura
 		// ---------------------------------------------------------
 
 
-		$acum = 0;
-
+		$valor_acumulado = 0;
+		$cantidad_acumulada = 0;
+		foreach($productos as $key => $item){
+			$cantidad = $item["cantidad"];
+			$cantidad_acumulada += $cantidad;
+		}
 		foreach ($productos as $key => $item) {
 
 			$itemProducto = "id";
@@ -193,11 +197,11 @@ class imprimirFactura
 			}
 
 
-			if ($cantidad >= 6) {
+			if ($cantidad_acumulada >= 6) {
 
 				$valorMayor = "$" . number_format($respuestaProducto["precio_compra"]); // valor por mayor identificado como "precio de compra"
 				$precioTotal = number_format($respuestaProducto["precio_compra"] * $cantidad);
-				$acum += $respuestaProducto["precio_compra"] * $cantidad;
+				$valor_acumulado += $respuestaProducto["precio_compra"] * $cantidad;
 				$valorUnitario = "No aplica";
 
 
@@ -207,12 +211,12 @@ class imprimirFactura
 
 				$valorMayor = "No aplica";
 				$precioTotal = number_format($respuestaProducto["precio_venta"] * $cantidad);
-				$acum += $respuestaProducto["precio_venta"] * $cantidad;
+				$valor_acumulado += $respuestaProducto["precio_venta"] * $cantidad;
 
 
 			}
-			$neto = number_format($acum);
-			$precioFinal = number_format($acum + $respuestaVenta["impuesto"]);
+			$neto = number_format($valor_acumulado);
+			$precioFinal = number_format($valor_acumulado + $respuestaVenta["impuesto"]);
 
 
 			$bloque4 = <<<EOF
