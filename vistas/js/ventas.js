@@ -460,9 +460,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var precioReal = parseFloat(precio.attr("precioReal"));
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
-    var nuevoPrecio;
+    var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
+    var nuevoStock = stock - cantidad;
 
-    if (cantidad_acumulada >= 5) {
+    if (cantidad_acumulada >= 5 && nuevoStock > nuevoStockActual) {
         nuevoPrecio = elementoEncontrado.precio_compra;
     } else {
         nuevoPrecio = precioReal;
@@ -471,7 +472,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var precioFinal = cantidad * nuevoPrecio;
     precio.val(precioFinal);
 
-    var nuevoStock = stock - cantidad;
     $(this).attr("nuevoStock", nuevoStock);
 
     if (cantidad > stock) {
