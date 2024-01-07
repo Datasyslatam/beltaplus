@@ -426,7 +426,7 @@ function encontrarProducto(id) {
             break;
         }
     }
-    console.log(elementoEncontrado);
+    console.log(ajaxRespuestas);
     return elementoEncontrado;
 }
 let primeraOferta = false;
