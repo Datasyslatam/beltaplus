@@ -451,9 +451,9 @@ function marcarOferta() {
         let producto = encontrarProducto(id);
 
         if (cantidad_acumulada >= 6) {
-            aplicarDescuento(valorActual, cantidad, producto.precio_compra);
+            aplicarDescuento(valorActual, cantidad, producto.precio["precio_compra"]);
         } else {
-            restaurarPrecioNormal(valorActual, cantidad, producto.precio_venta);
+            restaurarPrecioNormal(valorActual, cantidad, producto["precio_venta"]);
         }
     });
 }
