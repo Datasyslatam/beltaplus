@@ -492,16 +492,16 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         return;
     }
 
-    marcarOferta();
-
+    
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
-
+    
     // AGREGAR IMPUESTO
     agregarImpuesto();
-
+    
     // AGRUPAR PRODUCTOS EN FORMATO JSON
     listarProductos();
+    marcarOferta();
 });
 
 /*=============================================
