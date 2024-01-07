@@ -142,7 +142,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<input type="text" class="form-control nuevaDescripcionProducto" idProducto="' +
                     idProducto +
                     '" name="agregarProducto" value="' +
-                    descripcion + ' ' + color + ' ' + tallas +
+                    descripcion + ' ' + color + ' ' + talla +
                     '" readonly required>' +
                     "</div>" +
                     "</div>" +
