@@ -429,40 +429,36 @@ function encontrarProducto(id) {
     return elementoEncontrado;
 }
 let primeraOferta = false;
-function marcarOferta() {
-    if (cantidad_acumulada >= 6) {
-        let productos = $(".nuevoProducto");
-        productos.each(function () {
-            let id = $(this).find(".quitarProducto").attr("idproducto");
-            let cantidad = $(this).find(".nuevaCantidadProducto");
-            let valorActual = $(this).find(".nuevaPrecioProducto");
-            let producto = encontrarProducto(id);
-            let cantidadValor = parseInt(cantidad.val()) || 0;
-            let precioDescuento = producto.precio_compra;
-            let valorFinal = cantidadValor * precioDescuento;
-            valorActual
-                .val(valorFinal.toFixed(2))
-                .css("background-color", "#7AB4AD");
-        });
-        primeraOferta = true;
-    } else {
-        if (primeraOferta === true) {
-            let productos = $(".nuevoProducto");
-            productos.each(function () {
-                let id = $(this).find(".quitarProducto").attr("idproducto");
-                let cantidad = $(this).find(".nuevaCantidadProducto");
-                let valorActual = $(this).find(".nuevaPrecioProducto");
-                let producto = encontrarProducto(id);
-                let cantidadValor = parseInt(cantidad.val()) || 0;
-                let precioNormal = producto.precio_venta;
-                let valorFinal = cantidadValor * precioNormal;
-                valorActual
-                    .val(valorFinal.toFixed(2))
-                    .css("background-color", "#eee");
-            });
-        }
-    }
+
+function aplicarDescuento(valorActual, cantidadValor, precio) {
+    let valorFinal = cantidadValor * precio;
+    valorActual.val(valorFinal.toFixed(2)).css("background-color", "#7AB4AD");
 }
+
+function restaurarPrecioNormal(valorActual, cantidadValor, precio) {
+    let valorFinal = cantidadValor * precio;
+    valorActual.val(valorFinal.toFixed(2)).css("background-color", "#eee");
+}
+
+function marcarOferta() {
+    let productos = $(".nuevoProducto");
+
+    productos.each(function () {
+        let id = $(this).find(".quitarProducto").attr("idproducto");
+        let cantidad =
+            parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
+        let valorActual = $(this).find(".nuevaPrecioProducto");
+        let producto = encontrarProducto(id);
+
+        if (cantidad_acumulada >= 6) {
+            aplicarDescuento(valorActual, cantidad, producto.precio_compra);
+            primeraOferta = true;
+        } else if (primeraOferta) {
+            restaurarPrecioNormal(valorActual, cantidad, producto.precio_venta);
+        }
+    });
+}
+
 // function marcarOferta() {
 //     let valores = $('input[name="nuevoPrecioProducto"]');
 //     let cantidades = $('input[name="nuevaCantidadProducto"]');
@@ -525,7 +521,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
-
     marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
