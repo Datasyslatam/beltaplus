@@ -115,8 +115,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 method: "GET",
                 data: {
                     action: "mostrarColor",
-                    itemColores: idProducto,
-                    valorColores: respuesta["id_color"],
+                    itemTalla: idProducto,
+                    valorTalla: respuesta["id_color"],
                 },
                 dataType: "json",
                 success: function (color) {
