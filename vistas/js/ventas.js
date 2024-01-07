@@ -435,7 +435,6 @@ function marcarOferta() {
             $(this).css("background-color", "#eee");
         });
     }
-    console.log(suma, cantidad_acumulada);
 }
 /*=============================================
 MODIFICAR LA CANTIDAD
@@ -465,6 +464,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     if (cantidad_acumulada >= 6) {
         nuevoPrecio = elementoEncontrado.precio_compra;
+        console.log(elementoEncontrado)
     } else {
         nuevoPrecio = precioReal;
     }
