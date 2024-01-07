@@ -404,7 +404,11 @@ $(".formularioVenta").on(
                     "nuevoStock",
                     Number(respuesta["stock"]) - 1
                 );
-                $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
+                if(cantidad_acumulada > 5) {
+                    $(nuevoPrecioProducto).val(respuesta["precio_compra"]);
+                }else{
+                    $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
+                }
                 $(nuevoPrecioProducto).attr(
                     "precioReal",
                     respuesta["precio_venta"]
