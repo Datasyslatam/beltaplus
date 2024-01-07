@@ -462,9 +462,8 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
 
-    if (cantidad_acumulada >= 6) {
+    if (cantidad_acumulada >= 5) {
         nuevoPrecio = elementoEncontrado.precio_compra;
-        console.log(elementoEncontrado)
     } else {
         nuevoPrecio = precioReal;
     }
