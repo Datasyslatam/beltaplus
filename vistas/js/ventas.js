@@ -420,12 +420,12 @@ $(".formularioVenta").on(
 
 function encontrarProducto(id) {
     let elementoEncontrado;
-    for (
-        var i = 0;
-        i < ajaxRespuestas.length &&
-        !(elementoEncontrado = ajaxRespuestas[i].codigo === id);
-        i++
-    );
+    for (let i = 0; i < ajaxRespuestas.length; i++) {
+        if (ajaxRespuestas[i].codigo === id) {
+            elementoEncontrado = ajaxRespuestas[i];
+            break;
+        }
+    }
     return elementoEncontrado;
 }
 let primeraOferta = false;
@@ -447,7 +447,8 @@ function marcarOferta() {
         let id = $(this).find(".quitarProducto").attr("idproducto");
         let cantidad =
             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
-        let valorActual = $(this).find(".nuevaPrecioProducto");
+        let valorActual =
+            parseInt($(this).find(".nuevaPrecioProducto").val()) || 0;
         let producto = encontrarProducto(id);
 
         if (cantidad_acumulada >= 6) {
