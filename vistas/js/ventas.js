@@ -446,7 +446,7 @@ function marcarOferta() {
     let productos = $(".nuevoProducto");
 
     productos.each(function () {
-        let id = $(this).find(".quitarProducto").attr("idproducto");
+        let id = parseInt($(this).find(".quitarProducto").attr("idproducto"));
         let cantidad =
             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
         let valorActual =
