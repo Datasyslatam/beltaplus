@@ -61,15 +61,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
     var datos = new FormData();
     datos.append("id_producto", idProducto);
     datos.append("agregar_producto", true);
-    $.ajax({
-        url: "ajax/colores.ajax.php",
-        method: "POST",
-        dataType: "json",
-        success: function (respuesta){
-            console.log(respuesta);
-        }
-    });
-    
+
     $.ajax({
         url: "ajax/productos.ajax.php",
         method: "POST",
@@ -102,7 +94,32 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
 
                 return;
             }
-
+            $.ajax({
+                url: "ajax/mostrar-data-preventa.ajax.php",
+                method: "GET",
+                data: {
+                    action: "mostrarTalla",
+                    itemTalla: idProducto,
+                    valorTalla: respuesta["id_talla"],
+                },
+                dataType: "json",
+                success: function (talla) {
+                    console.log(talla);
+                },
+            });
+            $.ajax({
+                url: "ajax/mostrar-data-preventa.ajax.php",
+                method: "GET",
+                data: {
+                    action: "mostrarColor",
+                    itemTalla: idProducto,
+                    valorTalla: respuesta["id_color"],
+                },
+                dataType: "json",
+                success: function (color) {
+                    console.log(color);
+                },
+            });
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
                     "<!-- Descripción del producto -->" +
@@ -226,18 +243,17 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
-        
         // SUMAR TOTAL DE PRECIOS
         marcarOferta();
-        
+
         sumarTotalPrecios();
-        
+
         // AGREGAR IMPUESTO
-        
+
         agregarImpuesto();
-        
+
         // AGRUPAR PRODUCTOS EN FORMATO JSON
-        
+
         listarProductos();
     }
 });
