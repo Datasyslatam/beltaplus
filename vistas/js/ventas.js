@@ -424,11 +424,10 @@ function encontrarProducto(id) {
         console.log(ajaxRespuestas[i].codigo);
         if (ajaxRespuestas[i].codigo == id) {
             elementoEncontrado = ajaxRespuestas[i];
-            break;
+            return elementoEncontrado;
         }
     }
     console.log(ajaxRespuestas);
-    return elementoEncontrado;
 }
 let primeraOferta = false;
 
@@ -455,8 +454,7 @@ function marcarOferta() {
 
         if (cantidad_acumulada >= 6) {
             aplicarDescuento(valorActual, cantidad, producto.precio_compra);
-            primeraOferta = true;
-        } else if (primeraOferta) {
+        } else {
             restaurarPrecioNormal(valorActual, cantidad, producto.precio_venta);
         }
     });
