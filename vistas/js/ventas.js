@@ -105,7 +105,10 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 dataType: "json",
                 success: function (talla) {
                     console.log(talla);
-                },
+                }, 
+                error: function (xhr, status, error) {
+                    console.error("Error en la llamada AJAX:", error);
+                }
             });
             $.ajax({
                 url: "ajax/mostrar-data-preventa.ajax.php",
@@ -118,7 +121,10 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 dataType: "json",
                 success: function (color) {
                     console.log(color);
-                },
+                }, 
+                error: function (xhr, status, error) {
+                    console.error("Error en la llamada AJAX:", error);
+                }
             });
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
