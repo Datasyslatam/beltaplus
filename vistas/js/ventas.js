@@ -448,8 +448,7 @@ function marcarOferta() {
         let id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
         let cantidad =
             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
-        let valorActual =
-            parseInt($(this).find(".nuevaPrecioProducto").val()) || 0;
+        let valorActual = $(this).find(".nuevaPrecioProducto");
         let producto = encontrarProducto(id);
 
         if (cantidad_acumulada >= 6) {
