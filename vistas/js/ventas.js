@@ -76,7 +76,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var precio = respuesta["precio_venta"];
             var id = respuesta["codigo"];
             ajaxRespuestas.push(respuesta);
-
+            let color;
+            let tallas;
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
           	=============================================*/
@@ -104,7 +105,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 },
                 dataType: "json",
                 success: function (talla) {
-                    console.log(talla);
+                    let tallaEncontrada = (talla.find(diccionario => diccionario.id === respuesta["id_talla"]) || {}).talla;
+                    tallas = tallaEncontrada
+                    console.log(color);
                 },
                 error: function (xhr, status, error) {
                     console.error("Error en la llamada AJAX:", error);
@@ -120,6 +123,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 },
                 dataType: "json",
                 success: function (color) {
+                    let colorEncontrado = (color.find(diccionario => diccionario.id === respuesta["id_color"]) || {}).color;
+                    color = colorEncontrado
                     console.log(color);
                 },
                 error: function (xhr, status, error) {
@@ -137,7 +142,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     '<input type="text" class="form-control nuevaDescripcionProducto" idProducto="' +
                     idProducto +
                     '" name="agregarProducto" value="' +
-                    descripcion +
+                    descripcion + ' ' + color + ' ' + tallas +
                     '" readonly required>' +
                     "</div>" +
                     "</div>" +
