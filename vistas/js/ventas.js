@@ -417,39 +417,73 @@ $(".formularioVenta").on(
         });
     }
 );
+
+function encontrarProducto(id) {
+    let elementoEncontrado;
+    for (
+        var i = 0;
+        i < ajaxRespuestas.length &&
+        !(elementoEncontrado = ajaxRespuestas[i].codigo === id);
+        i++
+    );
+    return elementoEncontrado;
+}
+let primeraOferta = false;
 function marcarOferta() {
-    let valores = $('input[name="nuevoPrecioProducto"]');
-    let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
-    let suma = 0;
-    cantidades.each(function () {
-        let valor = parseFloat($(this).val()) || 0;
-        suma += valor;
-    });
-    cantidad_acumulada = suma;
     if (cantidad_acumulada >= 6) {
-        valores.each(function () {
-            $(this).css("background-color", "#7AB4AD");
+        let productos = $(".nuevoProducto");
+        productos.each(function () {
+            let id = $(this).find(".quitarProducto").attr("idproducto");
+            let cantidad = $(this).find(".nuevaCantidadProducto");
+            let valorActual = $(this).find(".nuevaPrecioProducto");
+            let producto = encontrarProducto(id);
+            let cantidadValor = parseInt(cantidad.val()) || 0;
+            let precioDescuento = producto.precio_compra;
+            let valorFinal = cantidadValor * precioDescuento;
+            valorActual
+                .val(valorFinal.toFixed(2))
+                .css("background-color", "#7AB4AD");
         });
+        primeraOferta = true;
     } else {
-        valores.each(function () {
-            $(this).css("background-color", "#eee");
-        });
+        if (primeraOferta === true) {
+            let productos = $(".nuevoProducto");
+            productos.each(function () {
+                let id = $(this).find(".quitarProducto").attr("idproducto");
+                let cantidad = $(this).find(".nuevaCantidadProducto");
+                let valorActual = $(this).find(".nuevaPrecioProducto");
+                let producto = encontrarProducto(id);
+                let cantidadValor = parseInt(cantidad.val()) || 0;
+                let precioNormal = producto.precio_venta;
+                let valorFinal = cantidadValor * precioNormal;
+                valorActual
+                    .val(valorFinal.toFixed(2))
+                    .css("background-color", "#eee");
+            });
+        }
     }
 }
+// function marcarOferta() {
+//     let valores = $('input[name="nuevoPrecioProducto"]');
+//     let cantidades = $('input[name="nuevaCantidadProducto"]');
+//     let suma = 0;
+//     cantidades.each(function () {
+//         let valor = parseFloat($(this).val()) || 0;
+//         suma += valor;
+//     });
+//     cantidad_acumulada = suma;
+//     valores.each(function () {
+//         let backgroundColor = cantidad_acumulada >= 6 ? "#7AB4AD" : "#eee";
+//         $(this).css("background-color", backgroundColor);
+//     });
+//     cambiarPrecios();
+// }
 /*=============================================
 MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado;
-    for (var i = 0; i < ajaxRespuestas.length; i++) {
-        var producto = ajaxRespuestas[i];
-        if (producto.codigo === codigoBuscado) {
-            elementoEncontrado = producto;
-            break;
-        }
-    }
-
+    let elementoEncontrado = encontrarProducto(codigoBuscado);
     var precio = $(this)
         .parent()
         .parent()
@@ -462,15 +496,15 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
 
-    if (cantidad_acumulada >= 6) {
-        nuevoPrecio = elementoEncontrado.precio_compra;
-        console.log(elementoEncontrado)
-    } else {
-        nuevoPrecio = precioReal;
-    }
+    // if (cantidad_acumulada >= 6) {
+    //     nuevoPrecio = elementoEncontrado.precio_compra;
+    //     console.log(elementoEncontrado);
+    // } else {
+    //     nuevoPrecio = precioReal;
+    // }
 
-    var precioFinal = cantidad * nuevoPrecio;
-    precio.val(precioFinal);
+    // var precioFinal = cantidad * nuevoPrecio;
+    // precio.val(precioFinal);
 
     var nuevoStock = stock - cantidad;
     $(this).attr("nuevoStock", nuevoStock);
@@ -492,16 +526,16 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         return;
     }
 
-    
+    marcarOferta();
+
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
-    
+
     // AGREGAR IMPUESTO
     agregarImpuesto();
-    
+
     // AGRUPAR PRODUCTOS EN FORMATO JSON
     listarProductos();
-    marcarOferta();
 });
 
 /*=============================================
