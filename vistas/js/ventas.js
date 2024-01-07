@@ -417,31 +417,17 @@ $(".formularioVenta").on(
         });
     }
 );
-
-function obtenerProductoPorCodigo(codigo) {
-    return ajaxRespuestas.find(producto => producto.codigo === codigo) || null;
-}
-
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
-    let cantidades = $('input[name="nuevaCantidadProducto"]');
+    let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
     let suma = 0;
-
     cantidades.each(function () {
         let valor = parseFloat($(this).val()) || 0;
         suma += valor;
     });
-
     cantidad_acumulada = suma;
-
     if (cantidad_acumulada >= 6) {
         valores.each(function () {
-            var producto = obtenerProductoPorCodigo($(this).closest('.nuevoProducto').find('.nuevaCantidadProducto').attr('id'));
-            if (producto) {
-                var nuevoPrecio = producto.precio_compra;
-                $(this).val(nuevoPrecio);
-            }
-
             $(this).css("background-color", "#7AB4AD");
         });
     } else {
@@ -456,7 +442,15 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado = obtenerProductoPorCodigo(codigoBuscado);
+    var elementoEncontrado;
+    for (var i = 0; i < ajaxRespuestas.length; i++) {
+        var producto = ajaxRespuestas[i];
+        if (producto.codigo === codigoBuscado) {
+            elementoEncontrado = producto;
+            break;
+        }
+    }
+
     var precio = $(this)
         .parent()
         .parent()
@@ -467,7 +461,13 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var precioReal = parseFloat(precio.attr("precioReal"));
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
-    var nuevoPrecio = cantidad_acumulada >= 6 ? producto?.precio_compra : precioReal;
+    var nuevoPrecio;
+
+    if (cantidad_acumulada >= 6) {
+        nuevoPrecio = elementoEncontrado.precio_compra;
+    } else {
+        nuevoPrecio = precioReal;
+    }
 
     var precioFinal = cantidad * nuevoPrecio;
     precio.val(precioFinal);
