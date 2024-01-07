@@ -429,16 +429,15 @@ function encontrarProducto(id) {
     }
     console.log(ajaxRespuestas);
 }
-let primeraOferta = false;
 
 function aplicarDescuento(valorActual, cantidadValor, precio) {
     let valorFinal = cantidadValor * precio;
-    valorActual.val(valorFinal.toFixed(2)).css("background-color", "#7AB4AD");
+    valorActual.val(valorFinal).css("background-color", "#7AB4AD");
 }
 
 function restaurarPrecioNormal(valorActual, cantidadValor, precio) {
     let valorFinal = cantidadValor * precio;
-    valorActual.val(valorFinal.toFixed(2)).css("background-color", "#eee");
+    valorActual.val(valorFinal).css("background-color", "#eee");
 }
 
 function marcarOferta() {
@@ -446,9 +445,9 @@ function marcarOferta() {
 
     productos.each(function () {
         let id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
+        let valorActual = $(this).find(".nuevaPrecioProducto");
         let cantidad =
             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
-        let valorActual = $(this).find(".nuevaPrecioProducto");
         let producto = encontrarProducto(id);
 
         if (cantidad_acumulada >= 6) {
