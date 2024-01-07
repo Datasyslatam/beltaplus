@@ -437,6 +437,7 @@ function aplicarDescuento(valorActual, cantidadValor, precio) {
 
 function restaurarPrecioNormal(valorActual, cantidadValor, precio) {
     console.log(valorActual);
+    console.log(valorActual.val());
     let valorFinal = cantidadValor * precio;
     valorActual.val(valorFinal).css("background-color", "#eee");
 }
