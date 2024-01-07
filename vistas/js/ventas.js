@@ -442,23 +442,31 @@ function restaurarPrecioNormal(valorActual, cantidadValor, precio) {
     valorActual.val(valorFinal).css("background-color", "#eee");
 }
 
-function marcarOferta() {
-    var productos = $(".nuevoProducto");
+// function marcarOferta() {
+//     var productos = $(".nuevoProducto");
 
-    productos.each(function () {
-        var id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
-        var valorActual = $(this).find(".nuevaPrecioProducto");
-        var cantidad =
-            parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
-        var producto = encontrarProducto(id);
+//     productos.each(function () {
+//         var id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
+//         var valorActual = $(this).find(".nuevaPrecioProducto");
+//         var cantidad =
+//             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
+//         var producto = encontrarProducto(id);
 
-        if (cantidad_acumulada >= 6) {
-            aplicarDescuento(valorActual, cantidad, producto.precio["precio_compra"]);
-        } else {
-            restaurarPrecioNormal(valorActual, cantidad, producto["precio_venta"]);
-        }
-    });
-}
+//         if (cantidad_acumulada >= 6) {
+//             aplicarDescuento(
+//                 valorActual,
+//                 cantidad,
+//                 producto.precio["precio_compra"]
+//             );
+//         } else {
+//             restaurarPrecioNormal(
+//                 valorActual,
+//                 cantidad,
+//                 producto["precio_venta"]
+//             );
+//         }
+//     });
+// }
 
 // function marcarOferta() {
 //     var valores = $('input[name="nuevoPrecioProducto"]');
@@ -477,39 +485,35 @@ function marcarOferta() {
 // }
 /*=============================================
 MODIFICAR LA CANTIDAD
-=============================================*/
+=============================================*/ 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
-    var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado = encontrarProducto(codigoBuscado);
-    var precio = $(this)
-        .parent()
-        .parent()
-        .children(".ingresoPrecio")
-        .children()
-        .children(".nuevoPrecioProducto");
+    $(".nuevoProducto").each(function () {
+        var codigoBuscado = $(this).find(".nuevaCantidadProducto").attr("id");
+        var precio = $(this).find(".nuevoPrecioProducto");
+        var cantidad = parseFloat($(this).find(".nuevaCantidadProducto").val());
+        var elementoEncontrado = encontrarProducto(codigoBuscado);
+        var nuevoPrecio;
 
-    var precioReal = parseFloat(precio.attr("precioReal"));
+        if (cantidad_acumulada >= 6) {
+            nuevoPrecio = elementoEncontrado.precio_compra;
+            precio.css("background-color", "#7AB4AD");
+        } else {
+            nuevoPrecio = parseFloat(precio.attr("precioreal"));
+            precio.css("background-color", "#eee");
+        }
+
+        var precioFinal = cantidad * nuevoPrecio;
+        precio.val(precioFinal.toFixed(2));
+    });
+
     var stock = parseFloat($(this).attr("stock"));
-    var cantidad = parseFloat($(this).val());
-    var nuevoPrecio;
-
-    if (cantidad_acumulada >= 6) {
-        nuevoPrecio = elementoEncontrado.precio_compra;
-        console.log(elementoEncontrado);
-    } else {
-        nuevoPrecio = precioReal;
-    }
-
-    var precioFinal = cantidad * nuevoPrecio;
-    precio.val(precioFinal);
-
-    var nuevoStock = stock - cantidad;
+    var nuevoStock = stock - parseFloat($(this).val());
     $(this).attr("nuevoStock", nuevoStock);
 
-    if (cantidad > stock) {
+    if (parseFloat($(this).val()) > stock) {
         $(this).val(0);
         $(this).attr("nuevoStock", stock);
-        precio.val(0);
+        $(".nuevoPrecioProducto").val(0);
 
         sumarTotalPrecios();
 
@@ -522,17 +526,13 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
+
     marcarOferta();
-
-    // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
-
-    // AGREGAR IMPUESTO
     agregarImpuesto();
-
-    // AGRUPAR PRODUCTOS EN FORMATO JSON
     listarProductos();
 });
+
 
 /*=============================================
 SUMAR TODOS LOS PRECIOS
