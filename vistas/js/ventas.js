@@ -422,7 +422,7 @@ function encontrarProducto(id) {
     let elementoEncontrado;
     for (let i = 0; i < ajaxRespuestas.length; i++) {
         console.log(ajaxRespuestas[i][codigo]);
-        if (ajaxRespuestas[i][codigo] == id) {
+        if (ajaxRespuestas[i].codigo == id) {
             elementoEncontrado = ajaxRespuestas[i];
             break;
         }
