@@ -99,32 +99,32 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 method: "GET",
                 data: {
                     action: "mostrarTalla",
-                    itemTalla: idProducto,
-                    valorTalla: respuesta["id_talla"],
+                    itemDatos: idProducto,
+                    valorDatos: respuesta["id_talla"],
                 },
                 dataType: "json",
                 success: function (talla) {
                     console.log(talla);
-                }, 
+                },
                 error: function (xhr, status, error) {
                     console.error("Error en la llamada AJAX:", error);
-                }
+                },
             });
             $.ajax({
                 url: "ajax/mostrar-data-preventa.ajax.php",
                 method: "GET",
                 data: {
                     action: "mostrarColor",
-                    itemColores: idProducto,
-                    valorColores: respuesta["id_color"],
+                    itemDatos: idProducto, 
+                    valorDatos: respuesta["id_color"],
                 },
                 dataType: "json",
                 success: function (color) {
                     console.log(color);
-                }, 
+                },
                 error: function (xhr, status, error) {
                     console.error("Error en la llamada AJAX:", error);
-                }
+                },
             });
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
