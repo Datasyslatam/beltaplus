@@ -52,25 +52,30 @@ AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
 let ajaxRespuestas = [];
 
-$(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
-    var idProducto = $(this).attr("idProducto");
+$(".tablaVentas tbody").on(
+    "click",
+    "button.agregarProducto",
+    async function () {
+        var idProducto = $(this).attr("idProducto");
 
-    $(this).removeClass("btn-primary agregarProducto");
-    $(this).addClass("btn-default");
+        $(this).removeClass("btn-primary agregarProducto");
+        $(this).addClass("btn-default");
 
-    var datos = new FormData();
-    datos.append("id_producto", idProducto);
-    datos.append("agregar_producto", true);
+        var datos = new FormData();
+        datos.append("id_producto", idProducto);
+        datos.append("agregar_producto", true);
 
-    $.ajax({
-        url: "ajax/productos.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
+        try {
+            var respuesta = await $.ajax({
+                url: "ajax/productos.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+            });
+
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             var precio = respuesta["precio_venta"];
@@ -91,116 +96,96 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 return;
             }
 
-            $.ajax({
-                url: "ajax/mostrar-data-preventa.ajax.php",
-                method: "GET",
-                data: {
-                    action: "mostrarTalla",
-                    itemDatos: idProducto,
-                    valorDatos: respuesta["id_talla"],
-                },
-                dataType: "json",
-                success: function (tallas) {
-                    let tallaEncontrada = (
-                        tallas.find(
-                            (diccionario) =>
-                                diccionario.id === respuesta["id_talla"]
-                        ) || {}
-                    ).talla;
-                    var talla = tallaEncontrada;
-                    console.log(talla);
+            // Hacer ambas llamadas AJAX concurrentemente
+            var [tallas, colores] = await Promise.all([
+                $.ajax({
+                    url: "ajax/mostrar-data-preventa.ajax.php",
+                    method: "GET",
+                    data: {
+                        action: "mostrarTalla",
+                        itemDatos: idProducto,
+                        valorDatos: respuesta["id_talla"],
+                    },
+                    dataType: "json",
+                }),
+                $.ajax({
+                    url: "ajax/mostrar-data-preventa.ajax.php",
+                    method: "GET",
+                    data: {
+                        action: "mostrarColor",
+                        itemDatos: idProducto,
+                        valorDatos: respuesta["id_color"],
+                    },
+                    dataType: "json",
+                }),
+            ]);
 
-                    $.ajax({
-                        url: "ajax/mostrar-data-preventa.ajax.php",
-                        method: "GET",
-                        data: {
-                            action: "mostrarColor",
-                            itemDatos: idProducto,
-                            valorDatos: respuesta["id_color"],
-                        },
-                        dataType: "json",
-                        success: function (colores) {
-                            let colorEncontrado = (
-                                colores.find(
-                                    (diccionario) =>
-                                        diccionario.id === respuesta["id_color"]
-                                ) || {}
-                            ).color;
-                            var color = colorEncontrado;
-                            console.log(color);
+            let tallaEncontrada = (
+                tallas.find(
+                    (diccionario) => diccionario.id === respuesta["id_talla"]
+                ) || {}
+            ).talla;
+            let colorEncontrado = (
+                colores.find(
+                    (diccionario) => diccionario.id === respuesta["id_color"]
+                ) || {}
+            ).color;
 
-                            $(".nuevoProducto").append(
-                                '<div class="row" style="padding:5px 15px">' +
-                                    "<!-- Descripción del producto -->" +
-                                    '<div class="col-xs-6" style="padding-right:0px">' +
-                                    '<div class="input-group">' +
-                                    '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="' +
-                                    idProducto +
-                                    '"><i class="fa fa-times"></i></button></span>' +
-                                    '<input type="text" class="form-control nuevaDescripcionProducto" idProducto="' +
-                                    idProducto +
-                                    '" name="agregarProducto" value="' +
-                                    descripcion +
-                                    " " +
-                                    color +
-                                    " " +
-                                    talla +
-                                    '" readonly required>' +
-                                    "</div>" +
-                                    "</div>" +
-                                    "<!-- Cantidad del producto -->" +
-                                    '<div class="col-xs-3">' +
-                                    '<input id="' +
-                                    id +
-                                    '"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
-                                    stock +
-                                    '" nuevoStock="' +
-                                    Number(stock - 1) +
-                                    '" required>' +
-                                    "</div>" +
-                                    "<!-- Precio del producto -->" +
-                                    '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
-                                    '<div class="input-group">' +
-                                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-                                    '<input type="text" class="form-control nuevoPrecioProducto" precioReal="' +
-                                    precio +
-                                    '" name="nuevoPrecioProducto" value="' +
-                                    precio +
-                                    '" readonly required>' +
-                                    "</div>" +
-                                    "</div>" +
-                                    "</div>"
-                            );
+            $(".nuevoProducto").append(
+                '<div class="row" style="padding:5px 15px">' +
+                    "<!-- Descripción del producto -->" +
+                    '<div class="col-xs-6" style="padding-right:0px">' +
+                    '<div class="input-group">' +
+                    '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="' +
+                    idProducto +
+                    '"><i class="fa fa-times"></i></button></span>' +
+                    '<input type="text" class="form-control nuevaDescripcionProducto" idProducto="' +
+                    idProducto +
+                    '" name="agregarProducto" value="' +
+                    descripcion +
+                    " " +
+                    colorEncontrado +
+                    " " +
+                    tallaEncontrada +
+                    '" readonly required>' +
+                    "</div>" +
+                    "</div>" +
+                    "<!-- Cantidad del producto -->" +
+                    '<div class="col-xs-3">' +
+                    '<input id="' +
+                    id +
+                    '"type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="' +
+                    stock +
+                    '" nuevoStock="' +
+                    Number(stock - 1) +
+                    '" required>' +
+                    "</div>" +
+                    "<!-- Precio del producto -->" +
+                    '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
+                    '<div class="input-group">' +
+                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
+                    '<input type="text" class="form-control nuevoPrecioProducto" precioReal="' +
+                    precio +
+                    '" name="nuevoPrecioProducto" value="' +
+                    precio +
+                    '" readonly required>' +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            );
 
-                            marcarOferta();
-                            sumarTotalPrecios();
-                            agregarImpuesto();
-                            listarProductos();
-                            $(".nuevoPrecioProducto").number(true, 2);
+            marcarOferta();
+            sumarTotalPrecios();
+            agregarImpuesto();
+            listarProductos();
+            $(".nuevoPrecioProducto").number(true, 2);
 
-                            localStorage.removeItem("quitarProducto");
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(
-                                "Error en la llamada AJAX de mostrarColor:",
-                                error
-                            );
-                        },
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error(
-                        "Error en la llamada AJAX de mostrarTalla:",
-                        error
-                    );
-                },
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error("Error en la llamada AJAX de productos:", error);
-        },
-    });
-});
+            localStorage.removeItem("quitarProducto");
+        } catch (error) {
+            console.error("Error en la llamada AJAX:", error);
+        }
+    }
+);
 
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA   
