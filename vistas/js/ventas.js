@@ -50,7 +50,7 @@ $(".tablaVentas").DataTable({
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
-let ajaxRespuestas = [];
+var ajaxRespuestas = [];
 
 $(".tablaVentas tbody").on(
     "click",
@@ -120,12 +120,12 @@ $(".tablaVentas tbody").on(
                 }),
             ]);
 
-            let tallaEncontrada = (
+            var tallaEncontrada = (
                 tallas.find(
                     (diccionario) => diccionario.id === respuesta["id_talla"]
                 ) || {}
             ).talla;
-            let colorEncontrado = (
+            var colorEncontrado = (
                 colores.find(
                     (diccionario) => diccionario.id === respuesta["id_color"]
                 ) || {}
@@ -290,7 +290,7 @@ $(".btnAgregarProducto").click(function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            let id = respuesta["codigo"];
+            var id = respuesta["codigo"];
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
                     "<!-- Descripción del producto -->" +
@@ -419,8 +419,8 @@ $(".formularioVenta").on(
 );
 
 function encontrarProducto(id) {
-    let elementoEncontrado;
-    for (let i = 0; i < ajaxRespuestas.length; i++) {
+    var elementoEncontrado;
+    for (var i = 0; i < ajaxRespuestas.length; i++) {
         console.log(ajaxRespuestas[i].codigo);
         if (ajaxRespuestas[i].codigo == id) {
             elementoEncontrado = ajaxRespuestas[i];
@@ -431,26 +431,26 @@ function encontrarProducto(id) {
 }
 
 function aplicarDescuento(valorActual, cantidadValor, precio) {
-    let valorFinal = cantidadValor * precio;
+    var valorFinal = cantidadValor * precio;
     valorActual.val(valorFinal).css("background-color", "#7AB4AD");
 }
 
 function restaurarPrecioNormal(valorActual, cantidadValor, precio) {
     console.log(valorActual);
     console.log(valorActual.val());
-    let valorFinal = cantidadValor * precio;
+    var valorFinal = cantidadValor * precio;
     valorActual.val(valorFinal).css("background-color", "#eee");
 }
 
 function marcarOferta() {
-    let productos = $(".nuevoProducto");
+    var productos = $(".nuevoProducto");
 
     productos.each(function () {
-        let id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
-        let valorActual = $(this).find(".nuevaPrecioProducto");
-        let cantidad =
+        var id = parseInt($(this).find(".nuevaCantidadProducto").attr("id"));
+        var valorActual = $(this).find(".nuevaPrecioProducto");
+        var cantidad =
             parseInt($(this).find(".nuevaCantidadProducto").val()) || 0;
-        let producto = encontrarProducto(id);
+        var producto = encontrarProducto(id);
 
         if (cantidad_acumulada >= 6) {
             aplicarDescuento(valorActual, cantidad, producto.precio["precio_compra"]);
@@ -461,16 +461,16 @@ function marcarOferta() {
 }
 
 // function marcarOferta() {
-//     let valores = $('input[name="nuevoPrecioProducto"]');
-//     let cantidades = $('input[name="nuevaCantidadProducto"]');
-//     let suma = 0;
+//     var valores = $('input[name="nuevoPrecioProducto"]');
+//     var cantidades = $('input[name="nuevaCantidadProducto"]');
+//     var suma = 0;
 //     cantidades.each(function () {
-//         let valor = parseFloat($(this).val()) || 0;
+//         var valor = parseFloat($(this).val()) || 0;
 //         suma += valor;
 //     });
 //     cantidad_acumulada = suma;
 //     valores.each(function () {
-//         let backgroundColor = cantidad_acumulada >= 6 ? "#7AB4AD" : "#eee";
+//         var backgroundColor = cantidad_acumulada >= 6 ? "#7AB4AD" : "#eee";
 //         $(this).css("background-color", backgroundColor);
 //     });
 //     cambiarPrecios();
@@ -480,7 +480,7 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var codigoBuscado = $(this).attr("id");
-    let elementoEncontrado = encontrarProducto(codigoBuscado);
+    var elementoEncontrado = encontrarProducto(codigoBuscado);
     var precio = $(this)
         .parent()
         .parent()
