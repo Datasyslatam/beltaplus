@@ -107,7 +107,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                 success: function (tallas) {
                     let tallaEncontrada = (tallas.find(diccionario => diccionario.id === respuesta["id_talla"]) || {}).talla;
                     talla = tallaEncontrada
-                    console.log(color);
+                    console.log(talla);
                 },
                 error: function (xhr, status, error) {
                     console.error("Error en la llamada AJAX:", error);
