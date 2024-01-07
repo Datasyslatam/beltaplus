@@ -492,15 +492,15 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var cantidad = parseFloat($(this).val());
     var nuevoPrecio;
 
-    // if (cantidad_acumulada >= 6) {
-    //     nuevoPrecio = elementoEncontrado.precio_compra;
-    //     console.log(elementoEncontrado);
-    // } else {
-    //     nuevoPrecio = precioReal;
-    // }
+    if (cantidad_acumulada >= 6) {
+        nuevoPrecio = elementoEncontrado.precio_compra;
+        console.log(elementoEncontrado);
+    } else {
+        nuevoPrecio = precioReal;
+    }
 
-    // var precioFinal = cantidad * nuevoPrecio;
-    // precio.val(precioFinal);
+    var precioFinal = cantidad * nuevoPrecio;
+    precio.val(precioFinal);
 
     var nuevoStock = stock - cantidad;
     $(this).attr("nuevoStock", nuevoStock);
