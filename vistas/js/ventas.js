@@ -76,8 +76,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
             var precio = respuesta["precio_venta"];
             var id = respuesta["codigo"];
             ajaxRespuestas.push(respuesta);
-            let color;
-            let tallas;
+            var color;
+            var talla;
             /*=============================================
           	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
           	=============================================*/
@@ -104,9 +104,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     valorDatos: respuesta["id_talla"],
                 },
                 dataType: "json",
-                success: function (talla) {
-                    let tallaEncontrada = (talla.find(diccionario => diccionario.id === respuesta["id_talla"]) || {}).talla;
-                    tallas = tallaEncontrada
+                success: function (tallas) {
+                    let tallaEncontrada = (tallas.find(diccionario => diccionario.id === respuesta["id_talla"]) || {}).talla;
+                    talla = tallaEncontrada
                     console.log(color);
                 },
                 error: function (xhr, status, error) {
@@ -122,8 +122,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
                     valorDatos: respuesta["id_color"],
                 },
                 dataType: "json",
-                success: function (color) {
-                    let colorEncontrado = (color.find(diccionario => diccionario.id === respuesta["id_color"]) || {}).color;
+                success: function (colores) {
+                    let colorEncontrado = (colores.find(diccionario => diccionario.id === respuesta["id_color"]) || {}).color;
                     color = colorEncontrado
                     console.log(color);
                 },
