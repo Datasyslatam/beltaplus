@@ -421,6 +421,7 @@ $(".formularioVenta").on(
 function encontrarProducto(id) {
     let elementoEncontrado;
     for (let i = 0; i < ajaxRespuestas.length; i++) {
+        console.log(ajaxRespuestas[i]["1"];
         if (ajaxRespuestas[i]["1"] === id) {
             elementoEncontrado = ajaxRespuestas[i];
             break;
