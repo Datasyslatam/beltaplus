@@ -436,27 +436,27 @@ function encontrarProducto(id) {
         }
     }
 }
-function preciosOferta() {
-    $(".nuevoProducto .row").each(function () {
-        var idCantidadProducto = $(this)
-            .find(".nuevaCantidadProducto")
-            .attr("id");
-        var precio = $(this).find(".nuevaPrecioProducto");
-        var productoEncontrado = encontrarProducto(idCantidadProducto);
+// function preciosOferta() {
+//     $(".nuevoProducto .row").each(function () {
+//         var idCantidadProducto = $(this)
+//             .find(".nuevaCantidadProducto")
+//             .attr("id");
+//         var precio = $(this).find(".nuevaPrecioProducto");
+//         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
-        if (productoEncontrado) {
-            var nuevoPrecio =
-                cantidad_acumulada >= 6
-                    ? productoEncontrado.precio_compra
-                    : productoEncontrado.precio_venta;
+//         if (productoEncontrado) {
+//             var nuevoPrecio =
+//                 cantidad_acumulada >= 6
+//                     ? productoEncontrado.precio_compra
+//                     : productoEncontrado.precio_venta;
 
-            var cantidad = parseFloat(
-                $(this).find(".nuevaCantidadProducto").val()
-            );
-            precio.val(nuevoPrecio * cantidad);
-        }
-    });
-}
+//             var cantidad = parseFloat(
+//                 $(this).find(".nuevaCantidadProducto").val()
+//             );
+//             precio.val(nuevoPrecio * cantidad);
+//         }
+//     });
+// }
 
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
@@ -531,7 +531,25 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
+    $(".nuevoProducto .row").each(function () {
+        var idCantidadProducto = $(this)
+            .find(".nuevaCantidadProducto")
+            .attr("id");
+        var precio = $(this).find(".nuevaPrecioProducto");
+        var productoEncontrado = encontrarProducto(idCantidadProducto);
 
+        if (productoEncontrado) {
+            var nuevoPrecio =
+                cantidad_acumulada >= 6
+                    ? productoEncontrado.precio_compra
+                    : productoEncontrado.precio_venta;
+
+            var cantidad = parseFloat(
+                $(this).find(".nuevaCantidadProducto").val()
+            );
+            precio.val(nuevoPrecio * cantidad);
+        }
+    });
     marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
