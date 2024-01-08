@@ -85,26 +85,33 @@ $(".tablaVentas tbody").on(
             }
             var id = respuesta["codigo"];
 
-            // $(".nuevoProducto .row").each(function () {
-            //     var idCantidadProducto = $(this)
-            //         .find(".nuevaCantidadProducto")
-            //         .attr("id");
-            //     var precio = $(this).find(".nuevoPrecioProducto");
-            //     var productoEncontrado = encontrarProducto(idCantidadProducto);
+            $(".nuevoProducto .row").each(function () {
+                var idCantidadProducto = $(this)
+                    .find(".nuevaCantidadProducto")
+                    .attr("id");
+                var precio = $(this).find(".nuevoPrecioProducto");
+                var productoEncontrado = encontrarProducto(idCantidadProducto);
 
-            //     if (productoEncontrado) {
-            //         if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
-            //             nuevoPrecio = productoEncontrado.precio_compra;
-            //         }else{
-            //             nuevoPrecio =  productoEncontrado.precio_venta;
-            //         }
+                if (productoEncontrado) {
+                    if (
+                        (cantidad_acumulada >= 5 &&
+                            nuevoStock < nuevoStockActual) ||
+                        (cantidad_acumulada >= 7 &&
+                            nuevoStock > nuevoStockActual)
+                    ) {
+                        nuevoPrecio = productoEncontrado.precio_compra;
+                        console.log("entro");
+                    } else {
+                        console.log("no entro");
+                        nuevoPrecio = productoEncontrado.precio_venta;
+                    }
 
-            //         var cantidad = parseFloat(
-            //             $(this).find(".nuevaCantidadProducto").val()
-            //         );
-            //         precio.val(nuevoPrecio * cantidad);
-            //     }
-            // });
+                    var cantidad = parseFloat(
+                        $(this).find(".nuevaCantidadProducto").val()
+                    );
+                    precio.val(nuevoPrecio * cantidad);
+                }
+            });
 
             if (stock == 0) {
                 swal({
@@ -435,34 +442,6 @@ $(".formularioVenta").on(
                 } else {
                     $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
                 }
-                $(".nuevoProducto .row").each(function () {
-                    var idCantidadProducto = $(this)
-                        .find(".nuevaCantidadProducto")
-                        .attr("id");
-                    var precio = $(this).find(".nuevoPrecioProducto");
-                    var productoEncontrado =
-                        encontrarProducto(idCantidadProducto);
-
-                    if (productoEncontrado) {
-                        if (
-                            (cantidad_acumulada >= 5 &&
-                                nuevoStock < nuevoStockActual) ||
-                            (cantidad_acumulada >= 7 &&
-                                nuevoStock > nuevoStockActual)
-                        ) {
-                            nuevoPrecio = productoEncontrado.precio_compra;
-                            console.log("entro");
-                        } else {
-                            console.log("no entro");
-                            nuevoPrecio = productoEncontrado.precio_venta;
-                        }
-
-                        var cantidad = parseFloat(
-                            $(this).find(".nuevaCantidadProducto").val()
-                        );
-                        precio.val(nuevoPrecio * cantidad);
-                    }
-                });
                 $(nuevoPrecioProducto).attr(
                     "precioReal",
                     respuesta["precio_venta"]
