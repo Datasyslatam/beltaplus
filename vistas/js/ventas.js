@@ -436,27 +436,6 @@ function encontrarProducto(id) {
         }
     }
 }
-// function preciosOferta() {
-//     $(".nuevoProducto .row").each(function () {
-//         var idCantidadProducto = $(this)
-//             .find(".nuevaCantidadProducto")
-//             .attr("id");
-//         var precio = $(this).find(".nuevaPrecioProducto");
-//         var productoEncontrado = encontrarProducto(idCantidadProducto);
-
-//         if (productoEncontrado) {
-//             var nuevoPrecio =
-//                 cantidad_acumulada >= 6
-//                     ? productoEncontrado.precio_compra
-//                     : productoEncontrado.precio_venta;
-
-//             var cantidad = parseFloat(
-//                 $(this).find(".nuevaCantidadProducto").val()
-//             );
-//             precio.val(nuevoPrecio * cantidad);
-//         }
-//     });
-// }
 
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
@@ -476,7 +455,6 @@ function marcarOferta() {
             $(this).css("background-color", "#eee");
         });
     }
-    // preciosOferta();
 }
 /*=============================================
 MODIFICAR LA CANTIDAD
@@ -520,10 +498,11 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
         if (productoEncontrado) {
-            var nuevoPrecio =
-                cantidad_acumulada >= 5
-                    ? productoEncontrado.precio_compra
-                    : productoEncontrado.precio_venta;
+            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
+                nuevoPrecio = productoEncontrado.precio_compra;
+            }else{
+                nuevoPrecio =  productoEncontrado.precio_venta;
+            }
 
             var cantidad = parseFloat(
                 $(this).find(".nuevaCantidadProducto").val()
