@@ -280,6 +280,7 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
+        marcarOferta();
         $(".nuevoProducto .row").each(function () {
             var idCantidadProducto = $(this)
                 .find(".nuevaCantidadProducto")
@@ -303,7 +304,6 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
             }
         });
         productos_acumulado -= 1;
-        marcarOferta();
         // SUMAR TOTAL DE PRECIOS
 
         sumarTotalPrecios();
@@ -448,6 +448,7 @@ $(".formularioVenta").on(
             processData: false,
             dataType: "json",
             success: function (respuesta) {
+                marcarOferta();
                 $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);
                 $(nuevaCantidadProducto).attr("stock", respuesta["stock"]);
                 $(nuevaCantidadProducto).attr(
@@ -466,7 +467,6 @@ $(".formularioVenta").on(
 
                 // AGRUPAR PRODUCTOS EN FORMATO JSON
                 listarProductos();
-                marcarOferta();
             },
         });
     }
@@ -519,7 +519,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var cantidad = parseFloat($(this).val());
     var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
-
+    marcarOferta();
     $(".nuevoProducto .row").each(function () {
         var idCantidadProducto = $(this)
             .find(".nuevaCantidadProducto")
@@ -564,7 +564,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
-    marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
     sumarTotalPrecios();
