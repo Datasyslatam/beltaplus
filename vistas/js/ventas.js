@@ -535,29 +535,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     
     // var precioFinal = cantidad * nuevoPrecio;
     // precio.val(precioFinal);
-    $(".nuevoProducto .row").each(function () {
-        var idCantidadProducto = $(this)
-            .find(".nuevaCantidadProducto")
-            .attr("id");
-        var precio = $(this).find(".nuevoPrecioProducto");
-        var productoEncontrado = encontrarProducto(idCantidadProducto);
-
-        if (productoEncontrado) {
-            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual || 
-                cantidad_acumulada >= 7 && nuevoStock > nuevoStockActual){
-                nuevoPrecio = productoEncontrado.precio_compra;
-                console.log("entro");
-            }else{
-                console.log("no entro");
-                nuevoPrecio =  productoEncontrado.precio_venta;
-            }
-
-            var cantidad = parseFloat(
-                $(this).find(".nuevaCantidadProducto").val()
-            );
-            precio.val(nuevoPrecio * cantidad);
-        }
-    });
+    actualizarPrecios()
 
     $(this).attr("nuevoStock", nuevoStock);
 
