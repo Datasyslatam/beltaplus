@@ -85,27 +85,27 @@ $(".tablaVentas tbody").on(
             }
             var id = respuesta["codigo"];
 
-            $(".nuevoProducto .row").each(function () {
-                var idCantidadProducto = $(this)
-                    .find(".nuevaCantidadProducto")
-                    .attr("id");
-                var precio = $(this).find(".nuevoPrecioProducto");
-                var productoEncontrado = encontrarProducto(idCantidadProducto);
+            // $(".nuevoProducto .row").each(function () {
+            //     var idCantidadProducto = $(this)
+            //         .find(".nuevaCantidadProducto")
+            //         .attr("id");
+            //     var precio = $(this).find(".nuevoPrecioProducto");
+            //     var productoEncontrado = encontrarProducto(idCantidadProducto);
         
-                if (productoEncontrado) {
-                    if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
-                        nuevoPrecio = productoEncontrado.precio_compra;
-                    }else{
-                        nuevoPrecio =  productoEncontrado.precio_venta;
-                    }
+            //     if (productoEncontrado) {
+            //         if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
+            //             nuevoPrecio = productoEncontrado.precio_compra;
+            //         }else{
+            //             nuevoPrecio =  productoEncontrado.precio_venta;
+            //         }
         
-                    var cantidad = parseFloat(
-                        $(this).find(".nuevaCantidadProducto").val()
-                    );
-                    precio.val(nuevoPrecio * cantidad);
-                }
-            });
-            
+            //         var cantidad = parseFloat(
+            //             $(this).find(".nuevaCantidadProducto").val()
+            //         );
+            //         precio.val(nuevoPrecio * cantidad);
+            //     }
+            // });
+
             if (stock == 0) {
                 swal({
                     title: "No hay stock disponible",
@@ -519,7 +519,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
         if (productoEncontrado) {
-            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
+            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual || cantidad_acumulada >= 6 && nuevoStock > nuevoStockActual){
                 nuevoPrecio = productoEncontrado.precio_compra;
             }else{
                 nuevoPrecio =  productoEncontrado.precio_venta;
