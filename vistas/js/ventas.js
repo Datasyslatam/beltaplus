@@ -74,7 +74,7 @@ $(".tablaVentas tbody").on(
                 processData: false,
                 dataType: "json",
             });
-            let cantidad_acumulada = cantidadItems()
+            let cantidad_acumulada = cantidadItems();
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             if (cantidad_acumulada >= 5) {
@@ -277,8 +277,12 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
-        var codigo = $('.nuevaCantidadProducto[idproducto="' + idProducto + '"]').attr('id');
-        manipularProductos(codigo, "eliminar", 1)
+        var contenedorRow = $(this).closest(".row");
+        var nuevaCantidadProducto = contenedorRow.find(
+            ".nuevaCantidadProducto"
+        );
+        var codigo = nuevaCantidadProducto.attr("id");
+        manipularProductos(codigo, "eliminar", 1);
         let cantidad_acumulada = cantidadItems();
         $(".nuevoProducto .row").each(function () {
             var idCantidadProducto = $(this)
@@ -481,12 +485,12 @@ function encontrarProducto(id) {
     }
 }
 function cantidadItems() {
-    let valor_acumulado = 0; 
+    let valor_acumulado = 0;
     for (let clave in productos_acumulado) {
-            valor_acumulado += productos_acumulado[clave];
-            console.log(productos_acumulado[clave]);
+        valor_acumulado += productos_acumulado[clave];
+        console.log(productos_acumulado[clave]);
     }
-    return valor_acumulado
+    return valor_acumulado;
 }
 
 function manipularProductos(codigo, opcion, valor, tipoModificacion = true) {
@@ -548,7 +552,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var stockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
     let cantidad_acumulada = cantidadItems();
-    let modificacion = (nuevoStock < stockActual) ? true : false;
+    let modificacion = nuevoStock < stockActual ? true : false;
     $(".nuevoProducto .row").each(function () {
         var idCantidadProducto = $(this)
             .find(".nuevaCantidadProducto")
@@ -593,7 +597,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
-    manipularProductos(codigoBuscado, "modificar", 1, modificacion)
+    manipularProductos(codigoBuscado, "modificar", 1, modificacion);
     marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
