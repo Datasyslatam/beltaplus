@@ -476,7 +476,7 @@ function marcarOferta() {
             $(this).css("background-color", "#eee");
         });
     }
-    preciosOferta();
+    // preciosOferta();
 }
 /*=============================================
 MODIFICAR LA CANTIDAD
