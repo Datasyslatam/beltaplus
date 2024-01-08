@@ -13,7 +13,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 
 // })//
 var cantidad_acumulada = 0; // cantidad de productos total
-
+var productos_acumulado = 0;
 $(".tablaVentas").DataTable({
     //"ajax": "ajax/datatable-ventas.ajax.php",
     deferRender: true,
@@ -78,9 +78,12 @@ $(".tablaVentas tbody").on(
 
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
-            var precio = respuesta["precio_venta"];
+            if(cantidad_acumulada >= 6){
+                var precio = respuesta["precio_compra"];
+            }else{
+                var precio = respuesta["precio_venta"];
+            }
             var id = respuesta["codigo"];
-            ajaxRespuestas.push(respuesta);
 
             if (stock == 0) {
                 swal({
@@ -173,7 +176,8 @@ $(".tablaVentas tbody").on(
                     "</div>" +
                     "</div>"
             );
-
+            ajaxRespuestas.push(respuesta);
+            productos_acumulado += 1;
             marcarOferta();
             sumarTotalPrecios();
             agregarImpuesto();
@@ -253,6 +257,7 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
+        productos_acumulado -= 1;
         // SUMAR TOTAL DE PRECIOS
         marcarOferta();
 
@@ -467,7 +472,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
 
-    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual) {
+    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || cantidad_acumulada >= 5 && productos_acumulado > 1) {
         nuevoPrecio = elementoEncontrado.precio_compra;
     } else {
         nuevoPrecio = precioReal;
