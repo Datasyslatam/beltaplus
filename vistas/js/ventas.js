@@ -518,7 +518,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
         if (productoEncontrado) {
-            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual || cantidad_acumulada >= 6 && nuevoStock > nuevoStockActual){
+            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual || cantidad_acumulada == 5 && nuevoStock > nuevoStockActual){
                 nuevoPrecio = productoEncontrado.precio_compra;
                 console.log("entro");
             }else{
