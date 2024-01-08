@@ -442,7 +442,7 @@ function preciosOferta(){
         var precio = $(this).find(".nuevaPrecioProducto")
         var nuevoPrecio = (cantidad_acumulada >= 6) ? 
         encontrarProducto(idCantidadProducto).precio_compra : encontrarProducto(idCantidadProducto).precio_venta;
-        var cantidad = parseFloat($(this).val());
+        var cantidad = parseFloat($(this).find(".nuevaCantidadProducto").val());
         precio.val(nuevoPrecio*cantidad);
 
     });
