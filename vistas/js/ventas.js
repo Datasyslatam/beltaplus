@@ -74,7 +74,7 @@ $(".tablaVentas tbody").on(
                 processData: false,
                 dataType: "json",
             });
-
+            let cantidad_acumulada = cantidadItems()
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
             if (cantidad_acumulada >= 5) {
@@ -90,7 +90,6 @@ $(".tablaVentas tbody").on(
                     .attr("id");
                 var precio = $(this).find(".nuevoPrecioProducto");
                 var productoEncontrado = encontrarProducto(idCantidadProducto);
-                let cantidad_acumulada = cantidadItems()
                 if (productoEncontrado) {
                     if (cantidad_acumulada >= 5) {
                         nuevoPrecio = productoEncontrado.precio_compra;
