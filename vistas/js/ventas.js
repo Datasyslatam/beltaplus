@@ -82,6 +82,20 @@ $(".tablaVentas tbody").on(
             } else {
                 var precio = respuesta["precio_venta"];
             }
+
+            if (stock == 0) {
+                swal({
+                    title: "No hay stock disponible",
+                    type: "error",
+                    confirmButtonText: "¡Cerrar!",
+                });
+
+                $("button[idProducto='" + idProducto + "']").addClass(
+                    "btn-primary agregarProducto"
+                );
+
+                return;
+            }
             var id = respuesta["codigo"];
             manipularProductos(id, "añadir", 1, true);
             $(".nuevoProducto .row").each(function () {
@@ -105,20 +119,6 @@ $(".tablaVentas tbody").on(
                     precio.val(nuevoPrecio * cantidad);
                 }
             });
-
-            if (stock == 0) {
-                swal({
-                    title: "No hay stock disponible",
-                    type: "error",
-                    confirmButtonText: "¡Cerrar!",
-                });
-
-                $("button[idProducto='" + idProducto + "']").addClass(
-                    "btn-primary agregarProducto"
-                );
-
-                return;
-            }
 
             // Hacer ambas llamadas AJAX concurrentemente
             var [tallas, colores] = await Promise.all([
