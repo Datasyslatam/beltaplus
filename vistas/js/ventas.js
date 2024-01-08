@@ -107,9 +107,7 @@ $(".tablaVentas tbody").on(
                 if (productoEncontrado) {
                     if (cantidad_acumulada >= 5) {
                         nuevoPrecio = productoEncontrado.precio_compra;
-                        console.log("entro");
                     } else {
-                        console.log("no entro");
                         nuevoPrecio = productoEncontrado.precio_venta;
                     }
 
@@ -294,9 +292,7 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
             if (productoEncontrado) {
                 if (cantidad_acumulada >= 7) {
                     nuevoPrecio = productoEncontrado.precio_compra;
-                    console.log("entro");
                 } else {
-                    console.log("no entro");
                     nuevoPrecio = productoEncontrado.precio_venta;
                 }
 
@@ -488,7 +484,6 @@ function cantidadItems() {
     let valor_acumulado = 0;
     for (let clave in productos_acumulado) {
         valor_acumulado += productos_acumulado[clave];
-        console.log(productos_acumulado[clave]);
     }
     return valor_acumulado;
 }
@@ -566,9 +561,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
                 (cantidad_acumulada >= 7 && nuevoStock > stockActual)
             ) {
                 nuevoPrecio = productoEncontrado.precio_compra;
-                console.log("entro");
             } else {
-                console.log("no entro");
                 nuevoPrecio = productoEncontrado.precio_venta;
             }
 
