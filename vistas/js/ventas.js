@@ -83,7 +83,7 @@ $(".tablaVentas tbody").on(
                 var precio = respuesta["precio_venta"];
             }
             var id = respuesta["codigo"];
-            manipularProductos(id, "añadir", 1)
+            manipularProductos(id, "añadir", 1, true);
             $(".nuevoProducto .row").each(function () {
                 var idCantidadProducto = $(this)
                     .find(".nuevaCantidadProducto")
