@@ -258,8 +258,8 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
         productos_acumulado -= 1;
-        // SUMAR TOTAL DE PRECIOS
         marcarOferta();
+        // SUMAR TOTAL DE PRECIOS
 
         sumarTotalPrecios();
 
@@ -472,7 +472,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
 
-    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || cantidad_acumulada >= 5 && productos_acumulado > 1) {
+    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || cantidad_acumulada >= 5 && productos_acumulado > 1 && nuevoStock < nuevoStockActual) {
         nuevoPrecio = elementoEncontrado.precio_compra;
     } else {
         nuevoPrecio = precioReal;
