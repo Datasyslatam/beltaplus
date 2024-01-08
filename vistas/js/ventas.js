@@ -486,23 +486,29 @@ function cantidadItems() {
     return valor_acumulado
 }
 
-function manipularProductos(codigo, opcion, valor, tipoModificacion){
-    switch(opcion){
+function manipularProductos(codigo, opcion, valor, tipoModificacion) {
+    switch (opcion) {
         case "añadir":
             productos_acumulado[codigo] = valor;
+            break;
 
         case "modificar":
-            if(tipoModificacion){
+            if (tipoModificacion) {
                 productos_acumulado[codigo] += valor;
-            }else{
+            } else {
                 productos_acumulado[codigo] -= valor;
             }
-        
+            break;
+
         case "eliminar":
             delete productos_acumulado[codigo];
-    }
+            break;
 
+        default:
+            console.log("Opción no válida");
+    }
 }
+
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
     let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
