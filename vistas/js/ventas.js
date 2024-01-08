@@ -277,6 +277,9 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
+        var codigo = $('.nuevaCantidadProducto[idproducto="' + idProducto + '"]').attr('id');
+        manipularProductos(codigo, "eliminar", 1)
+        let cantidad_acumulada = cantidadItems();
         $(".nuevoProducto .row").each(function () {
             var idCantidadProducto = $(this)
                 .find(".nuevaCantidadProducto")
@@ -486,7 +489,7 @@ function cantidadItems() {
     return valor_acumulado
 }
 
-function manipularProductos(codigo, opcion, valor, tipoModificacion) {
+function manipularProductos(codigo, opcion, valor, tipoModificacion = true) {
     switch (opcion) {
         case "añadir":
             productos_acumulado[codigo] = valor;
