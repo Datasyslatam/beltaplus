@@ -288,7 +288,7 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
             var productoEncontrado = encontrarProducto(idCantidadProducto);
 
             if (productoEncontrado) {
-                if (cantidad_acumulada >= 6) {
+                if (cantidad_acumulada >= 7) {
                     nuevoPrecio = productoEncontrado.precio_compra;
                     console.log("entro");
                 } else {
