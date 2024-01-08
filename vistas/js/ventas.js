@@ -91,14 +91,14 @@ $(".tablaVentas tbody").on(
             //         .attr("id");
             //     var precio = $(this).find(".nuevoPrecioProducto");
             //     var productoEncontrado = encontrarProducto(idCantidadProducto);
-        
+
             //     if (productoEncontrado) {
             //         if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual){
             //             nuevoPrecio = productoEncontrado.precio_compra;
             //         }else{
             //             nuevoPrecio =  productoEncontrado.precio_venta;
             //         }
-        
+
             //         var cantidad = parseFloat(
             //             $(this).find(".nuevaCantidadProducto").val()
             //         );
@@ -435,6 +435,34 @@ $(".formularioVenta").on(
                 } else {
                     $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
                 }
+                $(".nuevoProducto .row").each(function () {
+                    var idCantidadProducto = $(this)
+                        .find(".nuevaCantidadProducto")
+                        .attr("id");
+                    var precio = $(this).find(".nuevoPrecioProducto");
+                    var productoEncontrado =
+                        encontrarProducto(idCantidadProducto);
+
+                    if (productoEncontrado) {
+                        if (
+                            (cantidad_acumulada >= 5 &&
+                                nuevoStock < nuevoStockActual) ||
+                            (cantidad_acumulada >= 7 &&
+                                nuevoStock > nuevoStockActual)
+                        ) {
+                            nuevoPrecio = productoEncontrado.precio_compra;
+                            console.log("entro");
+                        } else {
+                            console.log("no entro");
+                            nuevoPrecio = productoEncontrado.precio_venta;
+                        }
+
+                        var cantidad = parseFloat(
+                            $(this).find(".nuevaCantidadProducto").val()
+                        );
+                        precio.val(nuevoPrecio * cantidad);
+                    }
+                });
                 $(nuevoPrecioProducto).attr(
                     "precioReal",
                     respuesta["precio_venta"]
@@ -496,20 +524,6 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
 
-    // if (
-    //     (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual) || // que cumpla el descuento y aumente la cantidad
-    //     (cantidad_acumulada >= 5 &&
-    //         productos_acumulado > 1 &&
-    //         nuevoStock < nuevoStockActual) || // que cumpla el descuento, ya haya un producto y aumente
-    //     (cantidad_acumulada >= 6 && nuevoStock > nuevoStockActual) // que cumpla el descuento
-    // ) {
-    //     nuevoPrecio = elementoEncontrado.precio_compra;
-    // } else {
-    //     nuevoPrecio = precioReal;
-    // }
-    
-    // var precioFinal = cantidad * nuevoPrecio;
-    // precio.val(precioFinal);
     $(".nuevoProducto .row").each(function () {
         var idCantidadProducto = $(this)
             .find(".nuevaCantidadProducto")
@@ -518,13 +532,15 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
         if (productoEncontrado) {
-            if(cantidad_acumulada >=  5 && nuevoStock < nuevoStockActual || 
-                cantidad_acumulada >= 7 && nuevoStock > nuevoStockActual){
+            if (
+                (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual) ||
+                (cantidad_acumulada >= 7 && nuevoStock > nuevoStockActual)
+            ) {
                 nuevoPrecio = productoEncontrado.precio_compra;
                 console.log("entro");
-            }else{
+            } else {
                 console.log("no entro");
-                nuevoPrecio =  productoEncontrado.precio_venta;
+                nuevoPrecio = productoEncontrado.precio_venta;
             }
 
             var cantidad = parseFloat(
