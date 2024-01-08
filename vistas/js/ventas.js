@@ -280,6 +280,28 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
     } else {
+        $(".nuevoProducto .row").each(function () {
+            var idCantidadProducto = $(this)
+                .find(".nuevaCantidadProducto")
+                .attr("id");
+            var precio = $(this).find(".nuevoPrecioProducto");
+            var productoEncontrado = encontrarProducto(idCantidadProducto);
+
+            if (productoEncontrado) {
+                if (cantidad_acumulada >= 6) {
+                    nuevoPrecio = productoEncontrado.precio_compra;
+                    console.log("entro");
+                } else {
+                    console.log("no entro");
+                    nuevoPrecio = productoEncontrado.precio_venta;
+                }
+
+                var cantidad = parseFloat(
+                    $(this).find(".nuevaCantidadProducto").val()
+                );
+                precio.val(nuevoPrecio * cantidad);
+            }
+        });
         productos_acumulado -= 1;
         marcarOferta();
         // SUMAR TOTAL DE PRECIOS
