@@ -78,7 +78,7 @@ $(".tablaVentas tbody").on(
 
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
-            if(cantidad_acumulada >= 6){
+            if(cantidad_acumulada >= 5){
                 var precio = respuesta["precio_compra"];
             }else{
                 var precio = respuesta["precio_venta"];
@@ -409,7 +409,7 @@ $(".formularioVenta").on(
                     "nuevoStock",
                     Number(respuesta["stock"]) - 1
                 );
-                if(cantidad_acumulada > 5) {
+                if(cantidad_acumulada >= 5) {
                     $(nuevoPrecioProducto).val(respuesta["precio_compra"]);
                 }else{
                     $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
