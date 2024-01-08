@@ -426,6 +426,26 @@ $(".formularioVenta").on(
         });
     }
 );
+function encontrarProducto(id){
+    let elementoEncontrado;
+    for (var i = 0; i < ajaxRespuestas.length; i++) {
+        var producto = ajaxRespuestas[i];
+        if (producto.codigo === id) {
+            elementoEncontrado = producto;
+            return elementoEncontrado;
+        }
+    }
+}
+function preciosOferta(){
+    $(".nuevoProducto .row").each(function(){
+        var idCantidadProducto = $(this).find(".nuevaCantidadProducto").attr("id");
+        var precio = $(this).find(".nuevaPrecioProducto")
+        var nuevoPrecio = (cantidad_acumulada >= 6) ? 
+        encontrarProducto(idCantidadProducto).precio_compra : encontrarProducto(idCantidadProducto).precio_venta;
+        precio.val(nuevoPrecio);
+
+    });
+}
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
     let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
@@ -437,7 +457,6 @@ function marcarOferta() {
     cantidad_acumulada = suma;
     if (cantidad_acumulada >= 6) {
         valores.each(function () {
-            
             $(this).css("background-color", "#7AB4AD");
         });
     } else {
@@ -445,20 +464,14 @@ function marcarOferta() {
             $(this).css("background-color", "#eee");
         });
     }
+    preciosOferta()
 }
 /*=============================================
 MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado;
-    for (var i = 0; i < ajaxRespuestas.length; i++) {
-        var producto = ajaxRespuestas[i];
-        if (producto.codigo === codigoBuscado) {
-            elementoEncontrado = producto;
-            break;
-        }
-    }
+    var elementoEncontrado = encontrarProducto(codigoBuscado);
 
     var precio = $(this)
         .parent()
@@ -473,9 +486,9 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
 
-    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || 
-        cantidad_acumulada >= 5 && productos_acumulado > 1 && nuevoStock < nuevoStockActual ||
-        cantidad_acumulada >= 6 && nuevoStock > nuevoStockActual 
+    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || // que cumpla el descuento y aumente la cantidad
+        cantidad_acumulada >= 5 && productos_acumulado > 1 && nuevoStock < nuevoStockActual || // que cumpla el descuento, ya haya un producto y aumente
+        cantidad_acumulada >= 6 && nuevoStock > nuevoStockActual  // que cumpla el descuento
         ) {
         nuevoPrecio = elementoEncontrado.precio_compra;
     } else {
