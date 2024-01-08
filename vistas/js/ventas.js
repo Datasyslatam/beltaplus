@@ -12,7 +12,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 // 	}
 
 // })//
-var productos_acumulado = {}; // cantidad de productos total
+var productos_acumulado = {};
 $(".tablaVentas").DataTable({
     //"ajax": "ajax/datatable-ventas.ajax.php",
     deferRender: true,
@@ -299,7 +299,6 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
                 precio.val(nuevoPrecio * cantidad);
             }
         });
-        productos_acumulado -= 1;
         marcarOferta();
         // SUMAR TOTAL DE PRECIOS
 
@@ -482,14 +481,15 @@ function cantidadItems() {
     let valor_acumulado = 0; 
     for (let clave in productos_acumulado) {
             valor_acumulado += productos_acumulado[clave];
+            console.log(productos_acumulado[clave]);
     }
     return valor_acumulado
 }
 
-function manipularProductos(codigo, opcion, valor, tipoModificacion = true){
+function manipularProductos(codigo, opcion, valor, tipoModificacion){
     switch(opcion){
         case "añadir":
-            productos_acumulado[codigo] = 1;
+            productos_acumulado[codigo] = valor;
 
         case "modificar":
             if(tipoModificacion){
