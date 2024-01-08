@@ -78,11 +78,11 @@ $(".tablaVentas tbody").on(
 
             var descripcion = respuesta["descripcion_producto"];
             var stock = respuesta["stock"];
-            // if(cantidad_acumulada >= 5){ LOGICA CONDICIONAL DESCUENTO
-                // var precio = respuesta["precio_compra"];
-            // }else{
+            if(cantidad_acumulada >= 5){
+                var precio = respuesta["precio_compra"];
+            }else{
                 var precio = respuesta["precio_venta"];
-            // }
+            }
             var id = respuesta["codigo"];
 
             if (stock == 0) {
@@ -469,13 +469,12 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var precioReal = parseFloat(precio.attr("precioReal"));
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
-    var stockAnterior = parseFloat($(this).attr("nuevoStock"));
+    var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
 
-    if (cantidad_acumulada >= 5 && nuevoStock < stockAnterior || 
-        cantidad_acumulada >= 5 && productos_acumulado > 1 && nuevoStock < stockAnterior
-        // cantidad_acumulada >= 5 && nuevoStock > nuevoStockActual || 
-        ){
+    if (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual || 
+        cantidad_acumulada >= 5 && nuevoStock > nuevoStockActual || 
+        cantidad_acumulada >= 5 && productos_acumulado > 1 && nuevoStock < nuevoStockActual){
         nuevoPrecio = elementoEncontrado.precio_compra;
     } else {
         nuevoPrecio = precioReal;
