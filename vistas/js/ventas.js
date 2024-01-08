@@ -535,7 +535,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
         var idCantidadProducto = $(this)
             .find(".nuevaCantidadProducto")
             .attr("id");
-        var precio = $(this).find(".nuevaPrecioProducto");
+        var precio = $(this).find(".nuevoPrecioProducto");
         var productoEncontrado = encontrarProducto(idCantidadProducto);
 
         if (productoEncontrado) {
