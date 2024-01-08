@@ -99,7 +99,6 @@ $(".tablaVentas tbody").on(
                 return;
             }
             ajaxRespuestas.push(respuesta);
-            marcarOferta();
             $(".nuevoProducto .row").each(function () {
                 var idCantidadProducto = $(this)
                     .find(".nuevaCantidadProducto")
@@ -122,6 +121,7 @@ $(".tablaVentas tbody").on(
                     precio.val(nuevoPrecio * cantidad);
                 }
             });
+            marcarOferta();
             // Hacer ambas llamadas AJAX concurrentemente
             var [tallas, colores] = await Promise.all([
                 $.ajax({
