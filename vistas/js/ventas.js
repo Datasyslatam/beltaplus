@@ -540,7 +540,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         if (productoEncontrado) {
             var nuevoPrecio =
-                cantidad_acumulada >= 6
+                cantidad_acumulada >= 5
                     ? productoEncontrado.precio_compra
                     : productoEncontrado.precio_venta;
 
