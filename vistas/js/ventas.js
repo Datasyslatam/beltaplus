@@ -12,8 +12,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 // 	}
 
 // })//
-var cantidad_acumulada = 0; // cantidad de productos total
-var productos_acumulado = 0;
+var productos_acumulado = {}; // cantidad de productos total
 $(".tablaVentas").DataTable({
     //"ajax": "ajax/datatable-ventas.ajax.php",
     deferRender: true,
@@ -84,14 +83,14 @@ $(".tablaVentas tbody").on(
                 var precio = respuesta["precio_venta"];
             }
             var id = respuesta["codigo"];
-
+            manipularProductos(id, "añadir", 1)
             $(".nuevoProducto .row").each(function () {
                 var idCantidadProducto = $(this)
                     .find(".nuevaCantidadProducto")
                     .attr("id");
                 var precio = $(this).find(".nuevoPrecioProducto");
                 var productoEncontrado = encontrarProducto(idCantidadProducto);
-
+                let cantidad_acumulada = cantidadItems()
                 if (productoEncontrado) {
                     if (cantidad_acumulada >= 5) {
                         nuevoPrecio = productoEncontrado.precio_compra;
@@ -200,8 +199,7 @@ $(".tablaVentas tbody").on(
                     "</div>"
             );
             ajaxRespuestas.push(respuesta);
-            productos_acumulado += 1;
-            marcarOferta();
+            marcarOferta(id, 1, "añadir");
             sumarTotalPrecios();
             agregarImpuesto();
             listarProductos();
@@ -481,7 +479,31 @@ function encontrarProducto(id) {
         }
     }
 }
+function cantidadItems() {
+    let valor_acumulado = 0; 
+    for (let clave in productos_acumulado) {
+            valor_acumulado += productos_acumulado[clave];
+    }
+    return valor_acumulado
+}
 
+function manipularProductos(codigo, opcion, valor, tipoModificacion = true){
+    switch(opcion){
+        case "añadir":
+            productos_acumulado[codigo] = 1;
+
+        case "modificar":
+            if(tipoModificacion){
+                productos_acumulado[codigo] += valor;
+            }else{
+                productos_acumulado[codigo] -= valor;
+            }
+        
+        case "eliminar":
+            delete productos_acumulado[codigo];
+    }
+
+}
 function marcarOferta() {
     let valores = $('input[name="nuevoPrecioProducto"]');
     let cantidades = $('input[name="nuevaCantidadProducto"]'); //Obtiene los valores de la cantidad
@@ -490,7 +512,7 @@ function marcarOferta() {
         let valor = parseFloat($(this).val()) || 0;
         suma += valor;
     });
-    cantidad_acumulada = suma;
+    let cantidad_acumulada = cantidadItems();
     if (cantidad_acumulada >= 6) {
         valores.each(function () {
             $(this).css("background-color", "#7AB4AD");
@@ -506,8 +528,6 @@ MODIFICAR LA CANTIDAD
 =============================================*/
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     var codigoBuscado = $(this).attr("id");
-    var elementoEncontrado = encontrarProducto(codigoBuscado);
-
     var precio = $(this)
         .parent()
         .parent()
@@ -517,9 +537,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
     var stock = parseFloat($(this).attr("stock"));
     var cantidad = parseFloat($(this).val());
-    var nuevoStockActual = parseFloat($(this).attr("nuevoStock"));
+    var stockActual = parseFloat($(this).attr("nuevoStock"));
     var nuevoStock = stock - cantidad;
-
+    let cantidad_acumulada = cantidadItems();
+    let modificacion = (nuevoStock < stockActual) ? true : false;
     $(".nuevoProducto .row").each(function () {
         var idCantidadProducto = $(this)
             .find(".nuevaCantidadProducto")
@@ -529,8 +550,8 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         if (productoEncontrado) {
             if (
-                (cantidad_acumulada >= 5 && nuevoStock < nuevoStockActual) ||
-                (cantidad_acumulada >= 7 && nuevoStock > nuevoStockActual)
+                (cantidad_acumulada >= 5 && nuevoStock < stockActual) ||
+                (cantidad_acumulada >= 7 && nuevoStock > stockActual)
             ) {
                 nuevoPrecio = productoEncontrado.precio_compra;
                 console.log("entro");
@@ -564,6 +585,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
+    manipularProductos(codigoBuscado, "modificar", 1, modificacion)
     marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
