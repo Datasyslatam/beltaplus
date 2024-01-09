@@ -179,6 +179,7 @@ if ($_SESSION["perfil"] == "Especial") {
                         <option value="Efectivo">Efectivo</option>
                         <option value="TC">Tarjeta Crédito</option>
                         <option value="TD">Tarjeta Débito</option>
+                        <option value="TB">Transferencia Bancaria</option>
                         <option value="NQ">Nequi</option>
                       </select>
                     </div>
