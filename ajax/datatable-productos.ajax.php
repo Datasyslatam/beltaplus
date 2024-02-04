@@ -75,11 +75,13 @@ class TablaProductos{
 			$item = "id";
 		  	$valor = $productos[$i]["id_color"];
 			$nomb_color = "";
+			$cod_color = "";		// Para pintar filtro de Botones con su nombnre de color
 
 		  	$colores = ControladorColores::ctrMostrarColores($item, $valor);
 
 			if ($colores){
 				$nomb_color = $colores["color"];
+				$cod_color = $colores["cod_color"];	// Para pintar filtro de Botones con su nombnre de color
 			}
 
 			/*=============================================
@@ -134,6 +136,7 @@ class TablaProductos{
 			      "'.$categorias["categoria"].'",
 				  "'.$nomb_subcategoria.'",
 				  "'.$nomb_color.'",
+				  "'.$cod_color.'",
 				  "'.$nomb_talla.'",
 			      "'.$stock.'",
 			      "'. "$" . number_format($productos[$i]["precio_compra"]) .'",
