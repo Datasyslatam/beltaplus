@@ -360,13 +360,13 @@ MODAL AGREGAR CLIENTE VENTAS
               </div>
             </div>
             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
-            <label for="">Fecha de nacimiento</label>
+            <label for="">Fecha de pedido</label>
             <div class="form-group">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
+                <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
               </div>
             </div>
 
