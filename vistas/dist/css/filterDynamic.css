@@ -63,8 +63,8 @@
 }
 
 .btn-seleccionable:hover {
-    color: #fff;
-    background-color: #008b4c;
+    color: #000;
+    background-color: #019954;
     border-color:  #b95989;
 }
 
