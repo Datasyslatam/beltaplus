@@ -136,7 +136,6 @@ class TablaProductos{
 			      "'.$categorias["categoria"].'",
 				  "'.$nomb_subcategoria.'",
 				  "'.$nomb_color.'",
-				  "'.$cod_color.'",
 				  "'.$nomb_talla.'",
 			      "'.$stock.'",
 			      "'. "$" . number_format($productos[$i]["precio_compra"]) .'",
