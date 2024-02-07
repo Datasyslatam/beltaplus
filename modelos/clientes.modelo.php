@@ -30,14 +30,14 @@ class ModeloClientes{
 	=============================================*/
 	public static function mdlIngresarClienteVenta($tabla, $datos){
 		$base_datos = Conexion::conectar();
-		$stmt = $base_datos->prepare("INSERT INTO $tabla(nombre, documento, email, telefono, direccion, ciudad, fecha_nacimiento) VALUES (:nombre, :documento, :email, :telefono, :direccion, :ciudad, :fecha_nacimiento)");
+		$stmt = $base_datos->prepare("INSERT INTO $tabla(nombre, documento, email, telefono, direccion, ciudad) VALUES (:nombre, :documento, :email, :telefono, :direccion, :ciudad)");
 		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_INT);
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
 		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
 		$stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
-		$stmt->bindParam(":fecha_nacimiento", $datos["fecha_nacimiento"], PDO::PARAM_STR);
+		/* $stmt->bindParam(":fecha_nacimiento", $datos["fecha_nacimiento"], PDO::PARAM_STR); */
 		if($stmt->execute()){
 			$id = $base_datos->lastInsertId();
 			return $id;

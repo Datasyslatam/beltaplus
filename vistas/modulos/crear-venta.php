@@ -89,8 +89,8 @@ if ($_SESSION["perfil"] == "Especial") {
                       <?php
                       $item = null;
                       $valor = null;
-                      $categorias = ControladorClientes::ctrMostrarClientes($item, $valor);
-                      foreach ($categorias as $key => $value) {
+                      $clientes = ControladorClientes::ctrMostrarClientes($item, $valor); // Var Cliente antes Categoria
+                      foreach ($clientes as $key => $value) {
                         echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
                       }
                       ?>
@@ -108,6 +108,17 @@ if ($_SESSION["perfil"] == "Especial") {
                   </div>
 
                 </div>
+
+                <!-- ENTRADA PARA LA FECHA DE PEDIDO Dato nuevo-->
+                <label for="">Fecha de pedido</label>
+                <div class="input-group">
+
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-xs" name="nuevaFechaPedido" id="nuevaFechaPedido" placeholder="Ingresar fecha pedido" required>
+                  </div>
+                </div>
+
                 <!--=====================================
                 ENTRADA PARA AGREGAR PRODUCTO
                 ======================================-->
@@ -326,7 +337,7 @@ MODAL AGREGAR CLIENTE VENTAS
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="email" class="form-control input-lg" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email" required>
+                <input type="email" class="form-control input-lg" name="nuevoEmail" id="nuevoEmail" placeholder="Ingresar email">
               </div>
             </div>
             <!-- ENTRADA PARA EL TELÉFONO -->
@@ -336,7 +347,7 @@ MODAL AGREGAR CLIENTE VENTAS
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask>
               </div>
             </div>
             <!-- ENTRADA PARA LA DIRECCIÓN -->
@@ -346,7 +357,7 @@ MODAL AGREGAR CLIENTE VENTAS
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingresar dirección" required>
+                <input type="text" class="form-control input-lg" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingresar dirección">
               </div>
             </div>
             <!-- ENTRADA PARA LA CIUDAD -->
@@ -356,19 +367,19 @@ MODAL AGREGAR CLIENTE VENTAS
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaCiudad" id="nuevaCiudad" placeholder="Ingresar ciudad de residencia" required>
+                <input type="text" class="form-control input-lg" name="nuevaCiudad" id="nuevaCiudad" placeholder="Ingresar ciudad de residencia">
               </div>
             </div>
-            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO 
             <label for="">Fecha de pedido</label>
             <div class="form-group">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
+                <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -381,9 +392,9 @@ MODAL AGREGAR CLIENTE VENTAS
         </div>
       </form>
       <?php
-      # Guardar clientes
-      /* $crearCliente = new ControladorClientes();
-        $crearCliente -> ctrCrearCliente(); */
+        # Guardar nuevos clientes desde Ventas  // Actualizado para validar solo Nombre y Doc Identidad
+        $crearCliente = new ControladorClientes();
+        $crearCliente -> ctrCrearNuevoCliente();
       ?>
     </div>
   </div>
