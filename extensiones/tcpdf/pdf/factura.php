@@ -77,19 +77,16 @@ class imprimirFactura
 				Fecha: $fecha
 
 				<br><br>
-				Inventory System
+				BELTA PLUS SIZE
 				
 				<br>
-				NIT: 71.759.963-9
+				NIT: 52.163.724-2
 
 				<br>
-				Dirección: Calle 44B 92-11
+				Teléfono: 312 808 48 06
 
 				<br>
-				Teléfono: 300 786 52 49
-
-				<br>
-				FACTURA N.$valorVenta
+				PEDIDO N.$valorVenta
 
 				<br><br>					
 				Cliente: $respuestaCliente[nombre]
@@ -147,12 +144,12 @@ EOF;
 			$precioProducto = number_format($respuestaProducto["precio_compra"] * $cantidad);
 			$bloque2 = <<<EOF
 
-			<table style="font-size:9px;">
+			<table style="font-size:8px;">
 
 				<tr>
 				
 					<td style="width:160px; text-align:left">
-					$item[descripcion] $color $talla
+					$item[descripcion]
 					</td>
 
 				</tr>
@@ -179,7 +176,7 @@ EOF;
 
 		$bloque3 = <<<EOF
 
-<table style="font-size:9px; text-align:right">
+<table style="font-size:8px; text-align:right">
 
 	<tr>
 	
@@ -236,8 +233,6 @@ EOF;
 	</tr>
 
 </table>
-
-
 
 EOF;
 
