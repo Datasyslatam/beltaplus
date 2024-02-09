@@ -46,7 +46,6 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Teléfono</th>
            <th>Dirección</th>
            <th>Ciudad</th>
-           <th>Fecha nacimiento</th> 
            <th>Total compras</th>
            <th>Última compra</th>
            <th>Ingreso al sistema</th>
@@ -68,7 +67,7 @@ if($_SESSION["perfil"] == "Especial"){
                     <td>'.$value["telefono"].'</td>
                     <td>'.$value["direccion"].'</td>
                     <td>'.$value["ciudad"].'</td>
-                    <td>'.$value["fecha_nacimiento"].'</td>             
+                    
                     <td>'.$value["compras"].'</td>
                     <td>'.$value["ultima_compra"].'</td>
                     <td>'.$value["fecha"].'</td>
@@ -133,7 +132,7 @@ MODAL AGREGAR CLIENTE
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar email" required>
+                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar email">
               </div>
             </div>
             <!-- ENTRADA PARA EL TELÉFONO -->
@@ -149,7 +148,7 @@ MODAL AGREGAR CLIENTE
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección" required>
+                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección">
               </div>
             </div>
             <!-- ENTRADA PARA LA DIRECCIÓN -->
@@ -157,17 +156,17 @@ MODAL AGREGAR CLIENTE
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-building"></i></span> 
-                <input type="text" class="form-control input-lg" name="nuevaCiudad" placeholder="Ingresar ciudad de residencia" required>
+                <input type="text" class="form-control input-lg" name="nuevaCiudad" placeholder="Ingresar ciudad de residencia">
               </div>
             </div>
-             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO 
             <label for="">Fecha de nacimiento</label>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
                 <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
               </div>
-            </div>
+            </div> -->
   
           </div>
         </div>
@@ -234,7 +233,7 @@ MODAL EDITAR CLIENTE
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
-                <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail" required>
+                <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail">
               </div>
             </div>
             <!-- ENTRADA PARA EL TELÉFONO -->
@@ -254,7 +253,7 @@ MODAL EDITAR CLIENTE
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                <input type="text" class="form-control input-lg" name="editarDireccion" id="editarDireccion"  required>
+                <input type="text" class="form-control input-lg" name="editarDireccion" id="editarDireccion">
               </div>
             </div>
             <!-- ENTRADA PARA LA CIUDAD -->
@@ -264,10 +263,10 @@ MODAL EDITAR CLIENTE
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
-                <input type="text" class="form-control input-lg" name="editarCiudad" id="editarCiudad"  required>
+                <input type="text" class="form-control input-lg" name="editarCiudad" id="editarCiudad">
               </div>
             </div>
-             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO 
             <label for="">Fecha de nacimiento</label>
             <div class="form-group">
               
@@ -276,7 +275,7 @@ MODAL EDITAR CLIENTE
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
                 <input type="date" class="form-control input-lg" name="editarFechaNacimiento" id="editarFechaNacimiento" required>
               </div>
-            </div>
+            </div> -->
   
           </div>
         </div>

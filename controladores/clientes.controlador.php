@@ -7,18 +7,16 @@ class ControladorClientes{
 		if(isset($_POST["nuevoCliente"])){
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCliente"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoId"]) &&
-			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["nuevoEmail"]) && 
-			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCiudad"]) &&
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nuevaDireccion"])){
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["nuevoTelefono"])
+			   ){
 			   	$tabla = "clientes";
 			   	$datos = array("nombre"=>$_POST["nuevoCliente"],
 					           "documento"=>$_POST["nuevoDocumentoId"],
 					           "email"=>$_POST["nuevoEmail"],
 					           "telefono"=>$_POST["nuevoTelefono"],
 					           "direccion"=>$_POST["nuevaDireccion"],
-							   "ciudad"=>$_POST["nuevaCiudad"],
-					           "fecha_nacimiento"=>$_POST["nuevaFechaNacimiento"]);
+							   "ciudad"=>$_POST["nuevaCiudad"]
+					           );
 			   	$respuesta = ModeloClientes::mdlIngresarCliente($tabla, $datos);
 			   	if($respuesta == "ok"){
 					echo'<script>
@@ -102,10 +100,8 @@ class ControladorClientes{
 		if(isset($_POST["editarCliente"])){
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCliente"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["editarDocumentoId"]) &&
-			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarEmail"]) && 
-			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDireccion"]) &&
-			   preg_match('/^[#\.\-a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCiudad"])){
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["editarTelefono"])
+			   ){
 
 			   	$tabla = "clientes";
 			   	$datos = array("id"=>$_POST["idCliente"],
@@ -114,8 +110,8 @@ class ControladorClientes{
 					           "email"=>$_POST["editarEmail"],
 					           "telefono"=>$_POST["editarTelefono"],
 					           "direccion"=>$_POST["editarDireccion"],
-							   "ciudad"=>$_POST["editarCiudad"],
-					           "fecha_nacimiento"=>$_POST["editarFechaNacimiento"]);
+							   "ciudad"=>$_POST["editarCiudad"]
+					           );
 			   	$respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
 			   	if($respuesta == "ok"){
 					echo'<script>
