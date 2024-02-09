@@ -215,13 +215,23 @@ if ($_SESSION["perfil"] == "Especial") {
                   <div class="cajasMetodoPago"></div>
                   <input type="hidden" id="nuevaTransportad" name="nuevaTransportad">
                 </div>
-                <br>
 
               </div>
             </div>
+
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+              <!-- <button type="submit" class="btn btn-warning pull-right">Pendiente</button>
+              <button type="submit" class="btn btn-success pull-right">Facturar venta</button> -->
+              <span class="input-group-addon">
+                <button type="" class="btn btn-warning pull-left">
+                    <i class="fa fa-bell-o"></i> Pendiente
+                </button>
+                <button type="submit" class="btn btn-success pull-right">
+                    <i class="fa fa-address-card-o"></i> Facturar Venta
+                </button>
+              </span>
             </div>
+
           </form>
           <?php
           $guardarVenta = new ControladorVentas();
@@ -347,7 +357,7 @@ MODAL AGREGAR CLIENTE VENTAS
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask>
+                <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
               </div>
             </div>
             <!-- ENTRADA PARA LA DIRECCIÓN -->
