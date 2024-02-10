@@ -801,6 +801,15 @@ $(".tablas").on("click", ".btnEditarVenta", function () {
 });
 
 /*=============================================
+BOTON EDITAR VENTA PENDIENTE
+=============================================*/
+$(".tablas").on("click", ".btnEditarVentaTemp", function () {
+    var idVenta = $(this).attr("idVenta");
+
+    window.location = "index.php?ruta=finalizar-venta-temp&idVenta=" + idVenta;
+});
+
+/*=============================================
 FUNCIÓN PARA DESACTIVAR LOS BOTONES AGREGAR CUANDO EL PRODUCTO YA HABÍA SIDO SELECCIONADO EN LA CARPETA
 =============================================*/
 

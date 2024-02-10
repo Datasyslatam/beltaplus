@@ -30,26 +30,26 @@ if($_SESSION["perfil"] == "Vendedor"){
       <div class="box-body">
         
        
-   <div class="content">
+  <div class="content">
 
-  <div class="row">
-    <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
 
-      <!-- Widget with rounded icon -->
-      <div class="panel">
-        <div class="panel-body text-center">
-          <div class="icon-object border-primary-400 text-primary-400"><i class="icon-info3 icon-3x text-primary-400"></i>
-          </div>
-          <h2 class="no-margin text-semibold">Inventory System</h2><br>
-          <span class="text-size-large text-muted">Es un sistema de inventario que le permite llevar el control de todo lo relacionado a su negocio.<br>
-Esta aplicacion web esta destinada a realizar diferentes operaciones de la manera mas sencilla,<br>
-buscando simplificar y optimizar los procesos de gestion de inventario, ventas y demas. </span> <br><br>
+        <!-- Widget with rounded icon -->
+        <div class="panel">
+            <div class="panel-body text-center">
+              <div class="icon-object border-primary-400 text-primary-400"><i class="icon-info3 icon-3x text-primary-400"></i>
+              </div>
+              <h2 class="no-margin text-semibold">Sistemas de Inventario MSG</h2><br>
+              <span class="text-size-large text-muted">Es un sistema de inventario que le permite llevar el control de todo lo relacionado a su negocio.<br>
+    Esta aplicacion web esta destinada a realizar diferentes operaciones de la manera mas sencilla,<br>
+    buscando simplificar y optimizar los procesos de gestion de inventario, ventas y demás. </span> <br><br>
 
+            </div>
         </div>
+        <!-- /widget with rounded icon -->
       </div>
-      <!-- /widget with rounded icon -->
     </div>
-  </div>
 
   <!-- Widgets list -->
   <div class="row">
@@ -213,7 +213,7 @@ buscando simplificar y optimizar los procesos de gestion de inventario, ventas y
             <div class="col-xs-4">
             </div>
             <div class="col-xs-4">
-              <h5 class="text-semibold no-margin">GesNet</h5>
+              <h5 class="text-semibold no-margin">MediaStudioGroup</h5>
             </div>
             <div class="col-xs-4">
             </div>

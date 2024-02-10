@@ -141,17 +141,22 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
+						<a href="crear-venta">
+							<i class="fa fa-circle-o"></i>
+							<span>Crear venta</span>
+						</a>
+					</li>
+					<li>
 						<a href="ventas">
 							<i class="fa fa-circle-o"></i>
 							<span>Administrar ventas</span>
 						</a>
 					</li>
 					<li>
-						<a href="crear-venta">
+						<a href="ventas-temp">
 							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
+							<span>Admin Ventas pendientes</span>
 						</a>
-
 					</li>';
 				echo '</ul>
 			</li>';
@@ -185,10 +190,10 @@
 
 			</li>
 			<li>
-			<!-- <a href="acerca">
+			<a href="acerca">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
 				<span>Acerca de</span>
-			</a> -->
+			</a>
 
 		</li>';
 
