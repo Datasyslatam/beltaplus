@@ -566,8 +566,12 @@ function manipularProductos(codigo, opcion, valor, tipoModificacion = true) {
             break;
 
         case "modificar":
-            if (tipoModificacion) {
-                productos_acumulado[codigo] += valor;
+            if (tipoModificacion || valor > 1) {
+                if(valor == 1){
+                    productos_acumulado[codigo] += valor;
+                }else{
+                    productos_acumulado[codigo] = valor;
+                }
             } else {
                 productos_acumulado[codigo] -= valor;
             }
