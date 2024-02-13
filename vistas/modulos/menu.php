@@ -89,7 +89,7 @@
 			';
 
 		}
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
+		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial"){
 			echo '<li class="treeview">
 				<a href="#">
 					<i class="fa fa-archive" aria-hidden="true"></i>
