@@ -76,7 +76,6 @@ window.addEventListener("DOMContentLoaded", () => {
             let stock = boton
                 .closest(".row")
                 .querySelector(".nuevaCantidadProducto").value;
-            console.log("id: " + stockref, "value: " + stock);
             totalStockTemp += stock;
             productoRef.push({
                 id: boton.getAttribute("idproducto"),

@@ -213,6 +213,22 @@ if ($_SESSION["perfil"] == "Especial") {
                     <input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
                   </div>
                   <br>
+                  <script>
+                    $(document).ready(function() {
+                      let codigoTransaccion = <?php echo json_encode($venta["metodo_pago"]); ?>;
+                      if(codigoTransaccion != 'Efectivo'){
+                        let partesCodigoTransaccion = codigoTransaccion.split('-');
+                        let prefijo = partesCodigoTransaccion[0];
+                        let numeroTransaccion = partesCodigoTransaccion[1];
+                        $("#nuevoMetodoPago").val(prefijo).trigger('change');
+                        $('#nuevoCodigoTransaccion').val(numeroTransaccion);
+                      }else{
+                        $("#nuevoMetodoPago").val('Efectivo').trigger('change');
+                      }
+
+                    });
+                  </script>
+
 
                   <!--=====================================
                 ENTRADA TRANSPORTADORA
@@ -223,7 +239,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="col-xs-6" style="padding-right:0px">
 
                       <div class="input-group">
-                        <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" placeholder="Digite el Nombre de la Empresa de Transporte"></textarea>
+                        <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" placeholder="Digite el Nombre de la Empresa de Transporte"><?php echo $venta["transportadora"]; ?></textarea>
                       </div>
                     </div>
                     <div class="cajasMetodoPago"></div>
@@ -247,7 +263,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 </button>
               </span>
             </div>
-            
+
           </form>
           <button style="display: none;" id="getstock">obtener stock</button>
           <?php
@@ -262,14 +278,14 @@ if ($_SESSION["perfil"] == "Especial") {
               switch ($accion) {
                 case 'actualizar':
                   $guardarVenta = new ControladorVentasTemp();
-                  $guardarVenta -> ctrEliminarVenta();
-                  $guardarVenta -> ctrCrearVenta();
+                  $guardarVenta->ctrEliminarVenta();
+                  $guardarVenta->ctrCrearVenta();
                   break;
                 case 'facturar':
                   $guardarVenta = new ControladorVentas();
-                  $guardarVenta -> ctrCrearVenta();
+                  $guardarVenta->ctrCrearVenta();
                   $eliminarCarrito = new ControladorVentasTemp();
-                  $eliminarCarrito ->ctrEliminarVenta(false);
+                  $eliminarCarrito->ctrEliminarVenta(false);
                   break;
                 default:
                   echo '<script>console.log("ayuda por favo");</script>';
