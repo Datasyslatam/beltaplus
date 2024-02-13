@@ -1,4 +1,5 @@
 <?php
+
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
@@ -18,7 +19,7 @@ class ControladorVentasTemp
 	/*=============================================
 	   CREAR VENTA
 	   =============================================*/
-	public static function ctrCrearVenta()
+	public static function ctrCrearVenta($tabla = 'ventas_temp')
 	{
 		if (isset($_POST["nuevaVenta"])) {
 			/*=============================================
@@ -53,9 +54,9 @@ class ControladorVentasTemp
 				$valor1a = $value["cantidad"] + $traerProducto["ventas"];
 				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
 
-				$item1b = "stock";
-				$valor1b = $value["stock"];
-				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+				// $item1b = "stock";
+				// $valor1b = $value["stock"];
+				// $nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
 
 				/*Ingresar al kardex*/
 				$tablaHistorial = "historial";
@@ -63,7 +64,6 @@ class ControladorVentasTemp
 				$idp = $value["id"];
 				$rhistorial = ModeloMovimientos::mdlIngresoMovimientoVenta($tablaHistorial, $cant, $idp);
 				/*FIn:Ingresar al kardex*/
-
 			}
 			$tablaClientes = "clientes";
 			$item = "id";
@@ -83,78 +83,50 @@ class ControladorVentasTemp
 			/*=============================================
 					 GUARDAR LA VENTA
 			=============================================*/
-			$tabla = "ventas_temp";
-			$datos = array("id_vendedor"=>$_POST["idVendedor"],
-						   "id_cliente"=>$_POST["seleccionarCliente"],
-						   "codigo"=>$_POST["nuevaVenta"],
-						   "productos"=>$_POST["listaProductos"],
-						   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
-						   "neto"=>$_POST["nuevoPrecioNeto"],
-						   "total"=>$_POST["totalVenta"],
-						   "metodo_pago"=>$_POST["listaMetodoPago"],
-						   "transportadora"=>$_POST["nuevaTransporta"]
-						);
-						
+			// $tabla = "ventas_temp";
+			$datos = array(
+				"id_vendedor" => $_POST["idVendedor"],
+				"id_cliente" => $_POST["seleccionarCliente"],
+				"codigo" => $_POST["nuevaVenta"],
+				"productos" => $_POST["listaProductos"],
+				"impuesto" => $_POST["nuevoPrecioImpuesto"],
+				"neto" => $_POST["nuevoPrecioNeto"],
+				"total" => $_POST["totalVenta"],
+				"metodo_pago" => $_POST["listaMetodoPago"],
+				"transportadora" => $_POST["nuevaTransporta"]
+			);
+
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
-				// $impresora = "epson20";
-				// $conector = new WindowsPrintConnector($impresora);
-				// $imprimir = new Printer($conector);
-				// $imprimir -> text("Hola Mundo"."\n");
-				// $imprimir -> cut();
-				// $imprimir -> close();
-
-				/*$impresora = "epson20";
-							$conector = new WindowsPrintConnector($impresora);
-							$printer = new Printer($conector);
-							$printer -> setJustification(Printer::JUSTIFY_CENTER);
-							$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
-							$printer -> feed(1); //Alimentamos el papel 1 vez
-							$printer -> text("Inventory System"."\n");//Nombre de la empresa
-							$printer -> text("NIT: 71.759.963-9"."\n");//Nit de la empresa
-							$printer -> text("Dirección: Calle 44B 92-11"."\n");//Dirección de la empresa
-							$printer -> text("Teléfono: 300 786 52 49"."\n");//Teléfono de la empresa
-							$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
-							$printer -> feed(1); //Alimentamos el papel 1 vez
-							$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
-							$tablaVendedor = "usuarios";
-							$item = "id";
-							$valor = $_POST["idVendedor"];
-							$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
-							$printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
-							$printer -> feed(1); //Alimentamos el papel 1 vez
-							foreach ($listaProductos as $key => $value) {
-								$printer->setJustification(Printer::JUSTIFY_LEFT);
-								$printer->text($value["descripcion"]."\n");//Nombre del producto
-								$printer->setJustification(Printer::JUSTIFY_RIGHT);
-								$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-							}
-							$printer -> feed(1); //Alimentamos el papel 1 vez		
-							
-							$printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
-							$printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
-							$printer->text("--------\n");
-							$printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
-							$printer -> feed(1); //Alimentamos el papel 1 vez
-							$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
-							$printer -> feed(3); //Alimentamos el papel 3 veces
-							$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
-							$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
-							$printer -> close();*/
-
-				echo '<script>
-				localStorage.removeItem("rango");
-				swal({
-					  type: "success",
-					  title: "La venta ha sido guardada correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-								if (result.value) {
-								window.location = "ventas";
-								}
-							})
-				</script>';
+				if ($tabla === 'ventas_temp') {
+					echo '<script>
+					localStorage.removeItem("rango");
+					swal({
+						  type: "success",
+						  title: "El carrito ha sido actualizado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+									window.location = "ventas-temp";
+									}
+								})
+					</script>';
+				} else {
+					echo '<script>
+					localStorage.removeItem("rango");
+					swal({
+						  type: "success",
+						  title: "El carrito se ha comprado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+									window.location = "ventas";
+									}
+								})
+					</script>';
+				}
 			}
 		}
 	}
@@ -193,8 +165,8 @@ class ControladorVentasTemp
 					$orden = "id";
 					$traerProducto = ModeloProductos::mdlMostrarProductos($tablaProductos, $item, $valor, $orden);
 					$item1a = "ventas_temp";
-					$valor1a = $traerProducto["ventas_temp"] - $value["cantidad"];
-					$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+					// $valor1a = $traerProducto["ventas_temp"] - $value["cantidad"];
+					// $nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
 					$item1b = "stock";
 					$valor1b = $value["cantidad"] + $traerProducto["stock"];
 					$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
@@ -243,14 +215,16 @@ class ControladorVentasTemp
 			/*=============================================
 				GUARDAR CAMBIOS DE LA COMPRA PENDIENTE
 			=============================================*/
-			$datos = array("id_vendedor" => $_POST["idVendedor"],
+			$datos = array(
+				"id_vendedor" => $_POST["idVendedor"],
 				"id_cliente" => $_POST["seleccionarCliente"],
 				"codigo" => $_POST["editarVenta"],
 				"productos" => $listaProductos,
 				"impuesto" => $_POST["nuevoPrecioImpuesto"],
 				"neto" => $_POST["nuevoPrecioNeto"],
 				"total" => $_POST["totalVenta"],
-				"metodo_pago" => $_POST["listaMetodoPago"]);
+				"metodo_pago" => $_POST["listaMetodoPago"]
+			);
 
 			$respuesta = ModeloVentas::mdlEditarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
@@ -263,7 +237,7 @@ class ControladorVentasTemp
 					  confirmButtonText: "Cerrar"
 					  }).then((result) => {
 								if (result.value) {
-								window.location = "ventas";
+								window.location = "ventas-temp";
 								}
 							})
 				</script>';
@@ -273,7 +247,7 @@ class ControladorVentasTemp
 	/*=============================================
 	   ELIMINAR VENTA
 	=============================================*/
-	public static function ctrEliminarVenta()
+	public static function ctrEliminarVenta($t = true)
 	{
 		if (isset($_GET["idVenta"])) {
 			$tabla = "ventas_temp";
@@ -328,9 +302,9 @@ class ControladorVentasTemp
 				$item1a = "ventas";
 				$valor1a = $traerProducto["ventas"] - $value["cantidad"];
 				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
-				$item1b = "stock";
-				$valor1b = $value["cantidad"] + $traerProducto["stock"];
-				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+				// $item1b = "stock";
+				// $valor1b = $value["cantidad"] + $traerProducto["stock"];
+				// $nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
 			}
 			$tablaClientes = "clientes";
 			$itemCliente = "id";
@@ -344,18 +318,20 @@ class ControladorVentasTemp
 			=============================================*/
 			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idVenta"]);
 			if ($respuesta == "ok") {
-				echo '<script>
-				swal({
-					  type: "success",
-					  title: "La venta ha sido borrada correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-								if (result.value) {
-								window.location = "ventas";
-								}
-							})
-				</script>';
+				if ($t) {
+					echo '<script>
+					swal({
+						  type: "success",
+						  title: "¡El carrito ha sido borrado correctamente!",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+									window.location = "ventas-temp";
+									}
+								})
+					</script>';
+				}
 			}
 		}
 	}
@@ -367,7 +343,6 @@ class ControladorVentasTemp
 		$tabla = "ventas_temp";
 		$respuesta = ModeloVentas::mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal);
 		return $respuesta;
-
 	}
 	/*=============================================
 	   DESCARGAR EXCEL
@@ -427,7 +402,6 @@ class ControladorVentasTemp
 				foreach ($productos as $key => $valueProductos) {
 
 					echo utf8_decode($valueProductos["descripcion"] . "<br>");
-
 				}
 				echo utf8_decode("</td>
 					<td style='border:1px solid #eee;'>$ " . number_format($item["impuesto"], 2) . "</td>
@@ -492,7 +466,6 @@ class ControladorVentasTemp
 			foreach ($listaProductos as $key => $value) {
 
 				$objetoXML->text($value["descripcion"] . ", ");
-
 			}
 
 			$objetoXML->writeRaw('</ext:UBLExtensions>');
