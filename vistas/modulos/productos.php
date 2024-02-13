@@ -257,8 +257,8 @@ MODAL EDITAR PRODUCTO
             <label for="">Subcategoría</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg"  name="editarSubCategoria" readonly required>
-                  <option id="editarSubCategoria"></option>
+                <select class="form-control input-lg" id="editarSubCategoria" name="editarSubCategoria" readonly required>
+                  <!-- <option id="editarSubCategoria"></option> -->
                 </select>
               </div>
             </div>
