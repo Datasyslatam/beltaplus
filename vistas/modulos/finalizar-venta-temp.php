@@ -222,6 +222,8 @@ if ($_SESSION["perfil"] == "Especial") {
                         let numeroTransaccion = partesCodigoTransaccion[1];
                         $("#nuevoMetodoPago").val(prefijo).trigger('change');
                         $('#nuevoCodigoTransaccion').val(numeroTransaccion);
+                      }else{
+                        $("#nuevoMetodoPago").val('Efectivo').trigger('change');
                       }
 
                     });
