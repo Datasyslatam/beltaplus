@@ -223,19 +223,35 @@ if ($_SESSION["perfil"] == "Especial") {
               <!-- <button type="submit" class="btn btn-warning pull-right">Pendiente</button>
               <button type="submit" class="btn btn-success pull-right">Facturar venta</button> -->
               <span class="input-group-addon">
-                <button type="" class="btn btn-warning pull-left">
-                    <i class="fa fa-bell-o"></i> Pendiente
+                <button type="submit" class="btn btn-warning pull-left" name="accion" value="pendiente">
+                  <i class="fa fa-bell-o"></i> Pendiente
                 </button>
-                <button type="submit" class="btn btn-success pull-right">
-                    <i class="fa fa-address-card-o"></i> Facturar Venta
+                <button type="submit" class="btn btn-success pull-right" name="accion" value="facturar">
+                  <i class="fa fa-address-card-o"></i> Facturar Venta
                 </button>
               </span>
             </div>
 
           </form>
           <?php
-          $guardarVenta = new ControladorVentas();
-          $guardarVenta->ctrCrearVenta();
+          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["accion"])) {
+              $accion = $_POST["accion"];
+
+              switch ($accion) {
+                case 'pendiente':
+                  $controlador = new ControladorVentasTemp();
+                  $controlador->ctrCrearVenta();
+                  break;
+                case 'facturar':
+                  $controlador = new ControladorVentas();
+                  $controlador->ctrCrearVenta();
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
 
           ?>
         </div>
@@ -267,7 +283,7 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
 
             <div class="btn-group-separable d-flex" role="group" id="button-group">
-              
+
             </div>
 
           </div>
@@ -289,7 +305,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 </tr>
               </thead>
               <tbody>
-                
+
               </tbody>
             </table>
           </div>
@@ -402,9 +418,9 @@ MODAL AGREGAR CLIENTE VENTAS
         </div>
       </form>
       <?php
-        # Guardar nuevos clientes desde Ventas  // Actualizado para validar solo Nombre y Doc Identidad
-        $crearCliente = new ControladorClientes();
-        $crearCliente -> ctrCrearNuevoCliente();
+      # Guardar nuevos clientes desde Ventas  // Actualizado para validar solo Nombre y Doc Identidad
+      $crearCliente = new ControladorClientes();
+      $crearCliente->ctrCrearNuevoCliente();
       ?>
     </div>
   </div>

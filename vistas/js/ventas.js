@@ -46,6 +46,61 @@ $(".tablaVentas").DataTable({
     },
 });
 
+let productoRef = [];
+let productos = [];
+
+let totalStockTemp = 0;
+window.addEventListener("DOMContentLoaded", () => {
+    /**
+     * Se encarga de borrar los productos para que funcionen con la logica de tiempo real, volviendolos a
+     * insertar como si fuera la primera vez, asi se consigue la funcionalidad de cambio de valores
+     */
+    let tablasProductosTemporales = document.querySelectorAll(
+        ".productosTemporales"
+    );
+    if (tablasProductosTemporales.length > 0) {
+        let idProducto = document.querySelectorAll(".nuevaDescripcionProducto");
+        idProducto.forEach((input) => {
+            let atributo = input.getAttribute("idproducto");
+            if (!productos.includes(atributo)) {
+                productos.push(atributo);
+            }
+        });
+        let botonesQuitarProducto =
+            document.querySelectorAll(".quitarProducto");
+
+        botonesQuitarProducto.forEach((boton) => {
+            let stockref = boton
+                .closest(".row")
+                .querySelector(".nuevaCantidadProducto").id;
+            let stock = boton
+                .closest(".row")
+                .querySelector(".nuevaCantidadProducto").value;
+            console.log("id: " + stockref, "value: " + stock);
+            totalStockTemp += stock;
+            productoRef.push({
+                id: boton.getAttribute("idproducto"),
+                stockref: stockref,
+                stock: stock,
+            });
+            boton.click();
+        });
+
+        setTimeout(() => {
+            productos.forEach((id) => {
+                let botonAgregar = document.querySelector(
+                    `button[idproducto="${id}"]`
+                );
+                botonAgregar.click();
+            });
+            setTimeout(() => {
+                let botonStock = document.getElementById("getstock");
+                botonStock.click();
+            }, 500);
+        }, 1000);
+    }
+});
+
 /*=============================================
 AGREGANDO PRODUCTOS A LA VENTA DESDE LA TABLA
 =============================================*/
@@ -152,7 +207,6 @@ $(".tablaVentas tbody").on(
                     (diccionario) => diccionario.id === respuesta["id_color"]
                 ) || {}
             ).color;
-
             $(".nuevoProducto").append(
                 '<div class="row" style="padding:5px 15px">' +
                     "<!-- Descripción del producto -->" +
@@ -196,7 +250,7 @@ $(".tablaVentas tbody").on(
                     "</div>"
             );
             ajaxRespuestas.push(respuesta);
-            marcarOferta(id, 1, "añadir");
+            marcarOferta();
             sumarTotalPrecios();
             agregarImpuesto();
             listarProductos();
@@ -208,7 +262,25 @@ $(".tablaVentas tbody").on(
         }
     }
 );
-
+let btnGetStock = document.getElementById("getstock");
+if(btnGetStock){
+    btnGetStock.addEventListener("click", function () {
+        productoRef.forEach(function (stock) {
+            var inputCantidad = document.getElementById(stock.stockref);
+    
+            if (inputCantidad) {
+                var valorActual = parseInt(inputCantidad.value);
+    
+                for (var i = 0; i < stock.stock - 1; i++) {
+                    valorActual += 1;
+                    inputCantidad.value = valorActual;
+                    $(inputCantidad).trigger("change");
+                }
+            }
+        });
+        btnGetStock.style.display = "none";
+    });
+}
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA   
 =============================================*/
@@ -234,7 +306,7 @@ $(".tablaVentas").on("draw.dt", function () {
     }
 });
 
-/*=============================================
+/*=============================================       
 QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
 =============================================*/
 
@@ -270,7 +342,6 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
     );
 
     if ($(".nuevoProducto").children().length == 0) {
-        $("#nuevoImpuestoVenta").val(0);
         $("#nuevoTotalVenta").val(0);
         $("#totalVenta").val(0);
         $("#nuevoTotalVenta").attr("total", 0);
@@ -495,8 +566,12 @@ function manipularProductos(codigo, opcion, valor, tipoModificacion = true) {
             break;
 
         case "modificar":
-            if (tipoModificacion) {
-                productos_acumulado[codigo] += valor;
+            if (tipoModificacion || valor > 1) {
+                if(valor == 1){
+                    productos_acumulado[codigo] += valor;
+                }else{
+                    productos_acumulado[codigo] = valor;
+                }
             } else {
                 productos_acumulado[codigo] -= valor;
             }
@@ -575,6 +650,9 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
     $(this).attr("nuevoStock", nuevoStock);
 
     if (cantidad > stock) {
+        manipularProductos(codigoBuscado, "modificar", $(this).val(), false);
+        manipularProductos(codigoBuscado, "modificar", 1, true);
+        marcarOferta();
         $(this).val(0);
         $(this).attr("nuevoStock", stock);
         precio.val(0);
@@ -590,7 +668,7 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function () {
 
         return;
     }
-    manipularProductos(codigoBuscado, "modificar", 1, modificacion);
+    manipularProductos(codigoBuscado, "modificar", cantidad, modificacion);
     marcarOferta();
 
     // SUMAR TOTAL DE PRECIOS
@@ -861,6 +939,28 @@ $(".tablas").on("click", ".btnEliminarVenta", function () {
     }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=ventas&idVenta=" + idVenta;
+        }
+    });
+});
+
+/*=============================================
+BORRAR VENTA TEMPORAL
+=============================================*/
+$(".tablas").on("click", ".btnEliminarVentaTemp", function () {
+    var idVenta = $(this).attr("idVenta");
+
+    swal({
+        title: "¿Está seguro de borrar el carrito?",
+        text: "¡Si no lo está puede cancelar la accíón!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, borrar carrito!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location = "index.php?ruta=ventas-temp&idVenta=" + idVenta;
         }
     });
 });
