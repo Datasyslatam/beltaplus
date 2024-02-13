@@ -50,6 +50,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 $valorCliente = $venta["id_cliente"];
                 $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
                 //$porcentajeImpuesto = $venta["impuesto"] * 100 / $venta["neto"];
+
+                $fecha_venta = $venta["fecha_venta"];
                 ?>
 
                 <div class="box">
@@ -96,16 +98,17 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   </div>
                   <!-- ENTRADA PARA LA FECHA DE PEDIDO Dato nuevo-->
-                <label for="">Fecha de pedido</label>
+                <label for="">Fecha de venta</label>
                 <div class="input-group">
 
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-xs" name="nuevaFechaPedido" id="nuevaFechaPedido" placeholder="Ingresar fecha pedido" required>
+                    <input value="<?php echo ($fecha_venta ); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" required>
                   </div>
                 </div>
+                <hr>
 
-                  <!--=====================================
+                 <!--=====================================
                 LISTA DE PRODUCTOS PENDIENTES
                 ======================================-->
                   <div class="form-group row nuevoProducto productosTemporales">

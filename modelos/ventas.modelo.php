@@ -25,10 +25,11 @@ class ModeloVentas{
 	REGISTRO DE VENTA
 	=============================================*/
 	public static function mdlIngresarVenta($tabla, $datos){
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago, transportadora) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago, :transportadora)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, fecha_venta, productos, impuesto, neto, total, metodo_pago, transportadora) VALUES (:codigo, :id_cliente, :id_vendedor, :fecha_venta, :productos, :impuesto, :neto, :total, :metodo_pago, :transportadora)");
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
+		$stmt->bindParam(":fecha_venta", $datos["fecha_venta"], PDO::PARAM_STR);		// Fecha de la Venta 
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 		$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
 		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
@@ -49,10 +50,11 @@ class ModeloVentas{
 	EDITAR VENTA
 	=============================================*/
 	public static function mdlEditarVenta($tabla, $datos){
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, fecha_venta = :fecha_venta, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
+		$stmt->bindParam(":fecha_venta", $datos["fecha_venta"], PDO::PARAM_STR);	// Campo Fecha de la Venta
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 		$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
 		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);

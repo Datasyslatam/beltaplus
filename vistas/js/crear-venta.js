@@ -178,7 +178,7 @@ function limpiarCampoModalCliente(){
     $("#nuevoTelefono").val(null)
     $("#nuevaDireccion").val(null)
     $("#nuevaCiudad").val(null)
-    $("#nuevaFechaNacimiento").val(null)
+   // $("#nuevaFechaNacimiento").val(null)
 
     /* 
         Limpiar filtrar Cliente

@@ -33,13 +33,17 @@
                 $item = "id";
                 $valor = $_GET["idVenta"];
                 $venta = ControladorVentas::ctrMostrarVentas($item, $valor);
+
                 $itemUsuario = "id";
                 $valorUsuario = $venta["id_vendedor"];
                 $vendedor = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+
                 $itemCliente = "id";
                 $valorCliente = $venta["id_cliente"];
                 $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
                 $porcentajeImpuesto = $venta["impuesto"] * 100 / $venta["neto"];
+
+                $fecha_venta = $venta["fecha_venta"];
                 ?>
                 <!--=====================================
                 ENTRADA DEL VENDEDOR
@@ -94,14 +98,15 @@
 
                 </div>
                 <!-- ENTRADA PARA LA FECHA DE PEDIDO Dato nuevo-->
-                <label for="">Fecha de pedido</label>
+                <label for="">Fecha de venta</label>
                 <div class="input-group">
 
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-xs" name="nuevaFechaPedido" id="nuevaFechaPedido" placeholder="Ingresar fecha pedido" required>
+                    <input value="<?php echo($fecha_venta); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" placeholder="Ingresar fecha pedido" required>
                   </div>
                 </div>
+                <hr>
                 <!--=====================================
                 ENTRADA PARA AGREGAR PRODUCTO
                 ======================================-->
@@ -202,12 +207,13 @@
                   <div class="col-xs-6" style="padding-right:0px">
 
                     <div class="input-group">
-
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
-                        <option value="">Seleccione método de pago</option>
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="TC">Tarjeta Crédito</option>
-                        <option value="TD">Tarjeta Débito</option>
+                          <option value="">Seleccione método de pago</option>
+                          <option value="Efectivo">Efectivo</option>
+                          <option value="TC">Tarjeta Crédito</option>
+                          <option value="TD">Tarjeta Débito</option>
+                          <option value="TB">Transferencia Bancaria</option>
+                          <option value="NQ">Nequi</option>
                       </select>
                     </div>
                   </div>
@@ -354,7 +360,7 @@ MODAL AGREGAR CLIENTE
                 <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección" required>
               </div>
             </div>
-            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO 
             <label for="">Fecha de nacimiento</label>
             <div class="form-group">
 
@@ -363,7 +369,7 @@ MODAL AGREGAR CLIENTE
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" required>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>

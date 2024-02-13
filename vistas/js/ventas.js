@@ -711,6 +711,7 @@ FUNCIÓN AGREGAR IMPUESTO
 function agregarImpuesto() {
     var impuesto = $("#nuevoImpuestoVenta").val();
     var precioTotal = $("#nuevoTotalVenta").attr("total");
+    var fecha_venta = $("#nuevaFechaVenta").attr("fecha_venta");    // Cargar Fecha de Venta de la tabla
 
     var precioImpuesto = Number((precioTotal * impuesto) / 100);
 
@@ -723,6 +724,8 @@ function agregarImpuesto() {
     $("#nuevoPrecioImpuesto").val(precioImpuesto);
 
     $("#nuevoPrecioNeto").val(precioTotal);
+
+    $("#nuevaFechaVenta").val(fecha_venta);     // mostrar Fecha de Venta de la tabla
 }
 
 /*=============================================

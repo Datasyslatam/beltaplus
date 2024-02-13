@@ -88,6 +88,7 @@ class ControladorVentasTemp
 				"id_vendedor" => $_POST["idVendedor"],
 				"id_cliente" => $_POST["seleccionarCliente"],
 				"codigo" => $_POST["nuevaVenta"],
+				"fecha_venta"=>$_POST["nuevaFechaVenta"],		// Fecha de Venta nvo campo
 				"productos" => $_POST["listaProductos"],
 				"impuesto" => $_POST["nuevoPrecioImpuesto"],
 				"neto" => $_POST["nuevoPrecioNeto"],
@@ -219,6 +220,7 @@ class ControladorVentasTemp
 				"id_vendedor" => $_POST["idVendedor"],
 				"id_cliente" => $_POST["seleccionarCliente"],
 				"codigo" => $_POST["editarVenta"],
+				"fecha_venta" => $_POST["nuevaFechaVenta"],			// Nva fecha de Venta
 				"productos" => $listaProductos,
 				"impuesto" => $_POST["nuevoPrecioImpuesto"],
 				"neto" => $_POST["nuevoPrecioNeto"],
