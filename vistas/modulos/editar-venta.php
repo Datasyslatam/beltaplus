@@ -238,6 +238,21 @@
                   });
                 </script>
 
+                <!--=====================================
+                ENTRADA TRANSPORTADORA
+                ======================================-->
+                <div class="form-group row">
+
+                    <div class="col-xs-6" style="padding-right:0px">
+
+                      <div class="input-group">
+                        <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" placeholder="Digite el Nombre de la Empresa de Transporte"><?php echo $venta["transportadora"]; ?></textarea>
+                      </div>
+                    </div>
+                    <div class="cajasMetodoPago"></div>
+                    <input type="hidden" id="nuevaTransportad" name="nuevaTransportad">
+                </div>
+
               </div>
             </div>
             <div class="box-footer">
