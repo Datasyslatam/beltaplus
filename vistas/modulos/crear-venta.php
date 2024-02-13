@@ -115,7 +115,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-xs" name="nuevaFechaPedido" id="nuevaFechaPedido" placeholder="Ingresar fecha pedido" required>
+                    <input value="<?php echo date('d-m-Y'); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" placeholder="Ingresar fecha pedido" required>
                   </div>
                 </div>
 

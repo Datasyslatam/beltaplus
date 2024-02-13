@@ -222,6 +222,22 @@
                 </div>
                 <br>
 
+                <script>
+                  $(document).ready(function() {
+                    let codigoTransaccion = <?php echo json_encode($venta["metodo_pago"]); ?>;
+                    if (codigoTransaccion != 'Efectivo') {
+                      let partesCodigoTransaccion = codigoTransaccion.split('-');
+                      let prefijo = partesCodigoTransaccion[0];
+                      let numeroTransaccion = partesCodigoTransaccion[1];
+                      $("#nuevoMetodoPago").val(prefijo).trigger('change');
+                      $('#nuevoCodigoTransaccion').val(numeroTransaccion);
+                    } else {
+                      $("#nuevoMetodoPago").val('Efectivo').trigger('change');
+                    }
+
+                  });
+                </script>
+
               </div>
             </div>
             <div class="box-footer">
