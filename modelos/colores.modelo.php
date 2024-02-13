@@ -34,8 +34,9 @@ class ModeloColores{
 
 	public static function mdlIngresarColor($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(color) VALUES (UPPER(:color))");
-		$stmt->bindParam(":color", $datos, PDO::PARAM_STR);
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(color, cod_color) VALUES (UPPER(:color), UPPER(:cod_color))");
+		$stmt->bindParam(":color", $datos["color"], PDO::PARAM_STR);
+		$stmt->bindParam(":cod_color", $datos["cod_color"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -44,7 +45,6 @@ class ModeloColores{
 		}else{
 
 			return "error";
-		
 		}
 
 		$stmt->close();
@@ -57,9 +57,10 @@ class ModeloColores{
 
 	public static function mdlEditarColor($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET color = UPPER(:color) WHERE id = :id");
-		$stmt -> bindParam(":color", $datos["color"], PDO::PARAM_STR);
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET color = UPPER(:color), cod_color = UPPER(:cod_color)  WHERE id = :id");
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+		$stmt -> bindParam(":color", $datos["color"], PDO::PARAM_STR);
+		$stmt -> bindParam(":cod_color", $datos["cod_color"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

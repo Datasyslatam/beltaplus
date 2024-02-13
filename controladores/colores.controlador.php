@@ -23,7 +23,8 @@ class ControladorColores{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoColor"])){
 
 				$tabla = "colores";
-				$datos = $_POST["nuevoColor"];
+				$datos = array("color" => $_POST["nuevoColor"],
+								"cod_color" => $_POST["nuevoCodigoHexColor"]);
 				$respuesta = ModeloColores::mdlIngresarColor($tabla, $datos);
 
 				if($respuesta == "ok"){
@@ -97,7 +98,9 @@ class ControladorColores{
 
 				$tabla = "colores";
 				$datos = array("color" => $_POST["editarColor"],
-							"id" => $_POST["idColor"]);
+							"id" => $_POST["idColor"],
+							"cod_color" => $_POST["editHexColor"]
+						);
 							   
 				$respuesta = ModeloColores::mdlEditarColor($tabla, $datos);
 

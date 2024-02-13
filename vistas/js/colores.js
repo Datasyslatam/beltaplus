@@ -20,12 +20,11 @@ $(".tablas").on("click", ".btnEditarColor", function(){
 
      		$("#editarColor").val(respuesta["color"]);
      		$("#idColor").val(respuesta["id"]);
+			$("#editHexColor").val(respuesta["cod_color"]);			// Codigo Hexadecimal del color guardado en tabla colores
 
      	}
 
 	})
-
-
 })
 
 /*=============================================
@@ -53,5 +52,28 @@ $(".tablas").on("click", ".btnEliminarColor", function(){
 	 	}
 
 	 })
-
 })
+
+/*=============================================
+CAPTURAR NVO CODIGO HEXADECIMAL DEL COLOR PRENDA
+=============================================*/
+$(document).ready(function() {
+    $('#captureColorBtn').click(function() {
+
+		var selectedColor = $('#colorInput').val();
+        $('#displayColor').val(selectedColor);
+
+    });
+});
+
+/*=============================================
+EDITAR EL NVO CODIGO HEXADECIMAL DEL COLOR PRENDA
+=============================================*/
+$(document).ready(function() {
+    $('#editColorBtn').click(function() {
+
+		var selectedColorEdit = $('#colorInputEdit').val();
+        $('#editHexColor').val(selectedColorEdit);
+
+    });
+});

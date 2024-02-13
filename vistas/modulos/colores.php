@@ -36,10 +36,12 @@ if($_SESSION["perfil"] == "Vendedor"){
        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
          
         <thead>
-         <tr>
+        <tr>
            <th style="width:10px">#</th>
            <th>Color</th>
            <th>Acciones</th>
+           <th>Codigo Hexadec</th>
+           <th>Tono color</th>
          </tr> 
         </thead>
 
@@ -60,8 +62,10 @@ if($_SESSION["perfil"] == "Vendedor"){
                         if($_SESSION["perfil"] == "Administrador"){
                           echo '<button class="btn btn-danger btnEliminarColor" idColor="'.$value["id"].'"><i class="fa fa-times"></i></button>';
                         }
-                      echo '</div>  
-                    </td>
+                      echo '</div>
+                      </td>
+                      <td>'.$value["cod_color"].'</td>
+                      <td> <input type="color" style="width: 200px;" class="form-control input-sm pull-left" value=' .$value["cod_color"].'> </td>
                   </tr>';
           }
         ?>
@@ -92,7 +96,7 @@ MODAL AGREGAR COLOR
         CUERPO DEL MODAL
         ======================================-->
         <div class="modal-body">
-          <div class="box-body">
+        <div class="box-body">
             <!-- ENTRADA PARA EL NOMBRE COLOR-->
             <label for="">Nombre del color</label>
             <div class="form-group">
@@ -101,7 +105,22 @@ MODAL AGREGAR COLOR
                 <input type="text" class="form-control input-lg text-uppercase" name="nuevoColor" placeholder="Ingresar nombre del color" required>
               </div>
             </div>
-  
+
+            <label for="">Codigo Hexadecimal del color</label>
+            <div id="selectedColor" class="input-group">
+              <span class="input-group-addon"><i class="fa fa-magic"></i></span>
+              <input type="text" id="displayColor" class="form-control input-lg text-uppercase" name="nuevoCodigoHexColor" placeholder="Código hexadeciimal del color">
+            </div>
+            <hr>
+            <p>Haga click sobre tono del color y luego pulse el Botón de capturar código hexadecinal del color</p>
+            <hr>
+            <div>
+              <div id="colorPicker">
+                <input type="color" id="colorInput" class="form-control input-sm pull-left" placeholder="Click aqui para seleccionar color">
+                <button type="button" id="captureColorBtn" class="btn btn-warning pull-right">Capturar Codigo Hexadecimal Color</button>
+              </div>
+            </div>
+
           </div>
         </div>
         <!--=====================================
@@ -149,6 +168,22 @@ MODAL EDITAR COLOR
                 <span class="input-group-addon"><i class="fa fa-paint-brush"></i></span> 
                 <input type="text" class="form-control input-lg text-uppercase" name="editarColor" id="editarColor" required>
                  <input type="hidden"  name="idColor" id="idColor" required>
+              </div>
+            </div>
+
+            <label for="">Codigo Hexadecimal del color</label>
+            <div id="selectedColorEdit" class="input-group">
+              <span class="input-group-addon"><i class="fa fa-magic"></i></span>
+              <input type="text" id="editHexColor" class="form-control input-lg text-uppercase" name="editHexColor" placeholder="Código hexadeciimal del color">
+            </div>
+
+            <hr>
+            <p>Haga click sobre tono del color y luego pulse el Botón de capturar código hexadecinal del color</p>
+            <hr>
+            <div>
+              <div id="colorPickerEdit">
+                <input type="color" id="colorInputEdit" class="form-control input-sm pull-left" placeholder="Click aqui para seleccionar color">
+                <button type="button" id="editColorBtn" class="btn btn-warning pull-right">Capturar Codigo Hexadecimal Color</button>
               </div>
             </div>
   
