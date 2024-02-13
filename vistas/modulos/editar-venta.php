@@ -103,7 +103,7 @@
 
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input value="<?php echo($fecha_venta); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" placeholder="Ingresar fecha pedido" required>
+                    <input value="<?php echo($fecha_venta); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" placeholder="Ingresar fecha pedido" required readonly>
                   </div>
                 </div>
                 <hr>
