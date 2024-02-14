@@ -53,10 +53,6 @@ if ($_SESSION["perfil"] == "Especial") {
 
                 $fecha_venta = $venta["fecha_venta"];
                 ?>
-                <script>
-                  // let fecha_venta_js=<?php echo ($fecha_venta ); ?>
-                  localStorage.setItem("fecha_venta", <?php echo ($fecha_venta ); ?>);
-                </script>
                 <div class="box">
                   <!--=====================================
                 DATOS DEL VENDEDOR
@@ -101,17 +97,17 @@ if ($_SESSION["perfil"] == "Especial") {
 
                   </div>
                   <!-- ENTRADA PARA LA FECHA DE PEDIDO Dato nuevo-->
-                <label for="">Fecha de venta</label>
-                <div class="input-group">
-
+                  <label for="">Fecha de venta</label>
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input value="<?php echo ($fecha_venta ); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" required readonly>
-                  </div>
-                </div>
-                <hr>
 
-                 <!--=====================================
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      <input value="<?php echo ($fecha_venta); ?>" type="date" class="form-control input-xs" name="nuevaFechaVenta" id="nuevaFechaVenta" required>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <!--=====================================
                 LISTA DE PRODUCTOS PENDIENTES
                 ======================================-->
                   <div class="form-group row nuevoProducto productosTemporales">
@@ -230,13 +226,13 @@ if ($_SESSION["perfil"] == "Especial") {
                   <script>
                     $(document).ready(function() {
                       let codigoTransaccion = <?php echo json_encode($venta["metodo_pago"]); ?>;
-                      if(codigoTransaccion != 'Efectivo'){
+                      if (codigoTransaccion != 'Efectivo') {
                         let partesCodigoTransaccion = codigoTransaccion.split('-');
                         let prefijo = partesCodigoTransaccion[0];
                         let numeroTransaccion = partesCodigoTransaccion[1];
                         $("#nuevoMetodoPago").val(prefijo).trigger('change');
                         $('#nuevoCodigoTransaccion').val(numeroTransaccion);
-                      }else{
+                      } else {
                         $("#nuevoMetodoPago").val('Efectivo').trigger('change');
                       }
 
