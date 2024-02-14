@@ -98,8 +98,8 @@ window.addEventListener("DOMContentLoaded", () => {
             }, 500);
             
             setTimeout(() => {
-                document.getElementById("nuevaFechaVenta").value=fecha_venta_js;
-            }, 500);
+                document.getElementById("nuevaFechaVenta").value=localStorage.getItem("fecha_venta");
+            }, 1000);
 
         }, 1000);
     }

@@ -54,7 +54,8 @@ if ($_SESSION["perfil"] == "Especial") {
                 $fecha_venta = $venta["fecha_venta"];
                 ?>
                 <script>
-                  let fecha_venta_js=<?php echo ($fecha_venta ); ?>
+                  // let fecha_venta_js=<?php echo ($fecha_venta ); ?>
+                  localStorage.setItem("fecha_venta", <?php echo ($fecha_venta ); ?>);
                 </script>
                 <div class="box">
                   <!--=====================================
