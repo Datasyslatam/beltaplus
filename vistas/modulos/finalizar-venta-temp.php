@@ -6,9 +6,7 @@ if ($_SESSION["perfil"] == "Especial") {
   return;
 }
 ?>
-<script>
-  let fecha_venta_js=<?php echo ($fecha_venta ); ?>
-</script>
+
 <div class="content-wrapper">
   <section class="content-header">
 
@@ -55,7 +53,9 @@ if ($_SESSION["perfil"] == "Especial") {
 
                 $fecha_venta = $venta["fecha_venta"];
                 ?>
-
+                <script>
+                  let fecha_venta_js=<?php echo ($fecha_venta ); ?>
+                </script>
                 <div class="box">
                   <!--=====================================
                 DATOS DEL VENDEDOR
