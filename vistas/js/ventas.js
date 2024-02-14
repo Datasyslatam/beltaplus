@@ -96,6 +96,11 @@ window.addEventListener("DOMContentLoaded", () => {
                 let botonStock = document.getElementById("getstock");
                 botonStock.click();
             }, 500);
+            
+            setTimeout(() => {
+                document.getElementById("nuevaFechaVenta").value=fecha_venta_js;
+            }, 500);
+
         }, 1000);
     }
 });

@@ -6,7 +6,9 @@ if ($_SESSION["perfil"] == "Especial") {
   return;
 }
 ?>
-
+<script>
+  let fecha_venta_js=<?php echo ($fecha_venta ); ?>
+</script>
 <div class="content-wrapper">
   <section class="content-header">
 
