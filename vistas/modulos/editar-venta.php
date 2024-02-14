@@ -305,10 +305,11 @@
 
               <thead>
                 <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Imagen</th>
-                  <th>Código</th>
-                  <th>Descripcion</th>
+                  <th style="width: 10px">Código</th>
+                  <th>Categoría</th>
+                  <th>Subcategoría</th>
+                  <th>Color</th>
+                  <th>Talla</th>
                   <th>Stock</th>
                   <th>Acciones</th>
                 </tr>
