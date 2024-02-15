@@ -229,7 +229,7 @@ if ($_SESSION["perfil"] == "Especial") {
                       let codigoTransaccion = <?php echo json_encode($venta["metodo_pago"]); ?>;
                       let fecha_venta1 = <?php echo json_encode($venta["fecha_venta"]); ?>;
                       
-                      $('#nuevaFechaVenta').val(fecha_venta1);
+                      $('#nuevaFechaVenta').val(fecha_venta1).trigger('channge');
 
                       if (codigoTransaccion != 'Efectivo') {
                         let partesCodigoTransaccion = codigoTransaccion.split('-');
