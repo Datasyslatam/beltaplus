@@ -99,7 +99,7 @@ if ($xml) {
                   <td>' . $value["metodo_pago"] . '</td>
                   <td>$ ' . number_format($value["neto"], 2) . '</td>
                   <td>$ ' . number_format($value["total"], 2) . '</td>
-                  <td>' . $value["fecha"] . '</td>
+                  <td>' . $value["fecha_venta"] . '</td>
                   <td>
                     <div class="btn-group">
                       
