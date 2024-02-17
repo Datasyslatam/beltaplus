@@ -51,6 +51,7 @@ if ($_SESSION["perfil"] == "Especial") {
                 $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
                 //$porcentajeImpuesto = $venta["impuesto"] * 100 / $venta["neto"];
 
+                $transporte = $venta["transportadora"];
                 $fecha_venta = $venta["fecha_venta"];
                 ?>
                 <div class="box">
@@ -236,6 +237,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <script>
                     $(document).ready(function() {
                       let codigoTransaccion = <?php echo json_encode($venta["metodo_pago"]); ?>;
+
                       if (codigoTransaccion != 'Efectivo') {
                         let partesCodigoTransaccion = codigoTransaccion.split('-');
                         let prefijo = partesCodigoTransaccion[0];
@@ -245,7 +247,6 @@ if ($_SESSION["perfil"] == "Especial") {
                       } else {
                         $("#nuevoMetodoPago").val('Efectivo').trigger('change');
                       }
-
                     });
                   </script>
 
@@ -259,7 +260,7 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="col-xs-6" style="padding-right:0px">
 
                       <div class="input-group">
-                        <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2" placeholder="Digite el Nombre de la Empresa de Transporte"><?php echo $venta["transportadora"]; ?></textarea>
+                        <textarea maxlength="120" name="nuevaTransporta" id="nuevaTransporta" cols="50" rows="2"><?php echo $transporte; ?></textarea>
                       </div>
                     </div>
                     <div class="cajasMetodoPago"></div>
