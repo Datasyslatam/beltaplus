@@ -76,9 +76,19 @@ if ($_SESSION["perfil"] == "Especial") {
                     <div class="input-group">
 
                       <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                      <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="<?php echo $venta["codigo"]; ?>" readonly>
-                      <!-- <input type="hidden" class="form-control" id="nuevaVenta" name="editarVenta" value="<?php echo $venta["codigo"]; ?>"> -->
-
+                      <?php
+                      $item = null;
+                      $valor = null;
+                      $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+                      if (!$ventas) {
+                        echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10001" readonly>';
+                      } else {
+                        foreach ($ventas as $key => $value) {
+                        }
+                        $codigo = $value["codigo"] + 1;
+                        echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . $codigo . '" readonly>';
+                      }
+                      ?>
                     </div>
 
                   </div>
