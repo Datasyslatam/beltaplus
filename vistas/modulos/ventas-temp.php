@@ -56,7 +56,7 @@ if($xml){
          
          <tr>
            <th style="width:10px">#</th>
-           <th>Código factura</th>
+           <!-- <th>Código factura</th> -->
            <th>Cliente</th>
            <th>Vendedor</th>
            <th>Forma de pago</th>
@@ -80,8 +80,8 @@ if($xml){
           foreach ($respuesta as $key => $value) {
            
            echo '<tr>
-                  <td>'.($key+1).'</td>
-                  <td>'.$value["codigo"].'</td>';
+                  <td>'.($key+1).'</td>';
+                  
                   $itemCliente = "id";
                   $valorCliente = $value["id_cliente"];
                   $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
