@@ -1,8 +1,8 @@
-# Sistema de Inventario para Marca de Ropa
+# Sistema de Inventario
 
-Este es un proyecto de sistema de inventario desarrollado en PHP utilizando el patrón de arquitectura Modelo-Vista-Controlador (MVC). El propósito principal de este sistema es gestionar el inventario de una marca de ropa, permitiendo el seguimiento de productos, control de existencias, gestión de pedidos, entre otras funcionalidades relacionadas con la gestión de inventario.
+Este es un proyecto de sistema de inventario desarrollado en PHP utilizando el patrón de arquitectura Modelo-Vista-Controlador (MVC). El propósito principal de este sistema es gestionar el inventario, permitiendo el seguimiento de productos, control de existencias, gestión de pedidos, entre otras funcionalidades relacionadas con la gestión.
 
-Este repositorio es un *fork* de un repositorio existente, donde se realizarán mejoras y adiciones para satisfacer las necesidades específicas de la marca de ropa. Se trabajarán en ramas separadas para cada funcionalidad o mejora, y se realizarán *pull requests* al repositorio original una vez que las funcionalidades estén completas y probadas.
+Este repositorio es un *fork* de un repositorio existente, donde se realizarán mejoras y adiciones para satisfacer las necesidades generales. Se trabajarán en ramas separadas para cada funcionalidad o mejora, y se realizarán *pull requests* al repositorio original una vez que las funcionalidades estén completas y probadas.
 
 ## Estructura del Proyecto
 
