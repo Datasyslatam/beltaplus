@@ -24,13 +24,6 @@ El proyecto sigue una estructura MVC típica para separar las preocupaciones y m
 - Servidor web (Apache, Nginx, etc.)
 - MySQL o un sistema de gestión de bases de datos compatible.
 
-## Configuración
-
-1. Clona este repositorio en tu máquina local.
-2. Configura tu servidor web para que el directorio raíz apunte a la carpeta `public/`.
-3. Crea una base de datos MySQL y ejecuta los scripts proporcionados en el directorio `database/` para configurar las tablas necesarias.
-4. Actualiza el archivo `config/database.php` con los detalles de conexión a tu base de datos.
-
 ## Licencia
 
 Este proyecto está bajo la licencia [MIT](LICENSE).
