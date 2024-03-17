@@ -304,7 +304,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   break;
                 case 'facturar':
                   $guardarVenta = new ControladorVentas();
-                  $guardarVenta->ctrCrearVenta();
+                  $guardarVenta->ctrCrearVenta('ventas');
                   $eliminarCarrito = new ControladorVentasTemp();
                   $eliminarCarrito->ctrEliminarVenta(false);
                   break;

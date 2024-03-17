@@ -12,6 +12,7 @@
     require_once "controladores/clientes.controlador.php";
     require_once "controladores/ventas.controlador.php";
     require_once "controladores/ventas-temp.controlador.php";
+    require_once "controladores/transito.controlador.php";
 
     require_once "modelos/usuarios.modelo.php";
     require_once "modelos/categorias.modelo.php";
@@ -21,6 +22,7 @@
     require_once "modelos/motivos.modelo.php";
     require_once "modelos/productos.modelo.php";
     require_once "modelos/movimientos.modelo.php";
+    require_once "modelos/transito.modelo.php";
 
     require_once "modelos/clientes.modelo.php";
     require_once "modelos/ventas.modelo.php";

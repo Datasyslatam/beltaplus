@@ -10,9 +10,8 @@ class ControladorVentasTemp
 	/*=============================================
 	   MOSTRAR VENTAS
 	   =============================================*/
-	public static function ctrMostrarVentas($item, $valor)
+	public static function ctrMostrarVentas($item, $valor, $tabla="ventas_temp")
 	{
-		$tabla = "ventas_temp";
 		$respuesta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 		return $respuesta;
 	}
@@ -88,7 +87,7 @@ class ControladorVentasTemp
 				"id_vendedor" => $_POST["idVendedor"],
 				"id_cliente" => $_POST["seleccionarCliente"],
 				"codigo" => $_POST["nuevaVenta"],
-				"fecha_venta"=>$_POST["nuevaFechaVenta"],		// Fecha de Venta nvo campo
+				"fecha_venta" => $_POST["nuevaFechaVenta"],		// Fecha de Venta nvo campo
 				"productos" => $_POST["listaProductos"],
 				"impuesto" => $_POST["nuevoPrecioImpuesto"],
 				"neto" => $_POST["nuevoPrecioNeto"],
@@ -96,6 +95,7 @@ class ControladorVentasTemp
 				"metodo_pago" => $_POST["listaMetodoPago"],
 				"transportadora" => $_POST["nuevaTransporta"]
 			);
+
 
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
@@ -123,7 +123,7 @@ class ControladorVentasTemp
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-									window.location = "ventas";
+									window.location = "ventas-in-process";
 									}
 								})
 					</script>';
@@ -131,16 +131,16 @@ class ControladorVentasTemp
 			}
 		}
 	}
+
 	/*=============================================
 	   EDITAR VENTA
 	=============================================*/
-	public static function ctrEditarVenta()
+	public static function ctrEditarVenta($tabla = "ventas_temp")
 	{
 		if (isset($_POST["editarVenta"])) {
 			/*=============================================
 					 FORMATEAR TABLA DE PRODUCTOS Y LA DE CLIENTES
 			=============================================*/
-			$tabla = "ventas_temp";
 			$item = "codigo";
 			$valor = $_POST["editarVenta"];
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
@@ -249,10 +249,9 @@ class ControladorVentasTemp
 	/*=============================================
 	   ELIMINAR VENTA
 	=============================================*/
-	public static function ctrEliminarVenta($t = true)
+	public static function ctrEliminarVenta($t = true, $tabla = "ventas_temp")
 	{
 		if (isset($_GET["idVenta"])) {
-			$tabla = "ventas_temp";
 			$item = "id";
 			$valor = $_GET["idVenta"];
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
@@ -284,7 +283,7 @@ class ControladorVentasTemp
 				}
 			} else {
 				$item = "ultima_compra";
-				$valor = "0000-00-00 00:00:00";
+				$valor = "9000-01-01 00:00:00";
 				$valorIdCliente = $traerVenta["id_cliente"];
 				$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item, $valor, $valorIdCliente);
 			}
@@ -340,19 +339,17 @@ class ControladorVentasTemp
 	/*=============================================
 	   RANGO FECHAS
 	   =============================================*/
-	public static function ctrRangoFechasVentas($fechaInicial, $fechaFinal)
+	public static function ctrRangoFechasVentas($fechaInicial, $fechaFinal, $tabla = "ventas_temp")
 	{
-		$tabla = "ventas_temp";
 		$respuesta = ModeloVentas::mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal);
 		return $respuesta;
 	}
 	/*=============================================
 	   DESCARGAR EXCEL
 	   =============================================*/
-	public function ctrDescargarReporte()
+	public function ctrDescargarReporte($tabla = "ventas_temp")
 	{
 		if (isset($_GET["reporte"])) {
-			$tabla = "ventas_temp";
 			if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
 				$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
 			} else {
@@ -419,19 +416,17 @@ class ControladorVentasTemp
 	/*=============================================
 	   SUMA TOTAL VENTAS
 	   =============================================*/
-	public static function ctrSumaTotalVentas()
+	public static function ctrSumaTotalVentas($tabla = "ventas_temp")
 	{
-		$tabla = "ventas_temp";
 		$respuesta = ModeloVentas::mdlSumaTotalVentas($tabla);
 		return $respuesta;
 	}
 	/*=============================================
 	   DESCARGAR XML
 	   =============================================*/
-	public static function ctrDescargarXML()
+	public static function ctrDescargarXML($tabla = "ventas_temp")
 	{
 		if (isset($_GET["xml"])) {
-			$tabla = "ventas_temp";
 			$item = "codigo";
 			$valor = $_GET["xml"];
 			$ventas = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);

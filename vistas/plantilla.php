@@ -164,6 +164,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "ventas-temp" ||    // Lista de Ventas cargada en Tabla Temporal de Ventas
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "finalizar-venta-temp" || // Editar y Finalizar Venta cargada en Tabla Temporal de Ventas
+         $_GET["ruta"] == "ventas-in-process" ||
          $_GET["ruta"] == "editar-venta" ||
 		     $_GET["ruta"] == "kardex-producto" ||
          $_GET["ruta"] == "reportes" ||

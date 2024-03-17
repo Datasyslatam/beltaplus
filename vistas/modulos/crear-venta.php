@@ -234,10 +234,8 @@ if ($_SESSION["perfil"] == "Especial") {
 
           </form>
           <?php
-          if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["accion"])) {
+            if (isset($_POST["accion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
               $accion = $_POST["accion"];
-
               switch ($accion) {
                 case 'pendiente':
                   $controlador = new ControladorVentasTemp();
@@ -245,13 +243,16 @@ if ($_SESSION["perfil"] == "Especial") {
                   break;
                 case 'facturar':
                   $controlador = new ControladorVentas();
-                  $controlador->ctrCrearVenta();
+                  $controlador->ctrCrearVenta('ventas_proceso');
+
+                  $controlador = new ControladorTransito();
+                  $controlador-> ctrSumarProductosTransito();
                   break;
                 default:
                   break;
               }
             }
-          }
+          
 
           ?>
         </div>
