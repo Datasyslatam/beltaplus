@@ -169,6 +169,7 @@ CUERPO DOCUMENTO
 		     $_GET["ruta"] == "kardex-producto" ||
          $_GET["ruta"] == "reportes" ||
          $_GET["ruta"] == "acerca" ||
+         $_GET["ruta"] == "cargue-masivo" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
