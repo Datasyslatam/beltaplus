@@ -112,8 +112,8 @@ if($xml){
         </tbody>
        </table>
        <?php
-      $eliminarVenta = new ControladorVentasTemp();
-      $eliminarVenta -> ctrEliminarVenta();
+      $eliminarTransito = new ControladorVentasTemp();
+      $eliminarTransito -> ctrEliminarVenta();
       ?>
        
       </div>

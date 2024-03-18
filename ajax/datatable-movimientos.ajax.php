@@ -86,7 +86,7 @@ class TablaMovimientos{
 			      "'.($i+1).'",
 			      "'.$imagen.'",
 			      "'.$movimientos[$i]["codigo"].'",
-			      "'.$movimientos[$i]["descripcion"].'",
+			      "'.$movimientos[$i]["transito"].'",
 			      "'.$categorias["categoria"].'",
 			      "'.$stock.'",
 			      "'.$movimientos[$i]["fecha"].'",

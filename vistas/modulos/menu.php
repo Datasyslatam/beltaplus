@@ -153,6 +153,12 @@
 						</a>
 					</li>
 					<li>
+						<a href="ventas-in-process">
+							<i class="fa fa-circle-o"></i>
+							<span>Ventas en proceso</span>
+						</a>
+					</li>
+					<li>
 						<a href="ventas-temp">
 							<i class="fa fa-circle-o"></i>
 							<span>Admin Ventas pendientes</span>

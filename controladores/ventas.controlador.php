@@ -18,7 +18,7 @@ class ControladorVentas
 	/*=============================================
 	   CREAR VENTA
 	   =============================================*/
-	public static function ctrCrearVenta()
+	public static function ctrCrearVenta($tabla = 'ventas')
 	{
 		if (isset($_POST["nuevaVenta"])) {
 			/*=============================================
@@ -80,7 +80,6 @@ class ControladorVentas
 			/*=============================================
 					 GUARDAR LA VENTA
 					 =============================================*/
-			$tabla = "ventas";
 			$datos = array("id_vendedor"=>$_POST["idVendedor"],
 						   "id_cliente"=>$_POST["seleccionarCliente"],
 						   "codigo"=>$_POST["nuevaVenta"],
@@ -104,7 +103,7 @@ class ControladorVentas
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
-								window.location = "ventas";
+								window.location = "ventas-in-process";
 								}
 							})
 				</script>';
@@ -261,7 +260,7 @@ class ControladorVentas
 				}
 			} else {
 				$item = "ultima_compra";
-				$valor = "0000-00-00 00:00:00";
+				$valor = "9000-02-01 00:00:00";
 				$valorIdCliente = $traerVenta["id_cliente"];
 				$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item, $valor, $valorIdCliente);
 			}

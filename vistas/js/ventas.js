@@ -965,6 +965,49 @@ $(".tablas").on("click", ".btnEliminarVentaTemp", function () {
 });
 
 /*=============================================
+BORRAR VENTA EN PROCESO
+=============================================*/
+$(".tablas").on("click", ".btnEliminarVentaProcess", function () {
+    var idVenta = $(this).attr("idVenta");
+
+    swal({
+        title: "¿Está seguro cancelar el proceso de venta?",
+        text: "¡Si no lo está puede cancelar la accíón!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, cancelar venta!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location = "index.php?ruta=ventas-in-process&devolucion=true&idVenta=" + idVenta;
+        }
+    });
+});
+/*=============================================
+CONFIRMAR PAGO DE VENTA EN PROCESO
+=============================================*/
+$(".tablas").on("click", ".btnPagarVentaProccess", function () {
+    var idVenta = $(this).attr("idVenta");
+
+    swal({
+        title: "¿Está seguro de confirmar el pago?",
+        text: "¡Si no lo está puede cancelar la accíón!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, confirmar!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location = "index.php?ruta=ventas-in-process&pagado='true'&idVenta=" + idVenta;
+        }
+    });
+});
+
+/*=============================================
 IMPRIMIR FACTURA
 =============================================*/
 

@@ -6,7 +6,7 @@ if($_SESSION["perfil"] == "Vendedor"){
   return;
 }
 ?>
-<div class="content-wrapper">
+<div class="content-wrapper" >
   <section class="content-header">
     
     <h1>
@@ -24,15 +24,27 @@ if($_SESSION["perfil"] == "Vendedor"){
   </section>
   <section class="content">
     <div class="box">
+      </div>
+      <div class="box-body" >
+        <form action="cargue-masivo" method="post" enctype="multipart/form-data" style="align-items: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div class="file-input text-center">
+            <input  type="file" name="dataCliente" id="file-input" class="file-input__input" accept=".csv"/>
+            <label class="file-input__label" for="file-input">
+              <i class="zmdi zmdi-upload zmdi-hc-2x"></i>
+              <span>Cargar Archivo</span>
+            </label>
+          </div>
+          <div class="text-center mt-5">
+            <input type="submit" name="subir" class="btn-enviar" value="Subir Excel"/>
+          </div>
+        </form>
       <div class="box-header with-border">
   
        <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMovimiento">
           
           Agregar movimiento
         </button>-->
-      </div>
-      <div class="box-body">
-        
+  
        <table class="table table-bordered table-striped dt-responsive tablaMovimientos" width="100%">
          
         <thead>
@@ -42,7 +54,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th style="width:10px">#</th>
            <th>Imagen</th>
            <th>Código</th>
-           <th>Descripción</th>
+           <th>Transito</th>
            <th>Categoría</th>
            <th>Stock</th>
            <th>Agregado</th>
