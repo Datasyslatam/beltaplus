@@ -12,13 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
         $cantidad_regist_agregados = ($cantidad_registros - 1);
 
         if ($i != 0) {
-
             $datos = explode(";", $linea);
-            $codigo = !empty($datos[0]) ? $datos[0] : '';
-            $stock = !empty($datos[5]) ? intval($datos[5]) : 0; 
-            /* $codigo = !empty($datos[0]) ? "'" . $datos[0] . "'" : "''";
-            $stock = !empty($datos[5]) ? intval($datos[5]) : 0;
- */
+            $codigo = !empty($datos[0]) ? $datos[1] : '';
+            $stock = !empty($datos[5]) ? intval($datos[6]) : 0; 
+
+            // filtrado por el codigo para verificar duplicados
             $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo ";
             $stmtCheck = Conexion::conectar()->prepare($checkCodigoDuplicado);
             $stmtCheck->bindParam(':codigo', $codigo);
@@ -46,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
                 text: 'El cargue se ha completado correctamente',
                 icon: 'success'
             });
-        }, 40000);
+        }, 4000);
         window.location.href = 'movimientos';
     </script>";
 
@@ -59,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
                 text: 'Ha ocurrido un Error en la carga del docuemento',
                 icon: 'success'
             });
-        }, 40000);
+        }, 4000);
         window.location.href = 'movimientos';
     </script>";
 }
