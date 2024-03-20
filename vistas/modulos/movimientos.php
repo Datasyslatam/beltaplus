@@ -27,16 +27,19 @@ if($_SESSION["perfil"] == "Vendedor"){
       </div>
       <div class="box-body" >
         <form action="cargue-masivo" method="post" enctype="multipart/form-data" style="align-items: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-          <div class="file-input text-center">
-            <input  type="file" name="dataCliente" id="file-input" class="file-input__input" accept=".csv"/>
-            <label class="file-input__label" for="file-input">
+          
+          <div class="file-input text-center input-group">
+            <input  type="file" name="dataCliente" class="file-input__input btn btn-primary pull-left" id="file-input" accept=".csv"/>
+            <!-- <label class="file-input__label" for="file-input">
               <i class="zmdi zmdi-upload zmdi-hc-2x"></i>
-              <span>Cargar Archivo</span>
-            </label>
+              <span class="btn btn-warning">Cargar Archivo</span>
+            </label> --> &nbsp; &nbsp;
+            
+            <input type="submit" name="subir" class="btn-enviar btn btn-success" value="Subir Excel"/>    
           </div>
-          <div class="text-center mt-5">
-            <input type="submit" name="subir" class="btn-enviar" value="Subir Excel"/>
-          </div>
+
+          <div class="form-group">  </div>
+
         </form>
       <div class="box-header with-border">
   
