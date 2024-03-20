@@ -11,7 +11,7 @@ if($_SESSION["perfil"] == "Vendedor"){
     
     <h1>
       
-      Administrar movimientos
+      Administrar movimientos / Actualizacion masiva Stock de productos
     
     </h1>
     <ol class="breadcrumb">
