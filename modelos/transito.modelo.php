@@ -82,7 +82,7 @@ class ModeloTransito
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $resultado['idproceso'];
+        return $resultado !== false ? $resultado['idproceso'] : null;
     }
     public static function mdlEliminarVentaProceso($idProceso)
     {
