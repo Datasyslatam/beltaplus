@@ -247,6 +247,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   $controlador->ctrCrearVenta('ventas');
                   $controlador = new ControladorTransito();
                   $controlador-> ctrSumarProductosTransito();
+                  $controlador -> ctrUnirVentas();
                   break;
                 default:
                   break;

@@ -54,14 +54,42 @@ class ModeloTransito
             }
         }
     }
-    public static function mdlEliminarVentaInProcess($productos, $date)
+    public static function mdlConsultarUltimaInsercion()
     {
-        $origen = 'ventas_proceso';
-        $sqlDelete = "DELETE FROM $origen WHERE productos = :productos AND fecha_venta = :fecha";
-        $stmtDelete = Conexion::conectar()->prepare($sqlDelete);
-        $stmtDelete->bindParam(':productos', $productos);
-        $stmtDelete->bindParam(':fecha', $date);
-        $stmtDelete->execute();
+        $sql = "SELECT MAX(id) AS ultimaInsercion FROM ventas";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->execute();
+        $resultado1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT MAX(id) AS ultimaInsercion FROM ventas_proceso";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->execute();
+        $resultado2 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $idTabla1 = $resultado1['ultimaInsercion'];
+        $idTabla2 = $resultado2['ultimaInsercion'];
+
+        $sql = "INSERT INTO tabla_intermedia (idventa, idproceso) VALUES (:idTabla1, :idTabla2)";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':idTabla1', $idTabla1);
+        $stmt->bindParam(':idTabla2', $idTabla2);
+        $stmt->execute();
+    }
+    public static function mdlObtenerIdProceso($id)
+    {
+        $sql = "SELECT idproceso FROM tabla_intermedia WHERE idventa = :id";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultado['idproceso'];
+    }
+    public static function mdlEliminarVentaProceso($idProceso)
+    {
+        $sql = "DELETE FROM ventas_proceso WHERE id = :idProceso";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':idProceso', $idProceso);
+        $stmt->execute();
     }
     private static function obtenerStockTransito($codigo)
     {
@@ -82,6 +110,7 @@ class ModeloTransito
         $productos = $stmt->fetch(PDO::FETCH_ASSOC);
         return $productos['productos'];
     }
+
     private static function obtenerStockProducto($codigo)
     {
 
