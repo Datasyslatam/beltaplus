@@ -123,7 +123,7 @@ class ControladorVentasTemp
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-									window.location = "ventas-in-process";
+									window.location = "ventas";
 									}
 								})
 					</script>';
@@ -323,12 +323,12 @@ class ControladorVentasTemp
 					echo '<script>
 					swal({
 						  type: "success",
-						  title: "¡El carrito ha sido borrado correctamente!",
+						  title: "¡Accion Confirmada!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-									window.location = "ventas-temp";
+									window.location = "ventas";
 									}
 								})
 					</script>';

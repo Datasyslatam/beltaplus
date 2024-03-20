@@ -55,7 +55,6 @@ if ($xml) {
               <th>Neto</th>
               <th>Total</th>
               <th>Fecha</th>
-              <th>Acciones</th>
             </tr>
 
           </thead>
@@ -91,10 +90,6 @@ if ($xml) {
                   <td>
                     <div class="btn-group">
                     ';
-              if ($_SESSION["perfil"] == "Administrador") {
-                echo '<button name="accionVentaProceso" value="pagado" class="btn btn-warning btnPagarVentaProccess" accion= "pagado" idVenta  ="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>
-                      <button name="accionVentaProceso" value="cancelado" class="btn btn-danger btnEliminarVentaProcess" devolucion="true" idVenta="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-              }
               echo '</div>
                   </td>
                 </tr>';

@@ -54,56 +54,42 @@ class ModeloTransito
             }
         }
     }
-    public static function mdlMoverRow($idTransito)
+    public static function mdlConsultarUltimaInsercion()
     {
-        $origen = 'ventas_proceso';
-        $destino = 'ventas';
-        $sqlSelect = "SELECT * FROM $origen WHERE id = :id";
-        $stmtSelect = Conexion::conectar()->prepare($sqlSelect);
-        $stmtSelect->bindParam(':id', $idTransito);
-        $stmtSelect->execute();
-        $row = $stmtSelect->fetch(PDO::FETCH_ASSOC);
-        $formatedRow = self::convertirTiposDeDatos($row);
-        if ($formatedRow) {
+        $sql = "SELECT MAX(id) AS ultimaInsercion FROM ventas";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->execute();
+        $resultado1 = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $id = self::obtenerUltimoId();
-            $nuevoId = intval($id) + 1;
-            $sqlInsert = "INSERT INTO $destino (id, codigo, id_cliente, id_vendedor, fecha_venta, productos, impuesto, neto, total, transportadora, metodo_pago, fecha)
-            VALUES (:id, :codigo, :id_cliente, :id_vendedor, :fecha_venta, :productos, :impuesto, :neto, :total, :transportadora, :metodo_pago, :fecha)";
-            $stmtInsert = Conexion::conectar()->prepare($sqlInsert);
-            $stmtInsert->bindParam(':id', $nuevoId);
-            $stmtInsert->bindParam(':codigo', $formatedRow['codigo']);
-            $stmtInsert->bindParam(':id_cliente', $formatedRow['id_cliente']);
-            $stmtInsert->bindParam(':id_vendedor', $formatedRow['id_vendedor']);
-            $stmtInsert->bindParam(':fecha_venta', $formatedRow['fecha_venta']);
-            $stmtInsert->bindParam(':productos', $formatedRow['productos']);
-            $stmtInsert->bindParam(':impuesto', $formatedRow['impuesto']);
-            $stmtInsert->bindParam(':neto', $formatedRow['neto']);
-            $stmtInsert->bindParam(':total', $formatedRow['total']);
-            $stmtInsert->bindParam(':transportadora', $formatedRow['transportadora']);
-            $stmtInsert->bindParam(':metodo_pago', $formatedRow['metodo_pago']);
-            $fecha = $formatedRow['fecha']->format('Y-m-d H:i:s');
-            $stmtInsert->bindParam(':fecha', $fecha);
-            $stmtInsert->execute();
+        $sql = "SELECT MAX(id) AS ultimaInsercion FROM ventas_proceso";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->execute();
+        $resultado2 = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sqlDelete = "DELETE FROM $origen WHERE id = :id";
-            $stmtDelete = Conexion::conectar()->prepare($sqlDelete);
-            $stmtDelete->bindParam(':id', $idTransito);
-            $stmtDelete->execute();
-        }
+        $idTabla1 = $resultado1['ultimaInsercion'];
+        $idTabla2 = $resultado2['ultimaInsercion'];
+
+        $sql = "INSERT INTO tabla_intermedia (idventa, idproceso) VALUES (:idTabla1, :idTabla2)";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':idTabla1', $idTabla1);
+        $stmt->bindParam(':idTabla2', $idTabla2);
+        $stmt->execute();
     }
-    private static function convertirTiposDeDatos($fetchResult)
+    public static function mdlObtenerIdProceso($id)
     {
-
-        $fetchResult['id_cliente'] = intval($fetchResult['id_cliente']);
-        $fetchResult['id_vendedor'] = intval($fetchResult['id_vendedor']);
-        $fetchResult['codigo'] = intval($fetchResult['codigo']);
-        $fetchResult['impuesto'] = floatval($fetchResult['impuesto']);
-        $fetchResult['neto'] = floatval($fetchResult['neto']);
-        $fetchResult['total'] = floatval($fetchResult['total']);
-        $fetchResult['fecha'] = DateTime::createFromFormat('Y-m-d H:i:s', $fetchResult['fecha']);
-
-        return $fetchResult;
+        $sql = "SELECT idproceso FROM tabla_intermedia WHERE idventa = :id";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultado !== false ? $resultado['idproceso'] : null;
+    }
+    public static function mdlEliminarVentaProceso($idProceso)
+    {
+        $sql = "DELETE FROM ventas_proceso WHERE id = :idProceso";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':idProceso', $idProceso);
+        $stmt->execute();
     }
     private static function obtenerStockTransito($codigo)
     {
@@ -113,14 +99,6 @@ class ModeloTransito
         $stmt->execute();
         $stock = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stock['transito'];
-    }
-    private static function obtenerUltimoId()
-    {
-        $sql = "SELECT MAX(id) AS max_id FROM ventas";
-        $stmt = Conexion::conectar()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['max_id'];
     }
 
     private static function obtenerProductosTransito($idTransito)
@@ -132,6 +110,7 @@ class ModeloTransito
         $productos = $stmt->fetch(PDO::FETCH_ASSOC);
         return $productos['productos'];
     }
+
     private static function obtenerStockProducto($codigo)
     {
 
