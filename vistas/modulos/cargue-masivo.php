@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
 
         if ($i != 0) {
 
-            $datos = explode(",", $linea);
+            $datos = explode(";", $linea);
             $codigo = !empty($datos[0]) ? $datos[0] : '';
             $stock = !empty($datos[5]) ? intval($datos[5]) : 0; 
             /* $codigo = !empty($datos[0]) ? "'" . $datos[0] . "'" : "''";
@@ -39,24 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
     }
     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <script>
-        window.location.href = 'movimientos';
+       
         setTimeout(function() {
             Swal.fire({
                 title: 'Cargue Masivo completado!',
                 text: 'El cargue se ha completado correctamente',
                 icon: 'success'
             });
-        }, 4000);
+        }, 40000);
+        window.location.href = 'movimientos';
     </script>";
+
 }else{
     echo "<script>
-        window.location.href = 'movimientos';
+        
         setTimeout(function() {
             Swal.fire({
                 title: 'Error en el Cargue!',
                 text: 'Ha ocurrido un Error en la carga del docuemento',
                 icon: 'success'
             });
-        }, 4000);
+        }, 40000);
+        window.location.href = 'movimientos';
     </script>";
 }
