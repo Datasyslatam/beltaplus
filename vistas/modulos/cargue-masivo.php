@@ -19,18 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             $codigo = !empty($datos[0]) ? "'" . $datos[0] . "'" : "''";
             $stock = !empty($datos[5]) ? intval($datos[5]) : 0;
 
-            $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo";
+            $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo LIKE '$codigo' ";
             $stmtCheck = Conexion::conectar()->prepare($checkCodigoDuplicado);
             $stmtCheck->bindParam(':codigo', $codigo);
             $stmtCheck->execute();
             $cantDuplicados = $stmtCheck->rowCount();
 
             // No existe registros duplicados
-            if ($cantDuplicados = 0) {
+            if ($cantDuplicados != 0) {
                 $updateData = "UPDATE productos SET stock = :stock WHERE codigo = :codigo";
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
-               // $stmtUpdate->bindParam(':codigo', $codigo);
+                $stmtUpdate->bindParam(':codigo', $codigo);
                 $stmtUpdate->execute();
             }
         }
