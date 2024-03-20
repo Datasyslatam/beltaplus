@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
     $lineas     = file($archivotmp);
     $i = 0;
 
-    foreach ($lineas as $linea) {/* 
+    foreach ($lineas as $linea) {
         $cantidad_registros = count($lineas);
-        $cantidad_regist_agregados = ($cantidad_registros - 1); */
+        $cantidad_regist_agregados = ($cantidad_registros - 1);
 
         if ($i != 0) {
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             $cantDuplicados = $stmtCheck->rowCount();
 
             // No existe registros duplicados
-            if ($cantDuplicados != 0) {
+            if ($cantDuplicados = 0) {
                 $updateData = "UPDATE productos SET stock = :stock WHERE codigo = :codigo";
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
