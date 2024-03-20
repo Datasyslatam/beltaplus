@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
     }
     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <script>
-       
+        window.location.href = 'movimientos';
         setTimeout(function() {
             Swal.fire({
                 title: 'Cargue Masivo completado!',
@@ -45,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
                 icon: 'success'
             });
         }, 4000);
-        window.location.href = 'movimientos';
     </script>";
 
 }else{
     echo "
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    window.location.href = 'movimientos';
     <script>
         Swal.fire({
             title: 'Error en el Cargue!',
