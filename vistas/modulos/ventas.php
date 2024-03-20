@@ -112,9 +112,10 @@ if ($xml) {
               if ($_SESSION["perfil"] == "Administrador") {
                 echo '<button class="btn btn-warning btnEditarVenta" idVenta="' . $value["id"] . '"><i class="fa fa-pencil"></i></button>';
                       // <button class="btn btn-danger btnEliminarVenta" idVenta="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
-
-                echo '<button class="btn btn-success btnPagarVentaProcess" idVenta="' . $value["id"] . '"><i class="fa fa-check"> Confirmar Pago</i></button>
-                  <button class="btn btn-danger btnEliminarVentaProcess" idVenta="' . $value["id"] . '"><i class="fa fa-times"> Devolucion</i></button>';
+                if(ControladorTransito::ctrVerificarVentaEnProceso($value['id'])){
+                  echo '<button class="btn btn-success btnPagarVentaProcess" idVenta="' . $value["id"] . '"><i class="fa fa-check"> Confirmar Pago</i></button>
+                    <button class="btn btn-danger btnEliminarVentaProcess" idVenta="' . $value["id"] . '"><i class="fa fa-times"> Devolucion</i></button>';
+                }
               }
               echo '</div>
                   </td>

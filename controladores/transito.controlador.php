@@ -30,4 +30,8 @@ class ControladorTransito
         }
     }
 
+    public static function ctrVerificarVentaEnProceso($idVenta){
+        return ModeloTransito::mdlObtenerIdProceso($idVenta) != null;
+    }
+
 }
