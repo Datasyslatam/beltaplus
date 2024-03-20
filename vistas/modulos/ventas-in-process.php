@@ -98,18 +98,6 @@ if ($xml) {
 
           </tbody>
         </table>
-        <?php
-
-
-        $eliminarTransito = new ControladorTransito();
-        $eliminarTransito->ctrEliminarProductosTransito();
-        $confirmarVenta = new ControladorVentasTemp();
-        $confirmarVenta->ctrEliminarVenta(true, 'ventas_proceso');
-
-
-
-
-        ?>
 
       </div>
     </div>
