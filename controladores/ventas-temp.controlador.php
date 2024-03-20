@@ -123,7 +123,7 @@ class ControladorVentasTemp
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-									window.location = "ventas-in-process";
+									window.location = "ventas";
 									}
 								})
 					</script>';
@@ -328,7 +328,7 @@ class ControladorVentasTemp
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
-									window.location = "ventas-temp";
+									window.location = "ventas";
 									}
 								})
 					</script>';

@@ -103,7 +103,7 @@ class ControladorVentas
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
-								window.location = "ventas-in-process";
+								window.location = "ventas";
 								}
 							})
 				</script>';
@@ -227,7 +227,7 @@ class ControladorVentas
 	   =============================================*/
 	public static function ctrEliminarVenta()
 	{
-		if (isset($_GET["idVenta"])) {
+		if (isset($_GET["idVenta"]) && !isset($_GET['pagado'])) {
 			$tabla = "ventas";
 			$item = "id";
 			$valor = $_GET["idVenta"];
@@ -295,7 +295,8 @@ class ControladorVentas
 					 ELIMINAR VENTA
 					 =============================================*/
 			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idVenta"]);
-			if ($respuesta == "ok") {
+			$respuesta2 = ModeloVentas::mdlEliminarVenta('ventas_proceso', $_GET["idVenta"]);
+			if ($respuesta == "ok" && $respuesta2 == "ok") {
 				echo '<script>
 				swal({
 					  type: "success",

@@ -54,56 +54,14 @@ class ModeloTransito
             }
         }
     }
-    public static function mdlMoverRow($idTransito)
+    public static function mdlEliminarVentaInProcess($productos, $date)
     {
         $origen = 'ventas_proceso';
-        $destino = 'ventas';
-        $sqlSelect = "SELECT * FROM $origen WHERE id = :id";
-        $stmtSelect = Conexion::conectar()->prepare($sqlSelect);
-        $stmtSelect->bindParam(':id', $idTransito);
-        $stmtSelect->execute();
-        $row = $stmtSelect->fetch(PDO::FETCH_ASSOC);
-        $formatedRow = self::convertirTiposDeDatos($row);
-        if ($formatedRow) {
-
-            $id = self::obtenerUltimoId();
-            $nuevoId = intval($id) + 1;
-            $sqlInsert = "INSERT INTO $destino (id, codigo, id_cliente, id_vendedor, fecha_venta, productos, impuesto, neto, total, transportadora, metodo_pago, fecha)
-            VALUES (:id, :codigo, :id_cliente, :id_vendedor, :fecha_venta, :productos, :impuesto, :neto, :total, :transportadora, :metodo_pago, :fecha)";
-            $stmtInsert = Conexion::conectar()->prepare($sqlInsert);
-            $stmtInsert->bindParam(':id', $nuevoId);
-            $stmtInsert->bindParam(':codigo', $formatedRow['codigo']);
-            $stmtInsert->bindParam(':id_cliente', $formatedRow['id_cliente']);
-            $stmtInsert->bindParam(':id_vendedor', $formatedRow['id_vendedor']);
-            $stmtInsert->bindParam(':fecha_venta', $formatedRow['fecha_venta']);
-            $stmtInsert->bindParam(':productos', $formatedRow['productos']);
-            $stmtInsert->bindParam(':impuesto', $formatedRow['impuesto']);
-            $stmtInsert->bindParam(':neto', $formatedRow['neto']);
-            $stmtInsert->bindParam(':total', $formatedRow['total']);
-            $stmtInsert->bindParam(':transportadora', $formatedRow['transportadora']);
-            $stmtInsert->bindParam(':metodo_pago', $formatedRow['metodo_pago']);
-            $fecha = $formatedRow['fecha']->format('Y-m-d H:i:s');
-            $stmtInsert->bindParam(':fecha', $fecha);
-            $stmtInsert->execute();
-
-            $sqlDelete = "DELETE FROM $origen WHERE id = :id";
-            $stmtDelete = Conexion::conectar()->prepare($sqlDelete);
-            $stmtDelete->bindParam(':id', $idTransito);
-            $stmtDelete->execute();
-        }
-    }
-    private static function convertirTiposDeDatos($fetchResult)
-    {
-
-        $fetchResult['id_cliente'] = intval($fetchResult['id_cliente']);
-        $fetchResult['id_vendedor'] = intval($fetchResult['id_vendedor']);
-        $fetchResult['codigo'] = intval($fetchResult['codigo']);
-        $fetchResult['impuesto'] = floatval($fetchResult['impuesto']);
-        $fetchResult['neto'] = floatval($fetchResult['neto']);
-        $fetchResult['total'] = floatval($fetchResult['total']);
-        $fetchResult['fecha'] = DateTime::createFromFormat('Y-m-d H:i:s', $fetchResult['fecha']);
-
-        return $fetchResult;
+        $sqlDelete = "DELETE FROM $origen WHERE productos = :productos AND fecha_venta = :fecha";
+        $stmtDelete = Conexion::conectar()->prepare($sqlDelete);
+        $stmtDelete->bindParam(':productos', $productos);
+        $stmtDelete->bindParam(':fecha', $date);
+        $stmtDelete->execute();
     }
     private static function obtenerStockTransito($codigo)
     {
@@ -113,14 +71,6 @@ class ModeloTransito
         $stmt->execute();
         $stock = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stock['transito'];
-    }
-    private static function obtenerUltimoId()
-    {
-        $sql = "SELECT MAX(id) AS max_id FROM ventas";
-        $stmt = Conexion::conectar()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['max_id'];
     }
 
     private static function obtenerProductosTransito($idTransito)

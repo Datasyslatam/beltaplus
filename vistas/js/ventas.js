@@ -981,15 +981,17 @@ $(".tablas").on("click", ".btnEliminarVentaProcess", function () {
         confirmButtonText: "Si, cancelar venta!",
     }).then(function (result) {
         if (result.value) {
-            window.location = "index.php?ruta=ventas-in-process&devolucion=true&idVenta=" + idVenta;
+            window.location = "index.php?ruta=ventas&devolucion=true&idVenta=" + idVenta;
         }
     });
 });
 /*=============================================
 CONFIRMAR PAGO DE VENTA EN PROCESO
 =============================================*/
-$(".tablas").on("click", ".btnPagarVentaProccess", function () {
+$(".tablas").on("click", ".btnPagarVentaProcess", function () {
     var idVenta = $(this).attr("idVenta");
+    var productos = $(this).attr("products");
+    var date = $(this).atrr("date");
 
     swal({
         title: "¿Está seguro de confirmar el pago?",
@@ -1002,7 +1004,7 @@ $(".tablas").on("click", ".btnPagarVentaProccess", function () {
         confirmButtonText: "Si, confirmar!",
     }).then(function (result) {
         if (result.value) {
-            window.location = "index.php?ruta=ventas-in-process&pagado='true'&idVenta=" + idVenta;
+            window.location = "index.php?ruta=ventas&pagado='true'&idVenta=" + idVenta + "&productos=" + productos + "&date=" + date;
         }
     });
 });
