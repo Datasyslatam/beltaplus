@@ -113,7 +113,7 @@ EOF;
 
 		$valor_acumulado = 0;
 		$cantidad_acumulada = 0;
-		foreach ($productos as $key => $item){
+		foreach ($productos as $item) {
 			$cantidad = $item["cantidad"];
 			$cantidad_acumulada += $cantidad;
 		}
@@ -128,20 +128,19 @@ EOF;
 
 			$respuestaTalla = ControladorTallas::ctrMostrarTallas($itemProducto, $respuestaProducto["id_talla"]);
 			$respuestaColor = ControladorColores::ctrMostrarColores($itemProducto, $respuestaProducto["id_color"]);
-			
 
-			$talla = $respuestaTalla["talla"] ?? "NaN";
-			$color = $respuestaColor["color"] ?? "NaN";
+
 			if ($cantidad_acumulada >= 6) {
 				$valorUnitario = number_format($respuestaProducto["precio_compra"], 2);
 				$valor_acumulado += $respuestaProducto["precio_compra"] * $cantidad;
+				$precioProducto = number_format($respuestaProducto["precio_compra"] * $cantidad);
 			} else {
 				$valorUnitario = number_format($item["precio"], 2);
 				$valor_acumulado += $item["precio"] * $cantidad;
+				$precioProducto = number_format($respuestaProducto["precio_venta"] * $cantidad);
+
 			}
 
-			$precioTotal = number_format($valor_acumulado, 2);
-			$precioProducto = number_format($respuestaProducto["precio_compra"] * $cantidad);
 			$bloque2 = <<<EOF
 
 			<table style="font-size:8px;">
@@ -168,7 +167,6 @@ EOF;
 EOF;
 
 			$pdf->writeHTML($bloque2, false, false, false, false, '');
-
 		}
 		$neto = number_format($valor_acumulado, 2);
 		$total = number_format($valor_acumulado + $respuestaVenta["impuesto"], 2);
@@ -239,17 +237,13 @@ EOF;
 		$pdf->writeHTML($bloque3, false, false, false, false, '');
 
 		// ---------------------------------------------------------
-//SALIDA DEL ARCHIVO 
+		//SALIDA DEL ARCHIVO 
 
 		//$pdf->Output('factura.pdf', 'D');
 		$pdf->Output('factura.pdf');
-
 	}
-
 }
 
 $factura = new imprimirFactura();
 $factura->codigo = $_GET["codigo"];
 $factura->traerImpresionFactura();
-
-?>
