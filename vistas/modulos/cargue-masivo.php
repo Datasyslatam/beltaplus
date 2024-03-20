@@ -57,6 +57,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             text: 'No se ha seleccionado ningun archivo',
             icon: 'success'
         });
-        window.location.href = 'movimientos';
     </script>";
 }
