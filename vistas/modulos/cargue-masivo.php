@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
 
 }else{
     echo "<script>
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         Swal.fire({
             title: 'Error en el Cargue!',
             text: 'No se ha seleccionado ningun archivo',
