@@ -50,14 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
 
 }else{
     echo "<script>
-        
-        setTimeout(function() {
-            Swal.fire({
-                title: 'Error en el Cargue!',
-                text: 'Ha ocurrido un Error en la carga del docuemento',
-                icon: 'success'
-            });
-        }, 4000);
+        Swal.fire({
+            title: 'Error en el Cargue!',
+            text: 'No se ha seleccionado ningun archivo',
+            icon: 'success'
+        });
         window.location.href = 'movimientos';
     </script>";
 }
