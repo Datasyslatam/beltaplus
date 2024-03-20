@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             // No existe registros duplicados
             if ($cantDuplicados != 0) {
                 $updateData = "UPDATE productos SET
-                            stock = :stock,
+                            stock = :stock
                             WHERE codigo = :codigo";
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
