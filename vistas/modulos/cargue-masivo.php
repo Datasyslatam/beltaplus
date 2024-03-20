@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             /* $codigo = !empty($datos[0]) ? "'" . $datos[0] . "'" : "''";
             $stock = !empty($datos[5]) ? intval($datos[5]) : 0;
  */
-            $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo LIKE :codigo ";
+            $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo ";
             $stmtCheck = Conexion::conectar()->prepare($checkCodigoDuplicado);
             $stmtCheck->bindParam(':codigo', $codigo);
             $stmtCheck->execute();
