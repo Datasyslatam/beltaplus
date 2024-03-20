@@ -14,7 +14,7 @@ CARGAR LA TABLA DINÁMICA DE VENTAS
 // })//
 var productos_acumulado = {};
 $(".tablaVentas").DataTable({
-    //"ajax": "ajax/datatable-ventas.ajax.php",
+    ajax: "ajax/datatable-ventas.ajax.php",
     deferRender: true,
     retrieve: true,
     processing: true,
