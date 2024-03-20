@@ -990,8 +990,6 @@ CONFIRMAR PAGO DE VENTA EN PROCESO
 =============================================*/
 $(".tablas").on("click", ".btnPagarVentaProcess", function () {
     var idVenta = $(this).attr("idVenta");
-    var productos = $(this).attr("products");
-    var date = $(this).atrr("date");
 
     swal({
         title: "¿Está seguro de confirmar el pago?",
@@ -1004,7 +1002,7 @@ $(".tablas").on("click", ".btnPagarVentaProcess", function () {
         confirmButtonText: "Si, confirmar!",
     }).then(function (result) {
         if (result.value) {
-            window.location = "index.php?ruta=ventas&pagado='true'&idVenta=" + idVenta + "&productos=" + productos + "&date=" + date;
+            window.location = "index.php?ruta=ventas&pagado='true'&idVenta=" + idVenta;
         }
     });
 });

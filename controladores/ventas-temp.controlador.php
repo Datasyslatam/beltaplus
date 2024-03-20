@@ -323,7 +323,7 @@ class ControladorVentasTemp
 					echo '<script>
 					swal({
 						  type: "success",
-						  title: "¡El carrito ha sido borrado correctamente!",
+						  title: "¡Accion Confirmada!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
