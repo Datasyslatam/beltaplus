@@ -37,15 +37,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
 
         $i++;
     }
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        window.location.href = 'movimientos';
+        setTimeout(function() {
+            Swal.fire({
+                title: 'Cargue Masivo completado!',
+                text: 'El cargue se ha completado correctamente',
+                icon: 'success'
+            });
+        }, 4000);
+    </script>";
+}else{
+    echo "<script>
+        window.location.href = 'movimientos';
+        setTimeout(function() {
+            Swal.fire({
+                title: 'Error en el Cargue!',
+                text: 'Ha ocurrido un Error en la carga del docuemento',
+                icon: 'success'
+            });
+        }, 4000);
+    </script>";
 }
-echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script>
-    window.location.href = 'movimientos';
-    setTimeout(function() {
-        Swal.fire({
-            title: 'Cargue Masivo completado!',
-            text: 'El cargue se ha completado correctamente',
-            icon: 'success'
-        });
-    }, 4000);
-</script>";
