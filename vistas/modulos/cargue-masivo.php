@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
         if ($i != 0) {
             $datos = explode(";", $linea);
             $codigo = !empty($datos[0]) ? $datos[1] : '';
-            $stock = !empty($datos[5]) ? intval($datos[6]) : 0; 
+            $stock = !empty($datos[5]) ? intval($datos[7]) : 0; 
 
             // filtrado por el codigo para verificar duplicados
             $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo ";
