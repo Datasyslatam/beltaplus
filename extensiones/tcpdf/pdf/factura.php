@@ -34,7 +34,7 @@ class imprimirFactura
 		$respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
 
 		# $fecha = substr($respuestaVenta["fecha_venta"], 0, -8);
-		$fecha = $respuestaVenta["fecha_venta"];
+		$fecha = date($respuestaVenta["fecha_venta"]);
 		$productos = json_decode(stripslashes($respuestaVenta["productos"]), true);
 		$impuesto = number_format($respuestaVenta["impuesto"], 2);
 
