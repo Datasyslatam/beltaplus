@@ -18,7 +18,7 @@ class ControladorVentas
 	/*=============================================
 	   CREAR VENTA
 	   =============================================*/
-	public static function ctrCrearVenta($tabla = 'ventas')
+	public static function ctrCrearVenta($tabla = 'ventas', $proceso = false)
 	{
 		if (isset($_POST["nuevaVenta"])) {
 			/*=============================================
@@ -91,7 +91,9 @@ class ControladorVentas
 						   "metodo_pago"=>$_POST["listaMetodoPago"],
 						   "transportadora"=>$_POST["nuevaTransporta"]
 						);
-						
+			if($proceso){
+				ModeloVentas::mdlIngresarVenta('ventas_proceso', $datos);
+			}
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
 				echo '<script>
@@ -103,7 +105,7 @@ class ControladorVentas
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
-								window.location = "ventas-in-process";
+								window.location = "ventas";
 								}
 							})
 				</script>';
@@ -227,7 +229,7 @@ class ControladorVentas
 	   =============================================*/
 	public static function ctrEliminarVenta()
 	{
-		if (isset($_GET["idVenta"])) {
+		if (isset($_GET["idVenta"]) && !isset($_GET['pagado'])) {
 			$tabla = "ventas";
 			$item = "id";
 			$valor = $_GET["idVenta"];
@@ -295,7 +297,8 @@ class ControladorVentas
 					 ELIMINAR VENTA
 					 =============================================*/
 			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idVenta"]);
-			if ($respuesta == "ok") {
+			$respuesta2 = ModeloVentas::mdlEliminarVenta('ventas_proceso', $_GET["idVenta"]);
+			if ($respuesta == "ok" && $respuesta2 == "ok") {
 				echo '<script>
 				swal({
 					  type: "success",

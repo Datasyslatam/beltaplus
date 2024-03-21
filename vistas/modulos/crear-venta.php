@@ -243,10 +243,10 @@ if ($_SESSION["perfil"] == "Especial") {
                   break;
                 case 'facturar':
                   $controlador = new ControladorVentas();
-                  $controlador->ctrCrearVenta('ventas_proceso');
-
+                  $controlador->ctrCrearVenta('ventas', true);
                   $controlador = new ControladorTransito();
                   $controlador-> ctrSumarProductosTransito();
+                  $controlador -> ctrUnirVentas();
                   break;
                 default:
                   break;
