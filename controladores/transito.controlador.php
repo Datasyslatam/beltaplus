@@ -12,7 +12,7 @@ class ControladorTransito
     }
     public static function ctrEliminarProductosTransito()
     {
-        if (isset($_GET['idVenta']) && isset($_GET['devolucion']) || isset($_GET['pagado'])) {
+        if (isset($_GET['idVenta']) && isset($_GET['devolucion'])) {
             $idVenta = ModeloTransito::mdlObtenerIdProceso($_GET['idVenta']);
             ModeloTransito::mdlRestarTransito($idVenta, isset($_GET['devolucion']));
             ModeloTransito::mdlEliminarVentaProceso($idVenta);

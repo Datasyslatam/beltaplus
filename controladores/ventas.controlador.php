@@ -18,7 +18,7 @@ class ControladorVentas
 	/*=============================================
 	   CREAR VENTA
 	   =============================================*/
-	public static function ctrCrearVenta($tabla = 'ventas')
+	public static function ctrCrearVenta($tabla = 'ventas', $proceso = false)
 	{
 		if (isset($_POST["nuevaVenta"])) {
 			/*=============================================
@@ -91,7 +91,9 @@ class ControladorVentas
 						   "metodo_pago"=>$_POST["listaMetodoPago"],
 						   "transportadora"=>$_POST["nuevaTransporta"]
 						);
-						
+			if($proceso){
+				ModeloVentas::mdlIngresarVenta('ventas_proceso', $datos);
+			}
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 			if ($respuesta == "ok") {
 				echo '<script>
