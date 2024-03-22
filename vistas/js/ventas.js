@@ -1141,3 +1141,17 @@ $(".abrirXML").click(function () {
     var archivo = $(this).attr("archivo");
     window.open(archivo, "_blank");
 });
+
+ // VALIDAR INPUT DE CODIGO EN CREACION DE VENTAS
+
+ $(document).ready(function() {
+    $('#inputSinEspacios').on('input', function() {
+        var inputValue = $(this).val();
+        if (inputValue.includes(' ')) {
+            $('#alertaEspacios').text('No se permiten espacios en este campo').show();
+            $(this).val(inputValue.replace(/\s/g, ''));
+        } else {
+            $('#alertaEspacios').hide();
+        }
+    });
+});

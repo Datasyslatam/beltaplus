@@ -53,7 +53,6 @@ class ControladorVentas
 				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
 				$item1b = "stock";
 				$valor1b = $value["stock"];
-				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
 				/*Ingresar al kardex*/
 				$tablaHistorial = "historial";
 				$cant = $value["cantidad"];
@@ -284,7 +283,6 @@ class ControladorVentas
 				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
 				$item1b = "stock";
 				$valor1b = $value["cantidad"] + $traerProducto["stock"];
-				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
 			}
 			$tablaClientes = "clientes";
 			$itemCliente = "id";
