@@ -149,8 +149,9 @@ MODAL AGREGAR PRODUCTO
             <label for="">Código</label>
             <div class="form-group">
               <div class="input-group"> <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required>
+                <input type="text" id="inputSinEspacios" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required >
               </div>
+              <div id="alertaEspacios" style="display: none; color: red;"></div>
             </div>
             <!-- ENTRADA PARA LA DESCRIPCIÓN -->
 <!--             <label for="">Descripción</label>
