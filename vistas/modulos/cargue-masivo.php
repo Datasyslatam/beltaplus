@@ -13,8 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
 
         if ($i != 0) {
             $datos = explode(";", $linea);
-            $codigo = !empty($datos[0]) ? $datos[1] : '';
-            $stock = !empty($datos[5]) ? intval($datos[7]) : 0; 
+            $codigo = !empty($datos[1]) ? $datos[1] : '';
+            $stock = !empty($datos[7]) ? intval($datos[7]) : 0; 
+            $precxmayor = !empty($datos[8]) ? intval($datos[8]) : 0; 
+            $precxund = !empty($datos[9]) ? intval($datos[9]) : 0; 
 
             // filtrado por el codigo para verificar duplicados
             $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo ";
@@ -23,12 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             $stmtCheck->execute();
             $cantDuplicados = $stmtCheck->rowCount();
 
-            // No existe registros duplicados
+            // No existe registros duplicados actualizamos los campos de Stock, precio_compra y precio_venta tabla PRODUCTOS
             if ($cantDuplicados != 0) {
-                $updateData = "UPDATE productos SET stock = :stock WHERE codigo = :codigo";
+                $updateData = "UPDATE productos SET stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo";
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
-                $stmtUpdate->bindParam(':codigo', $codigo);
+                //$stmtUpdate->bindParam(':codigo', $codigo);
+                $stmtUpdate->bindParam(':precio_compra', $precxmayor);
+                $stmtUpdate->bindParam(':precio_venta', $precxund);
                 $stmtUpdate->execute();
             }
         }
