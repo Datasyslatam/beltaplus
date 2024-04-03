@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
             $datos = explode(";", $linea);
             $codigo = !empty($datos[1]) ? $datos[1] : '';
             $stock = !empty($datos[7]) ? intval($datos[7]) : 0; 
-            $precxmayor = !empty($datos[8]) ? intval($datos[8]) : 0; 
-            $precxund = !empty($datos[9]) ? intval($datos[9]) : 0; 
+            $precio_compra = !empty($datos[8]) ? intval($datos[8]) : 0; 
+            $precio_venta = !empty($datos[9]) ? intval($datos[9]) : 0; 
 
             // filtrado por el codigo para verificar duplicados
             $checkCodigoDuplicado = "SELECT codigo FROM productos WHERE codigo = :codigo ";
@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
                 //$stmtUpdate->bindParam(':codigo', $codigo);
-                $stmtUpdate->bindParam(':precio_compra', $precxmayor);
-                $stmtUpdate->bindParam(':precio_venta', $precxund);
+                $stmtUpdate->bindParam(':precio_compra', $precio_compra);
+                $stmtUpdate->bindParam(':precio_venta', $precio_venta);
                 $stmtUpdate->execute();
             }
         }
