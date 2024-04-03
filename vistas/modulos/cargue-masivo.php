@@ -30,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['dataCliente'])) {
                 $updateData = "UPDATE productos SET stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo";
                 $stmtUpdate = Conexion::conectar()->prepare($updateData);
                 $stmtUpdate->bindParam(':stock', $stock);
-                //$stmtUpdate->bindParam(':codigo', $codigo);
                 $stmtUpdate->bindParam(':precio_compra', $precio_compra);
                 $stmtUpdate->bindParam(':precio_venta', $precio_venta);
+                $stmtUpdate->bindParam(':codigo', $codigo);
                 $stmtUpdate->execute();
             }
         }
