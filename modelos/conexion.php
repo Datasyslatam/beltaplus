@@ -11,7 +11,7 @@ class Conexion{
 			            "u798057814_beltap",
 			            "Ghy1Be4l");
 
-		$link->exec("set names utf8");
+		$link->exec("set names utf8mb4");
 
 		return $link;
 
