@@ -62,15 +62,34 @@ function adjustButtonWidths() {
 // Parar rellenar las multiples opciones
 function fillButtonGroup(datos, tipo) {
   let template = ``;
+
+  // Ordena los datos alfabéticamente basándose en el campo correspondiente
+  datos.sort((a, b) => {
+    let nameA, nameB;
+
+    // Determina el campo a ordenar en función del tipo
+    if (tipo === "colores") {
+      nameA = (a.nombre || "").toUpperCase();
+      nameB = (b.nombre || "").toUpperCase();
+    } else if (tipo === "subcategoria") {
+      nameA = (a.nombre || "").toUpperCase(); // Asumiendo que 'nombre' es el campo a ordenar
+      nameB = (b.nombre || "").toUpperCase();
+    } else {
+      nameA = (a.categoria || "").toUpperCase();
+      nameB = (b.categoria || "").toUpperCase();
+    }
+
+    // Compara los nombres
+    return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+  });
+
   datos.forEach((elem) => {
-    if (elem.categoria != "undefined" && typeof elem.nombre == "undefined") {
-      template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" onclick="seleccionarOpcion(this)">${elem.categoria}</button>`;
-    } else {  // Valido si es la cetgoria es Colores para pintar los botones con su color respectivo
-      if(tipo == "colores"){
-        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" style="background-color:${elem.cod_color}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
-      }else{ 
-        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
-      }
+    if (tipo === "colores") {
+      template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" style="background-color:${elem.cod_color}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
+    } else if (tipo === "subcategoria") {
+      template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
+    } else {
+      template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" onclick="seleccionarOpcion(this)">${elem.categoria}</button>`;
     }
   });
 

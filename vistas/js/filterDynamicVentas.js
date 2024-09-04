@@ -27,7 +27,7 @@ $(document).ready(function () {
       mostrarElemento("#cont-categorias", false, [tipo]);
     }
   
-    llenarBotonesSeleccionables();
+    llenarBotonesSeleccionables(); 
   
     const tipos = ["categorias", "subcategoria", "colores"];
     let index = tipos.indexOf(tipo);
@@ -61,15 +61,34 @@ $(document).ready(function () {
   // Parar rellenar las multiples opciones
   function fillButtonGroup(datos, tipo) {
     let template = ``;
+  
+    // Ordena los datos alfabéticamente basándose en el campo correspondiente
+    datos.sort((a, b) => {
+      let nameA, nameB;
+  
+      // Determina el campo a ordenar en función del tipo
+      if (tipo === "colores") {
+        nameA = (a.nombre || "").toUpperCase();
+        nameB = (b.nombre || "").toUpperCase();
+      } else if (tipo === "subcategoria") {
+        nameA = (a.nombre || "").toUpperCase(); // Asumiendo que 'nombre' es el campo a ordenar
+        nameB = (b.nombre || "").toUpperCase();
+      } else {
+        nameA = (a.categoria || "").toUpperCase();
+        nameB = (b.categoria || "").toUpperCase();
+      }
+  
+      // Compara los nombres
+      return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+    });
+  
     datos.forEach((elem) => {
-      if (elem.categoria != "undefined" && typeof elem.nombre == "undefined") {
-        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" onclick="seleccionarOpcion(this)">${elem.categoria}</button>`;
-      } else {  // Valido si es la cetgoria es Colores para pintar los botones con su color respectivo
-        if(tipo == "colores"){
-          template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" style="background-color:${elem.cod_color}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
-        }else{ 
-          template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo = "${tipo}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
-        }
+      if (tipo === "colores") {
+        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" style="background-color:${elem.cod_color}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
+      } else if (tipo === "subcategoria") {
+        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" onclick="seleccionarOpcion(this)">${elem.nombre}</button>`;
+      } else {
+        template += `<button type="button" class="btn btn-outline-secondary mx-1 btn-seleccionable" data-option="${elem.id}" data-tipo="${tipo}" onclick="seleccionarOpcion(this)">${elem.categoria}</button>`;
       }
     });
   
@@ -84,52 +103,57 @@ $(document).ready(function () {
       type: "GET",
       dataType: "json",
       success: function (data) {
-        CATEGORIAS = data.categorias1;
-        SUB_CATEGORIAS = data.subCategorias1;
-        COLORES = data.colores1;
-        var tipo = null;
-        $(".filterSearch").each(function () {
-          if ($(this).hasClass("hidden")) {
-            tipo = $(this).data("id");
-            return false;
-          }
-        });
+        if (data && data.categorias1 && data.subCategorias1 && data.colores1) {
+          CATEGORIAS = data.categorias1;
+          SUB_CATEGORIAS = data.subCategorias1;
+          COLORES = data.colores1;
+          
+          var tipo = null;
+          $(".filterSearch").each(function () {
+            if ($(this).hasClass("hidden")) {
+              tipo = $(this).data("id");
+              return false;
+            }
+          });
   
-        if (tipo) {
-          var datos = [];
-          //Categorias
-          switch (tipo) {
-            case "categorias":
-              fillButtonGroup(CATEGORIAS, tipo);
-              break;
-            case "subcategoria":
-              const idcat = $("#categorias").data("id");
+          if (tipo) {
+            var datos = [];
+            //Categorias
+            switch (tipo) {
+              case "categorias":
+                fillButtonGroup(CATEGORIAS, tipo);
+                break;
+              case "subcategoria":
+                const idcat = $("#categorias").data("id");
   
-              datos = SUB_CATEGORIAS.filter((sub) => {
-                return sub.categoria_id == idcat;
-              });
-  
-              fillButtonGroup(datos, tipo);
-  
-              if (datos.length == 0) {
-                $("#button-group").html(
-                  `<p class='not-found-subcategory'><b>No se encontro subcategoria para esta categoria.<b></p>`
-                );
-              }
-  
-              break;
-            default:
-              for (const key of COLORES) {
-                datos.push({
-                  id: key["id"],
-                  nombre: key["color"],
-                  cod_color: key["cod_color"],      // Codigo hex del color para pintar Boton del nombre del color
+                datos = SUB_CATEGORIAS.filter((sub) => {
+                  return sub.categoria_id == idcat;
                 });
-              }
   
-              fillButtonGroup(datos, tipo);
-              break;
+                fillButtonGroup(datos, tipo);
+  
+                if (datos.length == 0) {
+                  $("#button-group").html(
+                    `<p class='not-found-subcategory'><b>No se encontro subcategoria para esta categoria.<b></p>`
+                  );
+                }
+  
+                break;
+              default:
+                for (const key of COLORES) {
+                  datos.push({
+                    id: key["id"],
+                    nombre: key["color"],
+                    cod_color: key["cod_color"],      // Codigo hex del color para pintar Boton del nombre del color
+                  });
+                }
+  
+                fillButtonGroup(datos, tipo);
+                break;
+            }
           }
+        } else {
+          console.error("Datos de la respuesta AJAX no están en el formato esperado.");
         }
       },
       error: function (xhr, status, error) {
