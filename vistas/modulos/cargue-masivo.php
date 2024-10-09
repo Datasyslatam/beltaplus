@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<script>
                     swal({
                         type: "success",
-                        title: "Cargue Clientes completado!",
+                        title: "Cargue Inventario completado!",
                         text: "El cargue se ha completado correctamente",
                         showConfirmButton: true,
                         confirmButtonText: "Aceptar"
